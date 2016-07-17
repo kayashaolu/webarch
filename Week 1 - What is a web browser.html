@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>What is a web browser? - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>What is a web browser?</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>What is the core?</h1>
+					<div class='left' style='float:left;width:48%'>
+						Pic of old school browser
+					</div>    
+					<div class='right' style='float:right;width:48%'>
+						Pic of modern browser
+					</div>
+				</section>
+
+				<section>
+					<h1>Features of a browser</h1>
+					<ul>
+						<li>Network Access</li>
+						<li>Interpreting the fetched data</li>
+						<li>Possibly fetching and interpreting dependencies like images</li>
+						<li>Rendering HTML with CSS rules</li>
+						<li>Running scripts in the context of the web page</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>"Facebook.com" -> Web page</h1>
+					<ul>
+						<li>Analyze address bar to determine protocol and server</li>
+						<li>Connect to server, download data and all dependencies</li>
+						<li>Analyze HTML, generate a Document Object Model (DOM)</li>
+						<li>Apply CSS to the DOM</li>
+						<li>Display the DOM</li>
+						<li>Start executing scripting code and re-render the DOM as required</li>
+						<li>Continue executing and interpreting user actions</li>
+					</ul>
+				</section>
+				<section>
+					<h1>What is a browser?</h1>
+					https://www.youtube.com/watch?v=o4MwTvtyrUQ&feature=youtu.be
+				</section>
+
+				<section>
+					<h1>Why separate the browser from websites?</h1>
+					<ul>
+						<li>Composability!</li>
+						<li>Improve the features around the website without upgrading the website</li>
+						<li>Original browser did not have Forward or Back buttons</li>
+						<li>Accessibility</li>
+						<li>Tradeoff is the layouts need to follow rules, designers must design with multiple audiences in mind</li>
+
+				</section>
+				<section>
+					<h1>Browser or Webpage?</h1>
+				</section>
+				<section>
+					<h1>Browsers, Apps, Operating Systems</h1>
+					<ul>
+						<li>Traditionally browsers were applications running in an OS like Windows</li>
+						<li>Scripting enables browsers to run their own code</li>
+						<li>Complex web pages (e.g. Gmail) behave almost like an application</li>
+						<li>Browsers could become an OS themselves (i.e. ChromeOS)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+	</body>
+</html>
