@@ -12,3 +12,11 @@ Labs (10%), Assignments (40%), Project (50%)
   
 ## GSI
  - Kinshuk <@ischool>
+
+# Syllabus
+
+|   |   |   |   |   |
+|---|---|---|---|---|
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
