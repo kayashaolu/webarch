@@ -3,18 +3,17 @@
 ## Description: 
 This course is a survey of Web technologies, ranging from the basic technologies underlying the Web (URI, HTTP, HTML) to more advanced technologies being used in the the context of Web engineering, for example structured data formats and Web programming frameworks. The goal of this course is to provide an overview of the technical issues surrounding the Web today, and to provide a solid and comprehensive perspective of the Web's constantly evolving landscape.
 
-## Class Prep
-It is expected that class prep is done before the date that they are assigned. They will be mostly readings, but they are also 
-
 ## Grading:
 Labs (15%), Assignments (45%), Project (40%)
- - Labs are due at 11:59 pm of the day they have been assigned. Assignments andthe project are due 11:59 pm the day of their due date
+ - Labs are due at 11:59 pm of the day they have been assigned. 
+ - Assignments and the Project are due 11:59 pm on the day of their due date
+
 
 ## Instructor:
  - Kay Ashaolu <kay@ischool>
   
 ## GSI
- - Kinshuk <@ischool>
+ - Kinshuk <kinshuk@ischool>
 
 # Syllabus
 
@@ -35,4 +34,4 @@ Labs (15%), Assignments (45%), Project (40%)
 | Nov 18 | | Special Topics TBD | Work on Project | Assignment 4 Due |
 | Nov 25 | | Academic Hoilday | | |
 | Dec 2 | | Special Topics TBD | Work on Project | |
-| Dec 9 | | Group Presentations| | |
+| Dec 9 | | Group Presentations| | Group Project Part 2 Due |
