@@ -20,18 +20,18 @@ Labs (15%), Assignments (45%), Project (40%)
 |  Date |  Class Prep | Lecture Slides | Labs | Assignments / Projects |
 |---|---|---|---|---|
 | Aug 26 | [VMs, Linux, and Git](https://info253-fl2016.github.io/Class%20Prep%201%20-%20Virtual%20Machines,%20Linux%20Terminal,%20and%20Git.html) | [Introduction](https://info253-fl2016.github.io/Lecture%201%20-%20Introduction.html) and [Browsers](https://info253-fl2016.github.io/Lecture%202%20-%20What%20is%20a%20web%20browser.html) | [Lab 1: Setting up Git](https://classroom.github.com/assignment-invitations/44735fb1e10b4988f74e678007956e42) | [Assignment 1 Assigned](https://classroom.github.com/assignment-invitations/76cf5b234f94e51a56d5cb12f837e1dc) | 
-| Sep 2 |  | HTML and CSS | Lab 2: Create a simple webpage |  |
-| Sep 9 | | Javascript Basics and Javascript in websites | Lab 3: Make your website interactive | |
+| Sep 2 |  | HTML and CSS | Lab 2: Create a simple web page |  |
+| Sep 9 | | JavaScript Basics and JavaScript in websites | Lab 3: Make your website interactive | |
 | Sep 16 | | Basic and Advanced HTML Forms | Lab 4: Build your first web application | |
 | Sep 23 |  | Nuts and Bolts: URL's and HTTP | Lab 5: Using the terminal to browse the web | Assignment 1 Due<br />Assignment 2 assigned  | 
-| Sep 30 | | Dynamic Webpages and Sending data to web servers | Lab 6: How to use AJAX  | |
+| Sep 30 | | Dynamic Web Pages and Sending data to web servers | Lab 6: How to use AJAX  | |
 | Oct 7 | | Introduction to Python and Flask web server | Lab 7: Create our first web server | |
 | Oct 14 | | Nuts and Bolts: Networking, and TCP and DNS | Lab 8: Domain names  | Assignment 2 Due<br />Assignment 3 Assigned |
 | Oct 21 | | API's and REST | Lab 9: Create your own API  | Group Project Part 1 Assigned  |
 | Oct 28 | | Relational and Non-relational Databases | Lab 10: Add a database to your API | Group Project Part 1 Due |
-| Nov 4 | | Introduction to the cloud and how to use it | Lab 11: Move your app to Heroku | Assignment 3 Due<br /> Assignment 4 Assigned<br /> Group Project Part 2 Assigned |
+| Nov 4 | | Introduction to the cloud and how to use it | Lab 11: Move your application to Heroku | Assignment 3 Due<br /> Assignment 4 Assigned<br /> Group Project Part 2 Assigned |
 | Nov 11 |  |  Academic Holiday | | |
 | Nov 18 | | Special Topics TBD | Work on Project | Assignment 4 Due |
-| Nov 25 | | Academic Hoilday | | |
+| Nov 25 | | Academic Holiday | | |
 | Dec 2 | | Special Topics TBD | Work on Project | |
 | Dec 9 | | Group Presentations| | Group Project Part 2 Due |
