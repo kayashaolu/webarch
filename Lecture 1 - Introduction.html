@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Why are you in this class - INFO 253 Web Architecture Fall 2016</title>
+		<title>Introduction - INFO 253 Web Architecture Fall 2016</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css" id="theme">
@@ -49,7 +49,8 @@
 						</ul>
 					</div>    
 					<div class='right' style='float:right;width:48%'>
-
+						<img src="assets/lecture-1/kay-image-1.png" />
+						<img src="assets/lecture-1/kay-image-2.png" />
 
 					</div>
 
@@ -74,7 +75,7 @@
 						<li>Demystify "magic"</li>
 						<li>Learn how to build "magic" with existing tools</li>
 						<li>Know the challenges of building "magic"</li>
-						<li>Understand the tradeoffs made when building "magic"</li>
+						<li>Understand the trade-offs made when building "magic"</li>
 
 					</ul>
 				</section>
@@ -85,8 +86,8 @@
 						<li>Friday's 9 am - 12 pm</li>
 						<li>Two 50 minute lecture and a 50 minute lab</li>
 						<li>10 minute break after every section</li>
-						<li>Readings assigned for each class</li>
-						<li>All lectures, assignments, readings, and labs will be posted on Piazza</li>
+						<li>Class Prep assigned for each class</li>
+						<li>All lectures, assignments, readings, and labs will be posted on our <a href="https://github.com/INFO253-FL2016/INFO253-FL2016.github.io">course GitHub repository</a></li>
 					</ul>
 				</section>
 
@@ -105,7 +106,7 @@
 						<li>There will be a short assignment for the last 50 minute section of most classes</li>
 						<li>It’s designed to be completed within the 50 minutes</li>
 						<li>Labs are due at 11:59 pm the day of lecture</li>
-						<li>You can leave class early and do the lab on your own <strong>just submit it before midnight</strong></li>
+						<li>You can leave class early and do the lab on your own, but you must <strong>submit it before midnight</strong></li>
 					</ul>
 				</section>
 
@@ -117,7 +118,7 @@
 								<ul>
 									<li>HTML</li>
 									<li>CSS</li>
-									<li>Javascript</li>
+									<li>JavaScript</li>
 									<li>Python</li>
 									<li>SQL/Active Record</li>
 								</ul>
@@ -131,7 +132,7 @@
 									<li>Git</li>
 									<li>Unix / Terminal</li>
 									<li>Firebug</li>
-									<li>Heroku</li>
+									<li></li>
 									<li>Amazon AWS</li>
 								</ul>
 							</li>
@@ -169,7 +170,7 @@
 							<li>Me
 								<ul>
 									<li>Explain Core Concepts</li>
-									<li>Understand design tradeoffs</li>
+									<li>Understand design trade-offs</li>
 									<li>Introduce new technologies</li>
 									<li>Tie everything together</li>
 
@@ -181,7 +182,7 @@
 						<ul>
 							<li>You
 								<ul>
-									<li>Understand lectures and readings</li>
+									<li>Understand lectures and do class prep</li>
 									<li>Explore new technologies</li>
 									<li>Work independently and in groups</li>
 								</ul>
@@ -194,9 +195,9 @@
 					<h1>Office hours and wait list</h1>
 
 					<ul>
-						<li>Kay’s office hours are by request via google hangout</li>
+						<li>Kay’s office hours are by request via Google hangout</li>
 						<li>Kinshuk’s office hours: </li>
-						<li>Piazza is your friend</li>
+						<li>Use the <a href="https://github.com/INFO253-FL2016/INFO253-FL2016.github.io/issues">issue tracker</a> on our main git repository to ask questions to the instructors and to the class</li>
 						<li>Wait list will be processed normally  before the 3rd week (Sept 16th)</li>
 						<li>After that come see me</li>
 					</ul>
@@ -204,23 +205,22 @@
 
 				<section>
 					<h1>Grades</h1>
-					<div class="right" style='float:left;'>
-						<ul>
-							<li>
-								Labs: 10%
-								<ul><li>Graded on a √, √+, √- basis</li></ul>
-							</li>
-							<li>
-								Assignments: 40%
-								<ul><li>Graded on a numeric basis</li></ul>
-							</li>
-							<li>
-								Project: 50%
-								<ul><li>Graded on a numeric basis</li></ul>
-							</li>
-							<li>There is no midterm or final</li>
-						</ul>
-					</div>
+					<ul>
+						<li>
+							Labs: 15%
+							<ul><li>Graded on a √, √+, √- basis</li></ul>
+						</li>
+						<li>
+							Assignments: 45%
+							<ul><li>Graded on a numeric basis</li></ul>
+						</li>
+						<li>
+							Project: 40%
+							<ul><li>Graded on a numeric basis</li></ul>
+						</li>
+						<li>There is <strong>no midterm nor final</strong></li>
+
+					</ul>
 				</section>
 
 				<section>
@@ -256,7 +256,7 @@
 							<ul><li>One (of many) destinations data goes to</li></ul>
 						</li>
 						<li>
-							HTML/CSS/Javascript
+							HTML/CSS/JavaScript
 							<ul><li>One (of many) representations of data transmitted over the web</li></ul>
 						</li>
 					</ul>
@@ -264,6 +264,7 @@
 
 				<section>
 					<h1>Highway vs Railway</h1>
+					<img src="assets/lecture-1/highway.png" />
 
 				</section>
 
@@ -283,7 +284,7 @@
 						<li>Must have the right track gauge</li>
 						<li>Must coordinate with other traffic</li>
 						<li>If you upgrade one part of the system, everything else must be upgraded</li>
-						<li>Need specialy made vehicles for railway</li>
+						<li>Need specially made vehicles for railway</li>
 					</ul>
 				</section>
 
@@ -318,24 +319,22 @@
 
 				<section>
 					<h1>Browsers interpret data into information</h1>
-					<ul>
-						<li>
-							Browsers interpret some data from the internet as text
-							<ul>
-								<li>HTML</li>
-								<li>CSS</li>
-								<li>Javascript</li>
-							</ul>
-						</li>
-						<li>
-							Browsers interpret other data from the internet as other media
-							<ul>
-								<li>Images</li>
-								<li>Music</li>
-								<li>Video</li>
-							</ul>
-						</li>
-					</ul>
+					<div class='left' style='float:left;width:48%'>
+						Browsers interpret data as text<br />
+						<ul>
+							<li>HTML</li>
+							<li>CSS</li>
+							<li>JavaScript</li>
+						</ul>
+					</div>
+					<div class='right' style='float:right;width:48%'>
+						Browsers interpret data as other media<br />
+						<ul>
+							<li>Images</li>
+							<li>Music</li>
+							<li>Video</li>
+						</ul>
+					</div>
 
 				</section>
 
@@ -353,7 +352,7 @@
 					<h1>CSS</h1>
 					<ul>
 						<li>Cascading Style Sheet</li>
-						<li>Modifies the look and feel of the webpage</li>
+						<li>Modifies the look and feel of the web page</li>
 						<li>Instructs the destination (browser) how to display the content (HTML)</li>
 
 					</ul>
@@ -362,16 +361,17 @@
 				<section>
 					<h1>Javascript</h1>
 					<ul>
-						<li>General programming languages, but designed with HTML in mind</li>
-						<li>Enables interactivity to webpages</li>
-						<li>Can modify HTML and CSS after a webpage has been loaded</li>
-						<li>Full web applications are written only in Javascript</li>
+						<li>General programming language, but designed with HTML in mind</li>
+						<li>Provides interactivity to web pages</li>
+						<li>Can modify HTML and CSS after a web page has been loaded</li>
+						<li>Some web applications are written only in JavaScript</li>
 					</ul>
 
 				</section>
 
 				<section>
 					<h1>Overview</h1>
+					<img src="assets/lecture-1/overview.png" />
 				</section>
 
 				<section>
