@@ -7,7 +7,9 @@ This course is a survey of Web technologies, ranging from the basic technologies
 Labs (15%), Assignments (45%), Project (40%)
  - Labs are due at 11:59 pm of the day they have been assigned. 
  - Assignments and the Project are due 11:59 pm on the day of their due date
-
+ - Late labs will not be accepted
+ - Late assignments will be deducted 5 points each day they are late.
+ - If there are any issues please contact me asap
 
 ## Instructor:
  - Kay Ashaolu <kay@ischool>
