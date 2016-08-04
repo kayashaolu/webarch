@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript Basics - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+			
+				<section>
+					<h1>JavaScript Basics</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>JavaScript!</h1>
+					<ul>
+						<li>A fully featured programming language</li>
+						<li>Used to be only for the browser, used along with HTML and CSS</li>
+						<li>Now used on web servers and for Application Program Interfaces (APIs)</li>
+						<li>Great example of composability!</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>JavaScript: powering your pages</h1>
+					<ul>
+						<li>JavaScript brings a website to life</li>
+						<li>No need for a server to execute by the browser</li>
+						<li>Pop-ups, drop down navigation</li>
+						<li>Form validation, animation</li>
+						<li>Application development</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>JavaScript: powering your servers </h1>
+					<ul>
+						<li>JavaScript is used to power the servers that launch websites!</li>
+						<li>No longer considered a "play" language</li>
+						<li>We will be using JavaScript to power our websites using <a href="https://nodejs.org/en/" target="_blank">NodeJS</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>JavaScript: powering your apis</h1>
+					<ul>
+						<li>
+							API: Application Program Interface
+							<ul><li>We will talk more about this later in the class</li></ul>
+						</li>
+						<li>JavaScript is not just reserved for building web pages</li>
+						<li>JavaScript can power pure back end functionality</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>We will be using JavaScript</h1>
+					<ul>
+						<li>To build our web page</li>
+						<li>To build our web server that will serve our website</li>
+						<li>To build our API that will provide extra features to our web site</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>So let's learn some JavaScript</h1>
+					<ul>
+						<li>We are going to use NodeJS to run our JavaScript</li>
+						<li>We will see how JavaScript is used in the browser next week</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What this is not</h1>
+					<ul>
+						<li>This is <strong>not</strong> an exhaustive review of the JavaScript programming language</li>
+						<li>One goal is to get you familiar with the features of the language</li>
+						<li>Another goal is to give you the opportunity to ask questions</li>
+						<li>The better you know JavaScript, the more you'll be able to program web pages, web servers, and web apis</li>
+					</ul>
+				</section>	
+
+				<section>
+					<h1>What are variables? Data types?</h1>
+					<ul>
+						<li>A variable is an empty space holder for a future value</li>
+						<li>There are a few types of values that JavaScript uses
+							<ul>
+								<li>Numbers</li>
+								<li>Strings or a sequence of characters</li>
+								<li>Booleans (true or false)</li>
+								<li>Functions (yes variables can be functions in JavaScript)</li>
+								<li>Arrays (lists of variables)</li>
+								<li>Objects</li>
+							</ul>
+						</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>But note</h1>
+					<ul>
+						<li>We will go over all of these types through writing functions</li>
+						<li>It is extremely important to be comfortable with writing and using functions</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Functions</h1>
+				</section>
+
+				<section>
+					<h1>So what is a function?</h1>
+					<ul>
+						<li>Think of a function as a black box, where you put things in (inputs) and out comes a result (output)</li>
+						<li>It's a black box because you don't necessarily need to know how it's converting the inputs</li>
+						<li>The parameters are the inputs, the return statement defines the output</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What is a function?</h1>
+					<img src="assets/lecture-5/function-input-output.png" style="background-color:white;width:500px" />
+				</section>
+
+				<section>
+					<h1>Our first function</h1>
+
+					<pre>
+function helloWorld(first_name, last_name) {
+	var message = "Hello World " + first_name + " " + last_name;
+	return message;
+}
+
+var output = helloWorld("Kay", "Ashaolu");
+console.log(output);
+					</pre>
+					<p>What does this function do?</p>
+
+				</section>
+
+				<section>
+					<h1>What did that function do?</h1>
+					<ul>
+						<li>Declared a function that we put in two values or inputs: (first name and last name)</li>
+						<li>The function declared a variable (message) that contains the string "Hello World [your first name] [your last name]"</li>
+						<li>After it's done, it will produce one value or output: (the message)</li>
+						<li>We write that message to the console</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>For Loops</h1>
+				</section>
+
+				<section>
+					<h1>What are For Loops</h1>
+					<ul>
+						<li>What computers are good at are doing the same thing over and over again <em>very fast</em>.</li>
+						<li>With a for loop, we can define how many times we want something to happen over and over again</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What are For Loops (2)</h1>
+					<ul>
+						<li>The key to the for loop is the expression that evaluates to a Boolean (true or false)</li>
+						<li>While that Boolean is true, the for loop keeps going</li>
+						<li>The moment when that Boolean is false, the loop terminates</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's use a for loop!</h1>
+					<pre>
+function countToX(x) {
+	
+	var message = "";
+	for(var i = 0; i <= x; i = i+1) {
+		message = message + i + " ";
+	}
+
+	return message;
+}
+
+var output = countToX(3);
+console.log(output);
+
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We created the variable <em>message</em> with an empty string</li>
+						<li>We created a loop that will start at 0, and end while it is <em>less than or equal to</em> x and each step of the loop we will add 1 to i</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do (2)</h1>
+					<ul>
+						<li>So for the first iteration, i = 0, for the next one, i = 1, the next i = 2, and so on</li>
+						<li>For each iteration, the expression i <= x is evaluated</li>
+						<li>First it figures out if 1 <= 3, and the boolean that results from that (True) tells the loop to keep going</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do? (3)</h1>
+					<ul>
+						<li>Within that loop, at each iteration we then added the number i, and then a space to message</li>
+						<li>Note that message is getting longer each iteration. Why do think that is?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do? (4)</h1>
+					<ul>
+						<li>Once i becomes less than or equal to x, the for loop terminates</li>
+						<li>The function returns the message</li>
+						<li>We then call the function countToX and pass the number 3, and print out the output to the console</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>More to come</h1>
+					<ul>
+						<li>While loops</li>
+						<li>Conditionals</li>
+						<li>Arrays</li>
+						<li>Objects</li>
+					</ul>
+					<p>For the non programmers here stay with me, learn this and it will empower you throughout this course and beyond</p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+	</body>
+</html>
