@@ -26,7 +26,87 @@
 				</section>
 
 				<section>
-					<h1>
+					<h1>More JavaScript!</h1>
+					<ul>
+						<li>We're now going to go to more loops, data structures, and control flow</li>
+						<li>The goal is to provide a foundation of understanding how to express yourself in JavaScript</li>
+						<li>This will take time dependent on your experience. That's okay</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>For Loops</h1>
+				</section>
+
+				<section>
+					<h1>What are For Loops</h1>
+					<ul>
+						<li>What computers are good at are doing the same thing over and over again <em>very fast</em>.</li>
+						<li>With a for loop, we can define how many times we want something to happen over and over again</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What are For Loops (2)</h1>
+					<ul>
+						<li>The key to the for loop is the expression that evaluates to a Boolean (true or false)</li>
+						<li>While that Boolean is true, the for loop keeps going</li>
+						<li>The moment when that Boolean is false, the loop terminates</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's use a for loop!</h1>
+					<pre>
+function countToX(x) {
+	
+	var message = "";
+	for(var i = 0; i <= x; i = i+1) {
+		message = message + i + " ";
+	}
+
+	return message;
+}
+
+var output = countToX(3);
+console.log(output);
+
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We created the variable <em>message</em> with an empty string</li>
+						<li>We created a loop that will start at 0, and end while it is <em>less than or equal to</em> x and each step of the loop we will add 1 to i</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do (2)</h1>
+					<ul>
+						<li>So for the first iteration, i = 0, for the next one, i = 1, the next i = 2, and so on</li>
+						<li>For each iteration, the expression i <= x is evaluated</li>
+						<li>First it figures out if 1 <= 3, and the boolean that results from that (True) tells the loop to keep going</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do? (3)</h1>
+					<ul>
+						<li>Within that loop, at each iteration we then added the number i, and then a space to message</li>
+						<li>Note that message is getting longer each iteration. Why do think that is?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do? (4)</h1>
+					<ul>
+						<li>Once i becomes less than or equal to x, the for loop terminates</li>
+						<li>The function returns the message</li>
+						<li>We then call the function countToX and pass the number 3, and print out the output to the console</li>
+					</ul>
+				</section>
 			</div>
 		</div>
 	</body>
