@@ -18,7 +18,7 @@
 			<div class="slides">
 			
 				<section>
-					<h1>JavaScript Basics</h1>
+					<h1>JavaScript Basics I</h1>
 					<p>
 						Info 253: Web Architecture<br />
 						Kay Ashaolu
@@ -167,84 +167,58 @@ console.log(output);
 				</section>
 
 				<section>
-					<h1>For Loops</h1>
-				</section>
-
-				<section>
-					<h1>What are For Loops</h1>
+					<h1>Conditionals</h1>
 					<ul>
-						<li>What computers are good at are doing the same thing over and over again <em>very fast</em>.</li>
-						<li>With a for loop, we can define how many times we want something to happen over and over again</li>
+						<li>Computers execute commands line by line</li>
+						<li>But what if you want to not execute every line</li>
+						<li>Have the computer make a decision?</li>
 					</ul>
-				</section>
 
-				<section>
-					<h1>What are For Loops (2)</h1>
-					<ul>
-						<li>The key to the for loop is the expression that evaluates to a Boolean (true or false)</li>
-						<li>While that Boolean is true, the for loop keeps going</li>
-						<li>The moment when that Boolean is false, the loop terminates</li>
-					</ul>
 				</section>
-
-				<section>
-					<h1>Let's use a for loop!</h1>
+					<h1>Let's learn through code!</h1>
 					<pre>
-function countToX(x) {
+function getGenerationalCohort(yearBorn) {
+
+	var generationalCohort = ""
 	
-	var message = "";
-	for(var i = 0; i <= x; i = i+1) {
-		message = message + i + " ";
+	if (yearBorn > 1900 &amp;&amp; yearBorn <= 1926) {
+		generationCohort = "GI Generation";
+	}
+	else if (yearBorn > 1926 &amp;&amp; yearBorn <= 1945) {
+		generationalCohort = "Silent Generation";
+	}
+	else if (yearBorn > 1945 &amp;&amp; yearBorn <= 1964) {
+		generationalCohort = "Baby Boomers";
+	} 
+	else if(yearBorn > 1964 &amp;&amp; yearBorn <= 1980) {
+		generationalCohort = "Generation X";
+	}
+	else if(yearBorn > 1980 &amp;&amp; yearBorn <= 2001) {
+		generationalCohort = "Millenium";
+	}
+	else if(yearBorn > 2001 &amp;&amp; yearBorn < 2020) {
+		generationalCohort = "Generation Z";
+	}
+	else {
+		generationalCohort = "Outside of our named generations";
 	}
 
-	return message;
+	return generationalCohort;
 }
 
-var output = countToX(3);
-console.log(output);
-
+var year = 1985;
+var cohort = getGenerationalCohort(year);
+console.log("The generational cohort of someone born in " + year + " is: " + cohort + ".");
 					</pre>
-				</section>
 
 				<section>
-					<h1>What did that do?</h1>
-					<ul>
-						<li>We created the variable <em>message</em> with an empty string</li>
-						<li>We created a loop that will start at 0, and end while it is <em>less than or equal to</em> x and each step of the loop we will add 1 to i</li>
-					</ul>
-				</section>
 
-				<section>
-					<h1>What did that do (2)</h1>
-					<ul>
-						<li>So for the first iteration, i = 0, for the next one, i = 1, the next i = 2, and so on</li>
-						<li>For each iteration, the expression i <= x is evaluated</li>
-						<li>First it figures out if 1 <= 3, and the boolean that results from that (True) tells the loop to keep going</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>What did that do? (3)</h1>
-					<ul>
-						<li>Within that loop, at each iteration we then added the number i, and then a space to message</li>
-						<li>Note that message is getting longer each iteration. Why do think that is?</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>What did that do? (4)</h1>
-					<ul>
-						<li>Once i becomes less than or equal to x, the for loop terminates</li>
-						<li>The function returns the message</li>
-						<li>We then call the function countToX and pass the number 3, and print out the output to the console</li>
-					</ul>
 				</section>
 
 				<section>
 					<h1>More to come</h1>
 					<ul>
-						<li>While loops</li>
-						<li>Conditionals</li>
+						<li>For and While loops</li>
 						<li>Arrays</li>
 						<li>Objects</li>
 					</ul>
