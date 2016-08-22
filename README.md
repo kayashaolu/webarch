@@ -27,14 +27,14 @@ Labs (15%), Assignments (45%), Project (40%)
 | Aug 26 | [VMs, Linux, and Git](https://kayashaolu.github.io/webarch/Class%20Prep%201%20-%20Virtual%20Machines,%20Linux%20Terminal,%20and%20Git.html) | [Introduction](https://kayashaolu.github.io/webarch/Lecture%201%20-%20Introduction.html) and [Browsers](https://kayashaolu.github.io/webarch/Lecture%202%20-%20What%20is%20a%20web%20browser.html) | [Lab 1: Setting up Git](https://github.com/kayashaolu/webarch-lab-1)<br />**[Start Lab](https://bcourses.berkeley.edu/courses/1454280/assignments/7731910)** | | 
 | Sep 2 | [Try HTML and CSS](https://kayashaolu.github.io/webarch/Class%20Prep%202%20-%20Try%20HTML%20and%20CSS.html) | [HTML](https://kayashaolu.github.io/webarch/Lecture%203%20-%20HTML.html) and [CSS](https://kayashaolu.github.io/webarch/Lecture%204%20-%20CSS.html) | [Lab 2: Create a simple web page](https://github.com/kayashaolu/webarch-lab-2) | [Assign 1: Build a Local Static Website](https://github.com/kayashaolu/webarch-assign-1) |
 | Sep 9 | [Let's learn some JavaScript](https://kayashaolu.github.io/webarch/Class%20Prep%203%20-%20Let's%20learn%20some%20JavaScript.html)| [JavaScript Basics I](https://kayashaolu.github.io/webarch/Lecture%205%20-%20JavaScript%20Basics%20I.html) and [II](https://kayashaolu.github.io/webarch/Lecture%206%20-%20JavaScript%20Basics%20II.html) | Lab 3: Make your website interactive | |
-| Sep 16 | | Basic and Advanced HTML Forms | Lab 4: Build your first web application | |
-| Sep 23 |  | Nuts and Bolts: URL's and HTTP | Lab 5: Using the terminal to browse the web | Assignment 1 Due<br />Assignment 2 assigned  | 
-| Sep 30 | | Dynamic Web Pages and Sending data to web servers | Lab 6: How to use AJAX  | |
-| Oct 7 | | Introduction to Python and Flask web server | Lab 7: Create our first web server | |
-| Oct 14 | | Nuts and Bolts: Networking, and TCP and DNS | Lab 8: Domain names  | Assignment 2 Due<br />Assignment 3 Assigned |
-| Oct 21 | | API's and REST | Lab 9: Create your own API  | Group Project Part 1 Assigned  |
-| Oct 28 | | Relational and Non-relational Databases | Lab 10: Add a database to your API | Group Project Part 1 Due |
-| Nov 4 | | Introduction to the cloud and how to use it | Lab 11: Move your application to Heroku | Assignment 3 Due<br /> Assignment 4 Assigned<br /> Group Project Part 2 Assigned |
+| Sep 16 | Forms and interactivity | Basic and Advanced HTML Forms | Lab 4: Build your first web application | |
+| Sep 23 | Internet Fundamentals I | Nuts and Bolts: URL's and HTTP | Lab 5: Using the terminal to browse the web | Assignment 1 Due<br />Assignment 2 assigned  | 
+| Sep 30 | What are dynamic web pages | Dynamic Web Pages and Sending data to web servers | Lab 6: How to use AJAX  | |
+| Oct 7 | Try NodeJS and Express | Server Programming I and II | Lab 7: Create our first web server | |
+| Oct 14 | Internet Fundamentals II | Nuts and Bolts: Networking, and TCP and DNS | Lab 8: Domain names  | Assignment 2 Due<br />Assignment 3 Assigned |
+| Oct 21 | What is an API? | API's and REST | Lab 9: Create your own API  | Group Project Part 1 Assigned  |
+| Oct 28 | Learn about Databases | Relational and Non-relational Databases | Lab 10: Add a database to your API | Group Project Part 1 Due |
+| Nov 4 | To the cloud! | Introduction to the cloud and how to use it | Lab 11: Move your application to Heroku | Assignment 3 Due<br /> Assignment 4 Assigned<br /> Group Project Part 2 Assigned |
 | Nov 11 |  |  Academic Holiday | | |
 | Nov 18 | | Special Topics TBD | Work on Project | Assignment 4 Due |
 | Nov 25 | | Academic Holiday | | |
