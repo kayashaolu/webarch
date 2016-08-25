@@ -8,7 +8,7 @@ The content for this class is based on the Web Architecture class taught by Jim 
 
 ## Grading:
 Labs (15%), Assignments (45%), Project (40%)
- - Labs are due at 11:59 pm of the day they have been assigned. 
+ - Labs are due at 11:59 pm of the day they have been assigned
  - Assignments and the Project are due 11:59 pm on the day of their due date
  - Late labs will not be accepted
  - Late assignments will be deducted 5 points each day they are late.
@@ -16,9 +16,11 @@ Labs (15%), Assignments (45%), Project (40%)
 
 ## Instructor:
  - Kay Ashaolu <kay@ischool>
+ - Office hours available upon request via Google Hangout
   
 ## GSI
  - Kinshuk <kinshuk@ischool>
+ - Office hours: Wed 2 pm - 3:30 pm
 
 # Syllabus
 
