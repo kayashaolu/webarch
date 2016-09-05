@@ -68,8 +68,9 @@ function countToX(x) {
 	return message;
 }
 
-var output = countToX(3);
-console.log(output);
+var limit = parseInt(prompt("Enter a number"));
+var output = countToX(limit);
+alert(output);
 
 					</pre>
 				</section>
@@ -78,7 +79,8 @@ console.log(output);
 					<h1>What did that do?</h1>
 					<ul>
 						<li>We created the variable <em>message</em> with an empty string</li>
-						<li>We created a loop that will start at 0, and end while it is <em>less than or equal to</em> x and each step of the loop we will add 1 to i</li>
+						<li>We created a loop that will start at 0, and end while it is <em>less than or equal to</em> x</li>
+						<li>For each iteration we will add 1 to i</li>
 					</ul>
 				</section>
 
@@ -104,10 +106,152 @@ console.log(output);
 					<ul>
 						<li>Once i becomes less than or equal to x, the for loop terminates</li>
 						<li>The function returns the message</li>
-						<li>We then call the function countToX and pass the number 3, and print out the output to the console</li>
+						<li>We then ask the user for a number, and pass it to the countToX function, and then print out the output to the console</li>
 					</ul>
+				</section>
+
+				<section>
+					<h1>While Loops</h1>
+				</section>
+
+				<section>
+					<h1>What are while loops?</h1>
+					<ul>
+						<li>For loops are good at repeating an action over and over again a set amount of times</li>
+						<li>But what if we don't know when to stop repeating an action?</li>
+						<li>This is where while loops come in</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What are while loops? (2)</h1>
+					<ul>
+						<li>A while loop executes as long as a condition is true</li>
+						<li>The statements inside the loop should (eventually) make that condition false to end the loop</li>
+						<li>Let's start with an action</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's use a while loop!</h1>
+					<pre>
+var answerQuestion = function() {
+	var answer = prompt("What is 4 + 4");
+
+	if (answer == "8") {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+answer = false;
+
+while (answer != true) {
+	answer = answerQuestion();
+}
+
+alert("Correct Answer!");
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>The answerQuestion function asks the user what is the answer to the math question</li>
+						<li>If it's correct, return true, if not, return false</li>
+						<li>We then execute a while loop that does not terminate until answerQuestion does not return true</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Arrays and Objects</h1>
+				</section>
+
+				<section>
+					<h1>Arrays and Objects</h1>
+					<ul>
+						<li>Up to now we have been using single variables</li>
+						<li>Sometimes you want to store a list of variables</li>
+						<li>Perhaps you want to represent something more complicated in code</li>
+						<li>You can use Arrays and Objects for this purpose
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Let's start with a compound example</h1>
+					<pre>
+var student = {
+	name: "Kay Ashaolu",
+	id: 232324,
+	lab_grades: [1, 1, 1],
+	assignment_grades:[87, 98, 82]
+};
+
+alert(student);
+alert(student.name);
+alert(student["lab_grades"]);
+alert(student.assignment_grades[2]);
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We created an object and stored it in the variable "student"</li>
+						<li>We then attempted to display the object</li>
+						<li>Then we printed the student's name<?
+						<li>Then the student's lab grades</li>
+						<li>Then the student's third assignment grade
+							<ul><li>Array indexes start from 0</li></ul>
+						</li>
+				</section>
+
+				<section>
+					<h1>One more example</h1>
+					<pre>
+var student = {};
+
+student.name = prompt("Enter your name");
+student.attempts = [];
+
+answer = false
+while(answer != true) {
+	value = prompt("What is 8+8?");
+	student.attempts.push(value);
+
+	if(value == "16") {
+		answer = true;
+	}
+	else {
+		answer = false;
+	}
+}
+
+alert(student.name + " answers: " + student.attempts);
+					</pre>
+				</section>
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We created an object (student) where you can store her name and her attempts to the question "What is 8+8"</li>
+						<li>In a while loop, we store the results in an array</li>
+						<li>We then print the previous attempts that she made</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Questions?</h1>
 				</section>
 			</div>
 		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
 	</body>
 </html>

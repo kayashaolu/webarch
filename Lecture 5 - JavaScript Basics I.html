@@ -96,6 +96,24 @@
 				</section>	
 
 				<section>
+					<h1>How to run JavaScript</h1>
+					<ul>
+						<li>There are many ways to run JavaScript</li>
+						<li>This week we will use the browser's JavaScript Runtime Environment to run our JavaScript</li>
+						<li>Later on in this class we will be installing NodeJS, a server side Runtime Environment for JavaScript</li>
+						<li>Same language executed in different contexts</li>
+					</ul> 
+				</section>
+
+				<section>
+					<h1>How to run JavaScript (2)</h1>
+					<ul>
+						<li>To link a JavaScript file to an HTML web page use the &lt;script&gt; tag</li>
+						<pre>&lt;script src="js/script.js"&gt;&lt;/script&gt;</pre>
+					</ul>
+				</section>
+
+				<section>
 					<h1>What are variables? Data types?</h1>
 					<ul>
 						<li>A variable is an empty space holder for a future value</li>
@@ -148,8 +166,10 @@ function helloWorld(first_name, last_name) {
 	return message;
 }
 
-var output = helloWorld("Kay", "Ashaolu");
-console.log(output);
+var first = prompt("Enter your first name");
+var last = prompt("Enter your last name");
+var output = helloWorld(first, last);
+alert(output);
 					</pre>
 					<p>What does this function do?</p>
 
@@ -160,8 +180,8 @@ console.log(output);
 					<ul>
 						<li>Declared a function that we put in two values or inputs: (first name and last name)</li>
 						<li>The function declared a variable (message) that contains the string "Hello World [your first name] [your last name]"</li>
-						<li>After it's done, it will produce one value or output: (the message)</li>
-						<li>We write that message to the console</li>
+						<li>After it's done, it will produce one value or output: (the message) and return it</li>
+						<li>We ask the user for their first and last name, and print out the result from the function</li>
 					</ul>
 
 				</section>
@@ -176,7 +196,7 @@ console.log(output);
 
 				</section>
 				<section>
-					<h1>Let's learn through code!</h1>
+					<h1>Let's start!</h1>
 					<pre>
 function getGenerationalCohort(yearBorn) {
 
@@ -195,8 +215,13 @@ function getGenerationalCohort(yearBorn) {
 		generationalCohort = "Generation X";
 	}
 	else if(yearBorn > 1980 &amp;&amp; yearBorn <= 2001) {
-		generationalCohort = "Millenium";
+		generationalCohort = "Millennium";
 	}
+					</pre>
+				</section>
+				<section> 
+					<h1>Let's start (2)</h1> 
+					<pre>
 	else if(yearBorn > 2001 &amp;&amp; yearBorn < 2020) {
 		generationalCohort = "Generation Z";
 	}
@@ -207,10 +232,20 @@ function getGenerationalCohort(yearBorn) {
 	return generationalCohort;
 }
 
-var year = 1985;
+var year = parseInt(prompt("Enter your year of birth"));
 var cohort = getGenerationalCohort(year);
-console.log("The generational cohort of someone born in " + year + " is: " + cohort + ".");
+alert("The generational cohort of someone born in " + 
+	year + " is: " + cohort + ".");
 					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We ask the user their year of birth</li>
+						<li>We take that value and check to see which generation cohort the user is</li>
+						<li>We print it to the screen</li>
+					</ul>
 				</section>
 
 				<section>
