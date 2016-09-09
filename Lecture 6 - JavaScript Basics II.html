@@ -34,6 +34,69 @@
 					</ul>
 				</section>
 
+				
+				<section>
+					<h1>Conditionals</h1>
+					<ul>
+						<li>Computers execute commands line by line</li>
+						<li>But what if you want to not execute every line</li>
+						<li>Have the computer make a decision?</li>
+					</ul>
+
+				</section>
+				<section>
+					<h1>Let's start!</h1>
+					<pre>
+function getGenerationalCohort(yearBorn) {
+
+	var generationalCohort = ""
+	
+	if (yearBorn > 1900 &amp;&amp; yearBorn <= 1926) {
+		generationCohort = "GI Generation";
+	}
+	else if (yearBorn > 1926 &amp;&amp; yearBorn <= 1945) {
+		generationalCohort = "Silent Generation";
+	}
+	else if (yearBorn > 1945 &amp;&amp; yearBorn <= 1964) {
+		generationalCohort = "Baby Boomers";
+	} 
+	else if(yearBorn > 1964 &amp;&amp; yearBorn <= 1980) {
+		generationalCohort = "Generation X";
+	}
+	else if(yearBorn > 1980 &amp;&amp; yearBorn <= 2001) {
+		generationalCohort = "Millennium";
+	}
+					</pre>
+				</section>
+				<section> 
+					<h1>Let's start (2)</h1> 
+					<pre>
+	else if(yearBorn > 2001 &amp;&amp; yearBorn < 2020) {
+		generationalCohort = "Generation Z";
+	}
+	else {
+		generationalCohort = "Outside of our named generations";
+	}
+
+	return generationalCohort;
+}
+
+var year = parseInt(prompt("Enter your year of birth"));
+var cohort = getGenerationalCohort(year);
+alert("The generational cohort of someone born in " + 
+	year + " is: " + cohort + ".");
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We ask the user their year of birth</li>
+						<li>We take that value and check to see which generation cohort the user is</li>
+						<li>We print it to the screen</li>
+					</ul>
+				</section>
+
 				<section>
 					<h1>For Loops</h1>
 				</section>
@@ -201,7 +264,7 @@ alert(student.assignment_grades[2]);
 					<ul>
 						<li>We created an object and stored it in the variable "student"</li>
 						<li>We then attempted to display the object</li>
-						<li>Then we printed the student's name<?
+						<li>Then we printed the student's name</li>
 						<li>Then the student's lab grades</li>
 						<li>Then the student's third assignment grade
 							<ul><li>Array indexes start from 0</li></ul>
