@@ -94,7 +94,7 @@
 <li>Just add text next to the box</li>
 <li>Add an attribute to the tag</li>
 <li>Add text in a &lt;span&gt; or &lt;p&gt;</li>
-<li>Add text in a &lt;label&gt; element that "references" the input&lt;/label&gt;</li>
+<li>Add text in a &lt;label&gt; element that "references" the input</li>
 					</ul>
 				</section>
 
@@ -131,12 +131,6 @@
 				</section>
 
 				<section>
-					<h1>User Interface Differences</h1>
-					<p>
-						<img src="assets/lecture-7/select_wrapper-163.jpg" style="height:400px;" />
-				</section>
-
-				<section>
 					<h1>Hidden Type</h1>
 					<pre>
 &lt;input type=&quot;hidden&quot; name=&quot;page&quot; value=&quot;2&quot;&gt;
@@ -147,10 +141,18 @@
 					<h1>HTML5 types</h1>
 
 					<ul>
-						<li>color, tel, email, datetime</li>
-						<li>Double check browser support</li>
+						<li>color, tel, email, datetime, url</li>
+						<li>Provides validation as well as default styling</li>
+						<li>Modern browsers support, but test before using</li>
 						<li><a href="http://www.w3.org/TR/html5/forms.html" target="_blank">http://www.w3.org/TR/html5/forms.html</a></li>
 					</ul>
+					<pre>
+&lt;label for=&quot;color&quot;&gt;Color: &lt;/label&gt;
+&lt;input type=&quot;color&quot; name=&quot;color&quot; id=&quot;color&quot; /&gt; &lt;br /&gt;
+
+&lt;label for=&quot;email&quot;&gt;Email: &lt;/label&gt;
+&lt;input type=&quot;email&quot; name&quot;email&quot; /&gt;&lt;br /&gt;
+					</pre>
 				</section>
 
 				<section>
@@ -173,6 +175,12 @@
 				</section>
 
 				<section>
+					<h1>User Interface Differences</h1>
+					<p>
+						<img src="assets/lecture-7/select_wrapper-163.jpg" style="height:400px;" />
+				</section>
+
+				<section>
 					<h1>Search Widget: Ancestry.com</h1>
 					<ul>
 						<li><a href="http://home.ancestry.com" target="_blank">http://home.ancestry.com</a></li>
@@ -187,11 +195,11 @@
 				</section>
 
 				<section>
-					<h1>Improvements</h1>
+					<h1>Improvements (browser side)</h1>
 					<ul>
-						<li>Give users immediate feedback</li>
-						<li>Catch simple errors</li>
-						<li>Provide help in forms</li>
+						<li>Interactivity!</li>
+						<li>Give users instant feedback</li>
+						<li>Use content in forms immediately on the browser</li>
 					</ul>
 				</section>
 
