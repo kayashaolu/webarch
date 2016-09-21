@@ -5,5 +5,9 @@
 
 .two-column-right {
 	float:right;
-	width:48%
+	width:48%;
+}
+
+.text-highlight {
+	color: red;
 }

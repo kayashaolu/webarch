@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Nuts and Bolts: HTTP - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Nuts and Bolts: HTTP</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Servers Return Representations</h1>
+					<ul>
+						<li>How do we decide which HTML to send?</li>
+						<li>How do we use methods and headers?</li>
+						<li>How do we represent errors?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What resource to return?</h1>
+					<ul>
+						<li>How are resources specified?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hostname/Path -> Resource</h1>
+					<ul>
+						<li>http://info253.p2ptrainer.com/index.html</li>
+						<li>How to specify hostname in HTTP?</li>
+						<li>How to specify path?</li>
+						<li>What method to use?</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Webserver</h1>
+					<ul>
+						<li>
+							Associate &quot;index.html&quot; with
+							<ul><li>/home/trife1/public_html/info253/index.html</li></ul>
+						</li>
+						<li>
+							Associate &quot;css/style.css&quot; with
+							<ul><li>/home/trife1/public_html/info253/static/style.css</li></ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Methods</h1>
+					<ul>
+						<li>
+							GET
+							<ul><li>Requests data from a specified resource</li></ul>
+						</li>
+						<li>
+							POST
+							<ul><li>Submits data to be processed to a specified resource</li></ul>
+						</li>
+						<li>
+							PUT
+							<ul><li>Update specified resource</li></ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Missing File</h1>
+					<ul>
+						<li>What should we do if we request a file that is not there?</li>
+						<li>Return &quot;Oops!&quot;</li>
+						<li>Return nothing?</li>
+						<li>Return standard HTML?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>HTTP Response Codes</h1>
+					<ul>
+						<li>Numbers are unambiguous, can be read by machines</li>
+						<li>Always return a response code</li>
+						<li>Return text as well for human readability</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>HTTP Response Numbers</h1>
+					<ul>
+						<li>200's: OK</li>
+						<li>300's: Redirect</li>
+						<li>400's: Client Errors</li>
+						<li>500's: Server Errors</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Demo 200 OK</h1>
+					<pre>
+* Connected to info253.p2ptrainer.com (74.50.7.240) port 80 (#0)
+&gt; GET /index.html HTTP/1.1
+&gt; Host: info253.p2ptrainer.com
+&gt; User-Agent: curl/7.43.0
+&gt; Accept: */*
+					</pre>
+				</section>
+
+				<section>
+					<h1>Demo 200 OK</h1>
+					<pre>
+&lt; HTTP/1.1 200 OK
+&lt; Date: Tue, 20 Sep 2016 05:55:21 GMT
+&lt; Server: Apache/2.4.16 (Unix) OpenSSL/0.9.8e-fips-rhel5 mod_bwlimited/1.4 mod_fcgid/2.3.9
+&lt; Last-Modified: Tue, 20 Sep 2016 05:37:12 GMT
+&lt; ETag: &quot;24f-53ce9d202d200&quot;
+&lt; Accept-Ranges: bytes
+&lt; Content-Length: 591
+&lt; Content-Type: text/html
+&lt;
+&lt; 
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+...
+					</pre>
+				</section>
+
+				<section>
+					<h1>300’s: Redirect</h1>
+					<ul>
+						<li>301: Permanent Redirect</li>
+						<li>302: Temporary Redirect</li>
+						<li>Location: Header with URI of target</li>
+
+				</section>
+
+				<section>
+					<h1>400’s: Client errors</h1>
+					<ul>
+						<li>401: Unauthorized</li>
+						<li>404: Resource Not Found</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>500’s: Server Errors</h1>
+					<ul>
+						<li>500: Internal Server Error (Hard drive on fire)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Fun</h1>
+					<ul>
+						<li>When things go wrong, chance to play</li>
+						<li><a href="http://heyzap.com/404" target="_blank">HeyZap</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Response Headers</h1>
+					<ul>
+						<li>Gave metadata about request</li>
+						<li>Return metadata about response</li>
+						<li>Size, representation, language</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Different types of resources?</h1>
+					<ul>
+						<li>HTML</li>
+						<li>CSS</li>
+						<li>JavaScript</li>
+						<li>Images</li>
+						<li>...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>HTTP Versions</h1>
+					<ul>
+						<li>1.0: Make a new connection each time</li>
+						<li>1.1: Optionally use same connection</li>
+						<li>2.0: Use same connection for multiple requests</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Why have different protocols?</h1>
+					<ul>
+						<li>HTTP is about resource manipulation</li>
+						<li>Specifying what you want to do with a resource</li>
+						<li>How it is represented</li>
+						<li>Optimized for web browsing</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+				<section>
+					<h1>Review URI</h1>
+					<ul>
+						<li>What is a URL?</li>
+						<li>What is an example resource?</li>
+						<li>What is an example of an non-HTML resource?</li>
+						<li>mailto:test@ischool.berkeley.edu What is the scheme?</li>
+						<li>file://WebArch-253/2012-09-14-HTTP.html#sec-4-9 What is the fragment?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Review Paths</h1>
+					<ul>
+						<li>
+							Relative or absolute?
+							<ul>
+								<li>/home/trife1/public_html/info253</li>
+								<li>/public_html/info253</li>
+								<li>Do these point to the same place?</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>
