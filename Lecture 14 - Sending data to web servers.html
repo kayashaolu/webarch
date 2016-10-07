@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Dynamic Web Pages - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Sending data to web servers</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Sending Data with HTTP</h1>
+					<ul>
+						<li><strong>GET:</strong> Query arguments in URL</li>
+						<li><strong>POST:</strong> Data in request body</li>
+						<li><strong>PUT: </strong> Data in request body</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Query Arguments</h1>
+					<ul>
+						<li>?name=Kay&amp;title=i253</li>
+						<li>Typically used in GET requests</li>
+						<li>Key-Value pairs delimited by =, separated by &amp;</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Key-Value pairs in Programming</h1>
+					<ul>
+						<li>JavaScript object contains data sent from client</li>
+						<li><strong>GET: </strong>req.query.<em>[key]</em></li>
+						<li><strong>POST: </strong>req.body.<em>[key]</em>
+							<ul><li>Note: in NodeJS need module body-parser to gain access to req.body</li></ul></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>GET Review</h1>
+					<ul>
+						<li>What does GET do?</li>
+						<li>Should GET modify a resource?</li>
+						<li>How is data passed to GET?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Get Request</h1>
+					<p>From end of Lecture 12 example<br />
+					curl -v &quot;http://localhost:3000/?day_of_week=sunday&quot;</p>
+					<pre>
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 3000 (#0)
+> GET /?day_of_week=sunday HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/7.47.0
+> Accept: */*
+					</pre>
+				</section>
+
+				<section>
+					<h1>Get Response</h1>
+
+					<pre>
+&lt; HTTP/1.1 200 OK
+&lt; X-Powered-By: Express
+&lt; Content-Type: text/html; charset=utf-8
+&lt; Content-Length: 856
+&lt; ETag: W/&quot;358-OO441lqfknOF3OaKpKfZqQ&quot;
+&lt; Date: Fri, 07 Oct 2016 01:06:25 GMT
+&lt; Connection: keep-alive
+&lt; 
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Homepage&lt;/title&gt;
+    	&lt;link rel='stylesheet' href='/static/css/style.css' /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    	&lt;h1&gt;This is the home page!&lt;/h1&gt;
+
+    	&lt;p&gt;The quote for sunday is: Life is about making an impact, 
+    	not making an income.   –Kevin Kruse&lt;/p&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Content-Type Header</h1>
+					<ul>
+						<li>Describes what format the data is in</li>
+						<li>MIME: Multipurpose Internet Mail Extensions</li>
+						<li>Internet Media Type, Content-Type</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Format</h1>
+					<ul>
+						<li>MIME format: [type] / [subtype] ; [parameters]
+							<ul>
+								<li>type: the general category of data</li>
+								<li>subtype: formats, encodings</li>
+								<li>parameters: extra information that applies to that subtype</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Extensible</h1>
+					<ul>
+						<li>Common MIME types are registered
+							<ul>
+								<li>text/plain</li>
+								<li>image/png</li>
+								<li>audio/mpeg</li>
+							</ul>
+						</li>
+						<li>Make up your own with vnd., prs.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Pranks</h1>
+
+					<img src="assets/lecture-13/flip_image.png" height="500px" />
+				</section>
+
+				<section>
+					<h1>POST and PUT Data</h1>
+					<ul>
+						<li>Requests have metadata (Headers)</li>
+						<li>Requests can have data, too</li>
+						<li>Data is formatted similarly to query arguments</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>POST Data example</h1>
+					<ul>
+						<p>Building on end of Lecture 12 example</p>
+						<li>Package requirements
+							<ul>
+								<li>npm install requests --save
+								<ul><li>Enables us to send an HTTP request from the server</li></ul></li>
+								<li>npm install body-parser --save
+								<ul><li>Enables us to access the body of a request (to get POST data)</li></ul></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>POST Data example</h1>
+					<p>Building on end of Lecture 12 example</p>
+					<p>app.js (1/4)</p>
+					<pre>
+// Adding the request library (to make HTTP requests from the server)
+var request = require('request'); 
+
+// Parser to gain access to request body
+var bodyParser = require('body-parser');
+
+// parse application/x-www-form-urlencoded 
+app.use(bodyParser.urlencoded({ extended: false }));
+					</pre>
+				</section>
+
+				<section>
+					<h1>POST Data example</h1>
+					<p>app.js (2/4)</p>
+					<pre>
+...
+app.get('/email', function (req, res) {
+  console.log(&quot;Displaying email form&quot;);
+  res.render('email.html', {'notifications': ''});
+});
+
+app.post('/email', function (req, res) {
+  message = req.body.message;
+  console.log(&quot;Sending email to myself&quot;);
+  					</pre>
+  				</section>
+
+  				<section>
+  					<h1>POST Data example</h1>
+  					<p>app.js (3/4)</p>
+  					<pre>
+  // The server sends an HTTP request to the Mailgun servers via their
+  // API to send an email
+  request({
+      url: 'https://api.mailgun.net/v3/kayashaolu.me/messages',
+      method: 'POST',
+      headers: {
+        'Content-Type':  &quot;application/x-www-form-urlencoded&quot;
+      },
+      form: {
+        from: process.env.INFO253_MAILGUN_FROM_EMAIL,
+        to: 'Kay &lt;kay@ischool.berkeley.edu&gt;',
+        subject: 'You just got sent a message',
+        text: message,
+      },
+      auth: {
+        user: process.env.INFO253_MAILGUN_USER,
+        password: process.env.INFO253_MAILGUN_PASS
+      }
+					</pre>
+				</section>
+
+				<section>
+					<h1>POST Data example</h1>
+					<p>app.js (4/4)</p>
+					<pre>
+
+    }, function(error, response, body){
+      if(error) {
+          console.log(error);
+      } else {
+          console.log(response.statusCode, body);
+      }
+  });
+
+    notifications = &quot;Your message was sent&quot;;
+    res.render('email.html', {'notifications': notifications});
+
+});
+					</pre>
+				</section>
+
+				<section>
+				<h1>POST Data example</h1>
+				<p>views/email.html</p>
+				<pre>
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Email&lt;/title&gt;
+    	&lt;link rel='stylesheet' href='/static/css/style.css' /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        {{ notifications }}
+    	&lt;h1&gt;Email me!&lt;/h1&gt;
+
+		&lt;form action=&quot;/email&quot; method=&quot;POST&quot;&gt;
+    		&lt;textarea name=&quot;message&quot;&gt;&lt;/textarea&gt;
+    		&lt;input type=&quot;submit&quot; value=&quot;Send me an email!&quot; /&gt;
+    	&lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>POST Data example</h1>
+					<p>curl -v --data message=this%20is%20cool localhost:3000/email</p>
+					<pre>
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 3000 (#0)
+&gt; POST /email HTTP/1.1
+&gt; Host: localhost:3000
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt; Content-Length: 24
+&gt; Content-Type: application/x-www-form-urlencoded
+
+message=this%20is%20cool
+					</pre>
+				</section>
+				<section>
+					<h1>POST Data example</h1>
+					<pre>
+* upload completely sent off: 24 out of 24 bytes
+&lt; HTTP/1.1 200 OK
+&lt; X-Powered-By: Express
+&lt; Content-Type: text/html; charset=utf-8
+&lt; Content-Length: 346
+&lt; ETag: W/&quot;15a-/UO9Judtk8xIMgUMpeBmQg&quot;
+&lt; Date: Fri, 07 Oct 2016 05:53:06 GMT
+&lt; Connection: keep-alive
+&lt; 
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Email&lt;/title&gt;
+    	&lt;link rel='stylesheet' href='/static/css/style.css' /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Your message was sent
+		...
+					</pre>
+				</section>
+
+				<section>
+					<h1>POST in practice</h1>
+					<ul>
+						<li>Most browsers only support GET, POST</li>
+						<li>HTML5 (currently) only supports GET, POST</li>
+						<li>So resource accessed by browsers, use POST for all modifying interactions</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Query Arguments</h1>
+					<ul>
+						<li>Delimited by =, separated by &amp;</li>
+						<li>What happens if you want to send a ?</li>
+						<li>What happens if you want to send a &amp;?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Encoding</h1>
+					<ul>
+						<li>Map one representation of data to another</li>
+						<li>Map normal text to a format accepted by HTTP query params</li>
+						<li>Map special characters to the hexadecimal representation</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>URL Encoding</h1>
+					<ul>
+						<li> = - %3D</li>
+						<li> &amp; - %26</li>
+						<li> space - %20</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>HTML Encoding</h1>
+					<ul>
+						<li>&lt; - &amp;lt;</li>
+						<li>&amp; - &amp;amp;</li>
+						<li>&gt; - &amp;gt;</li>
+						<li>&#9731; - &amp;#9731;</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>
