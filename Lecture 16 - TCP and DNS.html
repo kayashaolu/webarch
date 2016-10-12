@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>TCP and DNS - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>TCP and DNS</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Telephone Numbers</h1>
+					<ul>
+						<li>Specify a device, not necessarily a person</li>
+						<li>But to call a person, we eventually need to call a device</li>
+						<li>How do we map between a person and their phone?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hostnames -&gt; IP addresses</h1>
+					<ul>
+						<li>Just like my telephone number, we associate names like facebook.com to a number</li>
+						<li>Association is done using Domain Name Service (DNS)</li>
+						<li>DNS has a hierarchy for finding who can authoritatively provide an IP address, and typically has caching once the question has been answered</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Parts of a Hostname</h1>
+					<ul>
+						<li>Top Level Domain: highest level in domain hierarchy:<br /> .com .org .edu .uk .cn</li>
+						<li>Subdomain: labels specifying the hierarchy reading from right to left</li>
+						<li>Hostname: domain name with an IP address</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hostnames -> IP addresses</h1>
+					<ul>
+						<li>To find a mapping, a client asks a root name server</li>
+						<li>The nameservers will recursively direct the client to the domain authority</li>
+						<li>Authority will return an IP address, client may optionally cache</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hostnames -> IP addresses</h1>
+					<img src="assets/lecture-16/hostnames-ipaddress.png" style="background-color:#fff;" />
+				</section>
+
+				<section>
+					<h1>Example</h1>
+					<pre>
+Trying "people.ischool.berkeley.edu"
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46402
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;people.ischool.berkeley.edu.	IN	A
+
+;; ANSWER SECTION:
+people.ischool.berkeley.edu. 10800 IN	CNAME	harbinger.ischool.berkeley.edu.
+harbinger.ischool.berkeley.edu.	9147 IN	A	128.32.78.16
+					</pre>
+				</section>
+
+				<section>
+					<h1>Mapping Types</h1>
+					<ul>
+						<li><strong>A</strong>: IP Address (main record type)</li>
+						<li><strong>CNAME</strong>: alias for another domain name</li>
+						<li><strong>MX</strong>: mail transfer agents</li>
+						<li><strong>TXT</strong>: meta data</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Why Separate Names &amp; Addresses?</h1>
+					<ul>
+						<li>Different semantic meaning</li>
+						<li>May want other mappings: names to street addresses</li>
+						<li>They don't have to be the same, so keep flexibility</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Caching</h1>
+					<ul>
+						<li>Inefficient to always start at the root</li>
+						<li>Instead, ask a &quot;local&quot; server</li>
+						<li>&quot;local&quot; server does the recursive lookup, caches result</li>
+					</ul>
+					<img src="assets/lecture-16/hostnames-ipaddress-2.png" style="background-color:#fff;" />
+				</section>
+
+				<section>
+					<h1>Browsers</h1>
+					<ul>
+						<li>Type in a URL with domain name (eg. yelp.com)</li>
+						<li>Browser uses DNS to find IP address (eg. 199.255.189.60)</li>
+						<li>Connects to address on a port (eg. 80)</li>
+						<li>Sends packets of data containing GET / HTTP/1.1</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>IP is Unreliable</h1>
+					<ul>
+						<li>Best effort delivery</li>
+						<li>No guarantees</li>
+						<li>How do we build a reliable Web on it?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Transport Control Protocol (TCP)</h1>
+					<ul>
+						<li>Correctness: prevent data corruption</li>
+						<li>Reliability: ensure delivery or error</li>
+						<li>Ordering: add sequence numbers</li>
+						<li>Congestion: back off</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Checksum</h1>
+					<ul>
+						<li>Take the bits in a message</li>
+						<li>Add them up</li>
+						<li>Append the sum</li>
+						<li>Example: "kay" = 107 + 97 + 121 = 325</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Ack</h1>
+					<div class="two-column-left">
+						<ul>
+							<li>When a machine receives a packet, it acknowledges it</li>
+							<li>If a machine does not receive an ack, it resends</li>
+							<li>To keep track of messages, uses a sliding window</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<img src="assets/lecture-16/syn-ack.png" style="background-color:#fff;" />
+					</div>
+				</section>
+
+				<section>
+					<h1>Sequence Numbers</h1>
+					<div class="two-column-left">
+						<ul>
+							<li>Packets can be sent out of order because of congestion, retry, etc.</li>
+							<li>How do we know the right order?</li>
+							<li>Agree on a starting number, send numbered packets</li>
+							<li>Client will keep track of packets received, deliver data in order to app</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<img src="assets/lecture-16/network-link.png" style="background-color:#fff;" />
+					</div>
+				</section>
+
+				<section>
+					<h1>Three-way Handshake</h1>
+					<ul>
+						<li>SYN: Synchronize using a random starting number</li>
+						<li>SYN-ACK: Acknowledge syn packet with an ack number and its own random starting number</li>
+						<li>ACK: Acknowledge the SYN-ACK packet</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Congestion</h1>
+					<ul>
+						<li>Why are packets delayed?</li>
+						<li>Often it is because the system is overwhelmed</li>
+						<li>So back off! If it is still overwhelmed, back off more!</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Telnet</h1>
+					<ul>
+						<li>TCP/IP and DNS client</li>
+						<li>Connects to a host at TCP/IP level</li>
+						<li>Up to you to communicate with HTTP or any other protocol</li>
+						<li>Does TCP/IP know about domains or hostnames?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Flexibility</h1>
+					<div class="two-column-left">
+						<ul>
+							<li>TCP/IP most commonly used, but not the only ones!</li>
+							<li>UDP (User Datagram) used for DNS</li>
+							<li>Real-time protocols (voice, video) may value timeliness over correctness</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<img src="assets/lecture-16/network-layer-detail.png" style="background-color:#fff;" />
+					</div>
+				</section>
+
+				<section>
+					<h1>Composability</h1>
+					<ul>
+						<li>Internet is a network of networks</li>
+						<li>IP used to send packets between two addresses</li>
+						<li>DNS maps names to addresses</li>
+						<li>TCP ensures reliable communication</li>
+						<li>Web built on Internet technology</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Overview</h1>
+					<img src="assets/lecture-16/overview.png" height="500px" />
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>

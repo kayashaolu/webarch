@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Networking - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Networking</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>The Web Is Built On The Internet</h1>
+					<img src="assets/lecture-15/network-layers.gif" />
+				</section>
+
+				<section>
+					<h1>We Use These Phrases</h1>
+					<ul>
+						<li>&quot;Connects to server&quot;</li>
+						<li>&quot;Sends response to client&quot;</li>
+						<li>&quot;Closes the connection&quot;</li>
+					</ul>
+					<p>What do they mean?</p>
+				</section>
+
+				<section>
+					<h1>Internet Architecture is Composable</h1>
+					<ul>
+						<li>Emphasize flexibility</li>
+						<li>Allow for growth, incremental adoption</li>
+						<li>Interchangeable parts</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Two Computers Need to Communicate</h1>
+					<ul>
+						<li>String a wire between them</li>
+						<li>Send bits across via voltage changes</li>
+						<li>Wait for response?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Three Computers Need to Communicate</h1>
+					<p>Get more wire</p>
+					<img src="assets/lecture-15/three-computer-link.png" style="background-color:#fff" />
+				</section>
+
+				<section>
+					<h1>Circuit Switching</h1>
+					<ul>
+						<li>New computer joins network: wire it up</li>
+						<li>Switch the electronic circuit</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Network</h1>
+					<div class="two-column-left">
+						<ul>
+							<li>Now we have a network</li>
+							<li>Mostly computer-to-computer</li>
+							<li>How do we communicate between networks?</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<img src="assets/lecture-15/three-computer-link.png" style="background-color:#fff" />
+					</div>
+				</section>
+
+				<section>
+					<h1>ARPANET :: Network</h1>
+					<ul>
+						<li>Circuit Switching -> Packet Switching</li>
+						<li>Relied on Interface Message Processors (IMPs)</li>
+						<li>Government, no commercial traffic</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Packet Switching</h1>
+					<ul>
+						<li>Send small packets of information</li>
+						<li>Addressed to a receiver</li>
+						<li>Can share medium</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Internet Protocol</h1>
+					<ul>
+						<li>Moves responsibility to host software</li>
+						<li>Keeps packet switching and routing</li>
+						<li>Adds concept of ports</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Internet Protocol</h1>
+					<ul>
+						<li>Where is the destination? (host addressing)</li>
+						<li>How do I get there? (routing)</li>
+						<li>Stateless!</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Packets travel over networks</h1>
+					<div class="two-column-left">
+						<ul>
+							<li>Packets sent from my house to the iSchool's servers</li>
+							<li>Destination is specified with a number (IP address)</li>
+							<li>Routing is done by forwarding to the next best network</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<img src="assets/lecture-15/network-link.png" style="background-color:#fff" />
+					</div>
+
+				</section>
+
+				<section>
+					<h1>Traceroute</h1>
+					<p>sudo apt install traceroute</p>
+					<pre>
+traceroute to ischool.berkeley.edu (128.32.78.26), 30 hops max, 60 byte packets
+ 1  10.0.2.2 (10.0.2.2)  0.544 ms  0.293 ms  0.129 ms
+ 2  192.168.0.1 (192.168.0.1)  3.254 ms  3.170 ms  3.162 ms
+ 3  homeportal (192.168.1.254)  8.748 ms  8.729 ms  8.696 ms
+ 4  107-193-136-2.lightspeed.sntcca.sbcglobal.net (107.193.136.2)  
+ 	37.250 ms  39.226 ms  39.162 ms
+...
+ 13  t2-3.inr-201-sut.berkeley.edu (128.32.0.37)  
+ 	68.950 ms  71.289 ms t2-3.inr-202-reccev.berkeley.edu (128.32.0.39)  71.450 ms
+ 14  et3-47.inr-311-ewdc.berkeley.edu (128.32.0.103)  
+ 	71.227 ms  71.380 ms et3-48.inr-311-ewdc.berkeley.edu (128.32.0.101)  71.448 ms
+...
+					</pre>
+				</section>
+
+				<section>
+					<h1>IP Address</h1>
+					<ul>
+						<li>Numbers, often represented as &quot;dotted decimal&quot; (199.255.189.160)</li>
+						<li>But can also be represented as just a number (3355426208)</li>
+						<li>IPs assigned by Internet Assigned Numbers Authority</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Routing</h1>
+					<ul>
+						<li>Border Gateway Protocol tracks routes to IPs</li>
+						<li>ISPs manually configure peers to share information</li>
+						<li>Routers use BGP to forward packets</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Ethernet</h1>
+					<div class="two-column-left">
+						<ul>
+							<li>All computers on the same physical medium</li>
+							<li>&quot;Frames&quot; addressed to a receiver</li>
+							<li>Interruptions happen with re-tries</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<img src="assets/lecture-15/network-layers.gif" />
+					</div>
+
+				</section>
+
+				<section>
+					<h1>Questions</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>
