@@ -37,8 +37,8 @@ Labs (15%), Assignments (45%), Project (40%)
 | Oct 21 | [What is an API?](https://kayashaolu.github.io/webarch/Class%20Prep%209%20-%20What%20is%20an%20API%3F.html) | API's and REST | Lab 9: Create your own API  | Group Project Part 1 Assigned  |
 | Oct 28 | Learn about Databases | Relational and Non-relational Databases | Lab 10: Add a database to your API | Group Project Part 1 Due |
 | Nov 4 | To the cloud! | Introduction to the cloud and how to use it | Lab 11: Move your application to Heroku | Group Project Part 2 Assigned |
-| Nov 11 |  |  Academic Holiday | | Assignment 3 Due |
-| Nov 18 | | Special Topics TBD | Work on Project | |
+| Nov 11 |  |  Academic Holiday | | |
+| Nov 18 | | Special Topics TBD | Work on Project | Assignment 3 Due Wed 11/16 |
 | Nov 25 | | Academic Holiday | | |
 | Dec 2 | | Special Topics TBD | Work on Project | |
 | Dec 9 | | Group Presentations | | Group Project Part 2 Due |
