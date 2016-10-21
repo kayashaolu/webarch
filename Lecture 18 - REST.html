@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>REST - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>REST</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>REST</h1>
+					<p>Representational State Transfer</p>
+				</section>
+
+				<section>
+					<h1>Good news, everyone!</h1>
+					<ul>
+						<li>You already know REST</li>
+						<li>Representations (HTML! but also XML, JSON)</li>
+						<li>State</li>
+						<li>Transfer</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>History</h1>
+					<ul>
+						<li>Roy Fielding co-wrote HTTP specs</li>
+						<li>Defined REST in his 2000 PhD dissertations</li>
+						<li>Defined core set of constraints and why they were important</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Constraints</h1>
+					<ul>
+						<li><strong>Client-server:</strong> Two separate systems talk to each other through a well defined interface</li>
+						<li><strong>Stateless:</strong> No context is stored between requests</li>
+						<li><strong>Cacheable:</strong> Clients or intermediaries can cache results, and requests and results can specify caching information</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Constraints</h1>
+					<ul>
+						<li><strong>Layered:</strong> Requests can go through intermediaries (proxies)</li>
+						<li><strong>Uniform Interface:</strong> The protocol between client and server follows the same rules regardless of the specific application</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Client-Server</h1>
+					<div class="two-column-left">
+						<ul>
+							<li><strong>Pros</strong></li>
+							<li>Browsers don't care what web server is providing representations, or which database is holding data</li>
+							<li>Servers don't care which clients are connecting</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<ul>
+							<li><strong>Cons</strong></li>
+							<li>Overhead of transferring data</li>
+							<li>Fewer, simpler failure modes</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h1>Stateless</h1>
+					<div class="two-column-left">
+						<ul>
+							<li><strong>Pros</strong></li>
+							<li>Simplifies server design and storage</li>
+							<li>Simplifies request grammar</li>
+							<li>Improves scalability, error recovery</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<ul>
+							<li><strong>Cons</strong></li>
+							<li>Overhead of transferring client state</li>
+							<li>Not convenient for interactivity at protocol level</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h1>Cacheable</h1>
+					<div class="two-column-left">
+						<ul>
+							<li><strong>Pros</strong></li>
+							<li>Browsers can store CSS and JavaScript</li>
+							<li>Businesses can cache responses, even from external sites</li>
+							<li>Servers can specify how long things should be cached for</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<ul>
+							<li><strong>Cons</strong></li>
+							<li>Cache invalidation is hard</li>
+							<li>Can't rely on updated resources updating &quot;everywhere&quot;</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h1>Uniform Interface</h1>
+					<div class="two-column-left">
+						<ul>
+							<li><strong>Pros</strong></li>
+							<li>Client and server know how to interact regardless of application hosted</li>
+							<li>Ancestry uses same interface as Yelp</li>
+							<li>Wider variety of clients that can handle multiple applications</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<ul>
+							<li><strong>Cons</strong></li>
+							<li>For really unique applications, must jam into old paradigms</li>
+							<li>Difficult to optimize for performance of single application</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h1>REST is not HTTP</h1>
+					<ul>
+						<li>Remember HTTP is a transport protocol: a tube!</li>
+						<li>REST is a set of constraints on how to use that tub</li>
+						<li>We could use other tubes, like FTP, SMTP</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Web is RESTful</h1>
+					<ul>
+						<li>Web is build on these ideas</li>
+						<li>Better leverage attained by embracing REST</li>
+						<li>Flexibility, scalability, visibility, simplicity</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>How to Spot RESTfulness</h1>
+					<ul>
+						<li>Should think through constraints, but here are some heuristics</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Uses HTTP</h1>
+					<ul>
+						<li>REST is the underlying architectural principle of the web</li>
+						<li>The web primarily uses the HTTP protocol</li>
+						<li>The way browsers interface with web servers is inherently RESTFul if you think about it</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Uses HTTP Commands</h1>
+					<ul>
+						<li>GET, POST, PUT...</li>
+						<li>vs using POST for everything</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Uses HTTP return codes</h1>
+					<ul>
+						<li>404 Not Found, 200 OK </li>
+						<li>vs. always responding with 200 OK but has an error message</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>URLs point to resources</h1>
+					<ul>
+						<li>/blog, /api/messages/34</li>
+						<li>vs. URLs pointing to commands: /api/createBlog, /api/getMessage/34</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Representation links</h1>
+					<ul>
+						<li>A representation links to new possible actions</li>
+						<li>Client only needs to have representation</li>
+						<li>Hypermedia as the engine of application state (HATEOAS)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example</h1>
+
+					<pre>
+{
+	"business": "http://yelp.com/biz/27",
+	"user": "http://yelp.com/user/5",
+	"review_text": "..."
+}
+					</pre>
+				</section>
+
+				<section>
+					<h1>Counter Example</h1>
+
+					<pre>
+
+{
+	"business_id": 27,
+ 	"user_id": 5
+ 	"review_text": “..."
+}
+request({
+  	url: "http://yelp.com/biz/" + business_id});
+  					</pre>
+  				</section>
+
+  				<section>
+  					<h1>Uses headers for meta data</h1>
+
+  					<ul>
+  						<li>Content-Type XML or JSON</li>
+						<li>vs. response has extra meta data in XML</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>API - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>API</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>API</h1>
+					<ul>
+						<li>Application Programming Interface</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What is an API?</h1>
+					<p><strong>From Quora:</strong> An API (Application Programming Interface) is best thought of as a contract provided by one piece of computer software to another.</p>
+				</section>
+
+				<section>
+					<h1>Simple API: a function in JavaScript</h1>
+					<pre>
+function getMaximum(num1, num2) {
+	/* ...
+	   working code
+	   ...
+	*/
+
+	return answer;
+}
+					</pre>
+				</section>
+
+				<section>
+					<h1>Simple API: a function in JavaScript</h1>
+					<ul>
+						<li>Imagine that you didn't know how that function was implemented</li>
+						<li>You only know that you enter two numbers in the function and you receive the greater of those two numbers</li>
+						<li><strong>That is an API!</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>API as contract</h1>
+					<ul>
+						<li>The getMaximum function can be considered as one piece of computer software</li>
+						<li>The rest of your code can be considered as another piece of computer software</li>
+						<li>The contract between those two pieces of software:
+							<ul>
+								<li>If you call the getMaximum function and pass it two numbers as data</li>
+								<li>It will return a number that is the maximum of the numbers provided.</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>API as a contract example</h1>
+					<p>js/api.js</p>
+					<pre>
+function getMaximum(num1, num2) {
+	var answer = num1;
+
+	if (num1 < num2) {
+		answer = num2;
+	}
+	
+	return answer;
+}
+					</pre>
+				</section>
+				<section>
+					<h1>API as a contract example</h1>
+					<p>index.html</p>
+					<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;body&gt;
+		&lt;button onclick=&quot;alert(getMaximum(5, 3))&quot;&gt;
+			Call API function getMaximum
+		&lt;/button&gt;
+		&lt;script src=&quot;js/api.js&quot;&gt;&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>API as a contract example</h1>
+					<ul>
+						<li>api.js defined an API action called getMaximum</li>
+						<li>It accepts two pieces of information: two numbers</li>
+						<li>It returns one piece of information: a number</li>
+						<li>Any web page can import api.js and by following the above contract can utilize the getMaximum function</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Now what really is an API?</h1>
+					<ul>
+						<li>When people say an API, they don't really mean what we just covered</li>
+						<li>So let's talk about what people really mean when they say &quot;API&quot;</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Now what really is an API?</h1>
+					<iframe width="640" height="360" src="https://www.youtube.com/embed/s7wmiS2mSXY" frameborder="0" allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h1>The power of APIs</h1>
+
+					<ul>
+						<li>Web applications used to combine all of their functionality in their website</li>
+						<li>Now they separated their "functions" into independent APIs so that clients other than their own websites can use it</li>
+						<li>So now anyone can access that information</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>The power of APIs Example</h1>
+					<ul>
+						<li><strong>Without API:</strong> An app finds the current weather in London by opening http://www.weather.com/ and reading the web page like a human does, interpreting the content.</li>
+						<li><strong>With API:</strong> An app finds the current weather in London by sending a message to the weather.com API (in a structured format like JSON). The weather.com API then replies with a structured response.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>APIs over HTTP</h1>
+					<ul>
+						<li>Let's take that function concept to the Internet</li>
+						<li>We can define functions that can be called "through the Internet" using the HTTP protocol</li>
+						<li>We can use the same protocol as we do for web servers to send and receive information</li>
+						<li>Caveat: Instead of sending HTML/CSS/JS, we send and receive a more structured data representation, like XML or JSON</li>
+
+				</section>
+
+				<section>
+					<h1>JSON</h1>
+					<ul>
+						<li>JavaScript Object Notation</li>
+						<li>A lightweight format that is used for data interchanging</li>
+						<li>It's a subset of the JavaScript language</li>
+						<li>It's the way objects are built in JavaScript</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>JSON Example</h1>
+					<pre>
+{
+	"coord": {
+		"weather": [ 
+			{
+				"id":800,
+				"main":"Clear",
+				"description":"clear sky",
+				"icon":"01d"
+			}
+		],
+		"base": "stations",
+		"main": {
+			"temp":294.787,
+			"pressure":1024.49,
+			"humidity":52,
+			"temp_min":294.787,
+			"temp_max":294.787,
+			"sea_level":1032.69,
+			"grnd_level":1024.49
+		}, ...
+					</pre>
+				</section>
+
+				<section>
+					<h1>JSON Example</h1>
+					<ul>
+						<li>The previous example was the response to a call to the OpenWeather API</li>
+						<li>We send a GET request to the OpenWeather API server sending two parameters:
+							<ul>
+								<li>"q" to query for the city</li>
+								<li>"appid" for an API key</li>
+							</ul>
+						</li>
+						<li>We get the JSON response from the previous slide</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>How to call an API</h1>
+					<p>Let's use curl!</p>
+					<pre>
+curl -v "http://api.openweathermap.org/data/2.5/weather?\
+q=Berkeley,ca&amp;appid=af578739923ac7f173a6054b24c606ea"
+					</pre>
+				</section>
+
+				<section>
+					<h1>How to call an API Response</h1>
+					<p>Note the Content Type</p>
+					<pre>
+HTTP/1.1 200 OK
+Server: openresty
+Date: Thu, 20 Oct 2016 22:54:46 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 461
+
+{
+	"coord": {
+		"weather": [ 
+			{
+				"id":800,
+				"main":"Clear",
+				"description":"clear sky",
+				"icon":"01d"
+				...
+					</pre>
+				</section>
+
+				<section>
+					<h1>How to call an API</h1>
+					<ul>
+						<li>Since this API function call is using a GET request, we can use the address bar on a browser to call this API function</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Now what?</h1>
+					<ul>
+						<li>API's are great for creating applications using data and adding functionality that wouldn't be possible without them</li>
+						<li>Think about Assignment 2 with the Mailgun server!</li>
+						<li>How do we build our own API's?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's use NodeJS/Express!</h1>
+					<ul>
+						<li>The only difference between a web server and an API server is that a web server typically returns HTML, CSS, and JavaScript, but an API server typically returns a structured data format, such as JSON or XML</li>
+						<li>So the only thing that changes in our code is the data that we are sending, and the <strong>Content Type</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Our API Example</h1>
+					<p>api.js (1/3)</p>
+					<pre>
+var express = require('express'); 
+var app = express();
+
+var bodyParser = require('body-parser')
+app.use(bodyParser.json()); // support json encoded bodies
+					</pre>
+				</section>
+
+				<section>
+					<h1>Our API Example</h1>
+					<p>api.js (2/3)</p>
+					<pre>
+// An object that contains a quote that we want to display for a day of the week
+var quote_db = {
+  'sunday': &quot;Life is about making an impact, not making an income. \
+  –Kevin Kruse&quot;,
+  'monday': &quot;Whatever the mind of man can conceive and believe, it can achieve. \
+  –Napoleon Hill&quot;,
+  'tuesday': &quot;Strive not to be a success, but rather to be of value. \
+  –Albert Einstein&quot;,
+  'wednesday': &quot;You miss 100% of the shots you don’t take. \
+  –Wayne Gretzky&quot;,
+  'thursday': &quot;Every strike brings me closer to the next home run. \
+  –Babe Ruth&quot;,
+  'friday': &quot;We become what we think about. \
+  –Earl Nightingale&quot;,
+  'saturday': &quot;Life is what happens to you while you’re busy making other plans. \
+  –John Lennon&quot;,
+}
+					</pre>
+				</section>
+
+				<section>
+					<h1>Our API Example</h1>
+					<p>api.js (3/3)</p>
+					<pre>
+app.post('/quote', function (req, res) {
+  day = req.body.day_of_week;
+  console.log(&quot;Received request for quote for day &quot; + day);
+  res.json({ 'day': day, 'quote': quote_db[day] });
+});
+
+var server = app.listen(3000, function () {
+  console.log('Server on localhost listening on port 3000');
+});
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did we do?</h1>
+					<ul>
+						<li>We created an API with one function</li>
+						<li>We converted our web page we created on week 6 into an API that anyone can use</li>
+						<li>Just need to send a post request to the path /quote and send the parameters with content type "application/json" instead of "application/x-www-form-urlencoded"</li>
+						<li>How can we test it out? Let's use curl!</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Using our API</h1>
+					<pre>
+curl -H "Content-Type: application/json" -X POST -d '{ "day_of_week" : "Sunday" }' \
+http://localhost:3000/quote
+					</pre>
+					<ul><li>In our API we send json and receive information via json</li></ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>
