@@ -1,14 +1,16 @@
 {
-  "name": "backend_api",
+  "name": "lecture_19_20",
   "version": "1.0.0",
   "description": "",
-  "main": "api.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.14.0",
+    "sqlite": "^2.2.1",
     "sqlite3": "^3.1.8"
   }
 }
