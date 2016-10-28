@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Storage Systems II - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Storage Systems II</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>	
+
+				<section>
+					<h1>Typical Web Architecture</h1>
+					<img src="assets/lecture-20/web-arch.png" style="height:400px;" />
+				</section>
+
+				<section>
+					<h1>Typical Web Architecture</h1>
+					<img src="assets/lecture-20/web-arch-detail.png" style="height:400px;"/>
+				</section>
+
+				<section>
+					<h1>Caching</h1>
+					<div class="two-column-left">
+						<img src="assets/lecture-20/web-arch-expanded.png" style="height:400px;" />
+					</div>
+					<div class="two-column-right">
+						<ul>
+							<li>Reduce load on database by placing cheap copies in front of DB</li>
+							<li>Problem?</li>
+							<li>Have to keep cache(s) up to date</li>
+						</ul>
+
+					</div>
+
+				</section>
+
+				<section>
+					<h1>Horizontal Scale-Out</h1>
+					<img src="assets/lecture-20/scaleout.png" style="height:400px;" />
+				</section>
+
+				<section>
+					<h1>Statelessness</h1>
+					<ul>
+						<li>Front-end, mid-tier are often stateless--why?</li>
+						<li>Simplifies programming, reasoning about services</li>
+						<li>DBs can manage complexity of state management</li>
+						<li>Promote reuse of complex code</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Scaling</h1>
+					<ul>
+						<li>What if data can’t fit on a single server?</li>
+						<li>What if a server goes down?</li>
+						<li>What if a machine fails completely?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Replication</h1>
+					<ul>
+						<li>Provides durability: don’t lose data</li>
+						<li>Provides capacity: multiple servers</li>
+						<li>Leads to many interesting challenges</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Typical Replication</h1>
+					<img src="assets/lecture-20/three-way-replication.png" style="height:400px;" />
+				</section>
+
+				<section>
+					<h1>Data Placement</h1>
+					<ul>
+						<li>Which server gets data?</li>
+						<li>Assign students to server based on age</li>
+					</ul>
+					<img src="assets/lecture-20/partitioning.png" style="height:400px;" />
+				</section>
+
+				<section>
+					<h1>Data Placement</h1>
+					<ul>
+						<li>Which servers get what data?</li>
+						<li>Range vs. Hash vs. ?</li>
+						<li>How many copies of the data?
+							<ul>
+								<li>Durability: how many failures?</li>
+								<li>Capacity: how many requests?</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Consistency</h1>
+					<ul>
+						<li>Need to keep replicas up to date</li>
+						<li>May be slow or impossible!</li>
+						<li>Very expensive if servers are located around the world!</li>
+					</ul>
+				</section>
+
+				<Section>
+					<h1>NoSQL</h1>
+					<ul>
+						<li>"New" approach to data storage</li>
+						<li>Simple but predictable data models</li>
+						<li>Often have to build own features</li>
+						<li>Designed for massive scale-out</li>
+					</ul>
+				</Section>
+
+				<section>
+					<h1>Key-Value Store</h1>
+					<pre>
+put(key, value) get(value)
+					</pre>
+					<div class="two-column-left">
+						<ul>
+							<li><strong>Pros</strong></li>
+							<li>Simple API</li>
+							<li>Easy to understand performance</li>
+							<li>Easy to scale and use</li>
+						</ul>
+					</div>
+
+					<div class="two-column-right">
+						<ul>
+							<li><strong>Cons</strong></li>
+							<li>Simple API</li>
+							<li>Must handle own schema management</li>
+							<li>May need to manually implement search features</li>
+						</ul>
+					</div>
+
+				</section>
+				
+				<section>
+					<h1>Document Store</h1>
+					<pre>
+{
+	"long_url": "http://www.google.com",
+	"short_url": "qwelmw",
+	"hit_count": 2
+}
+					</pre>
+
+					<ul>
+						<li>No predefined schema</li>
+						<li>Store handles layout of arbitrary fields</li>
+						<li>Examples: MongoDB, CouchDB, Cassandra, Redis</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Summary</h1>
+					<ul>
+						<li>Databases designed to solve many common data storage problems</li>
+						<li>Storage comes in many flavors; right choice is often specific to use case</li>
+						<li>When in doubt, start simple!</li>
+						<li>My opinion: start with a RDBMS and learn about your data, move to a DB that better suites your use case afterwards</li>
+					</ul>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+	</body>
+</html>
