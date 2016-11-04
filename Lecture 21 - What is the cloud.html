@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>What is the cloud? - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>What is the cloud?</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>What is the cloud?</h1>
+					<p>And what is cloud computing?</p>
+					<p>How would you define it?</p>
+				</section>
+
+				<section>
+					<h1>PC Mag says this:</h1>
+					<p><strong>Cloud:</strong> A communications network. The word "cloud" often refers to the Internet, and more precisely to some data center full of servers that is connected to the Internet.</p>
+				</section>
+				
+				<section>
+					<h1>Wikipedia says this:</h1>
+					<p>Cloud computing is a type of Internet-based computing that provides shared computer processing resources and data to computers and other devices on demand.</p>
+				</section>
+
+				<section>
+					<h1>Webopedia says this:</h1>
+					<p>Cloud computing is a type of computing that relies on sharing computing resources rather than having local services or personal devices to handle applications</p>
+				</section> 
+
+				<section>
+					<h1>So in essence...</h1>
+					<ul>
+						<li>"The cloud" really just means a bunch of servers</li>
+						<li>That are connected to the Internet</li>
+						<li>That provide a service over the Internet</li>
+						<li>Whose resources can be shared to accomplish a purpose</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's imagine</h1>
+					<ul>
+						<li>We all have computers</li>
+						<li>Each of our computers have resources that can be used to run an application
+							<ul>
+								<li>CPU: processing power</li>
+								<li>RAM: fast, short term storage</li>
+								<li>Storage: slower long term storage </li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>To run an application</h1>
+					<ul>
+						<li>We would have to ensure that our one computer has enough resources to load the application</li>
+						<li>And enough resources to run the application smoothly</li>
+						<li>And enough resources to be able to accept user input</li>
+						<li>And the application has to run in a reasonable amount of time</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What if we can't do that?</h1>
+					<p>What can we do?</p>
+				</section>
+
+				<section>
+					<h1>What if we can't do that?</h1>
+					<p>If we can communicate between computers, maybe we can use more than one computer to run the application</p>
+					<p>Perhaps we can share resources?</p>
+				</section>
+
+				<section>
+					<h1>Example Climateprediction.net</h1>
+					<ul>
+						<li><a href="http://www.climateprediction.net/getting-started/how-it-works/" target="_blank">climateprediction.net</a>
+						<li>Purpose is to use computers all over the web to run climate models</li>
+						<li>Uses spare CPU/RAM resources on your computer to compute tasks</li>
+						<li>Receive instructions and send results through the Internet</li>
+						<li>Your computer is part of the cloud!</li>
+					</li> 
+				</section>
+
+				<section>
+					<h1>Example Climateprediction.net</h1>
+					<ul>
+						<li>By using people's personal computers, they can compute climate models that would take supercomputers time to complete</li>
+						<li>The Internet provides a communication path for networked computers to share information</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example Climateprediction.net</h1>
+					<ul>
+						<li>Uses a client program that is installed on the computer</li>
+						<li>Client program uses the Internet to communicate to the host servers</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example Dropbox</h1>
+					<ul>
+						<li>File sharing/syncing service</li>
+						<li>Provides seamless sharing of files</li>
+						<li>How does it work?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Dropbox Client</h1>
+					<ul>
+						<li>Installed on your computer</li>
+						<li>Detects changes in files from your computer and sends those changes through the Internet to Dropbox's "file system" servers</li>
+						<li>Downloads changes made from other sources through the Internet</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Dropbox Web site / Mobile application</h1>
+					<ul>
+						<li>Available through the browser</li>
+						<li>Dropbox web servers interface with Dropbox "file system" servers to learn what files you have in the cloud</li>
+						<li>Provides access through HTTP traffic to your Dropbox files</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Dropbox</h1>
+					<ul>
+						<li>Multiple servers solve the storage problem</li>
+						<li>Can store more data than your single computer can handle</li>
+						<li>Can store more data than your mobile device can store</li>
+						<li>Can provide access to files to devices you don't own through the website</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hosting in cloud</h1>
+					<p>By applications being hosted in the cloud, it releases the need to be bound by physical hardware<p>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+	</body>
+</html>
