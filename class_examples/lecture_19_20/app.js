@@ -2,7 +2,7 @@ var express = require('express')
 var app = express();
 
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('db.db');
+var db = new sqlite3.Database('whatever.db');
 
 /* Add a link to the db */
 app.get('/addLink', function(req, res){
@@ -22,14 +22,11 @@ app.get('/addLink', function(req, res){
 
 /* return all of the links in the db */
 app.get('/getAllLinks', function(req, res) {
-	res.json({ "data": [
-		{'long_url': "http://google.com",
-		  'short_url': 'asdfe',
-		  'hit_count': '4' },
-		 {'long_url': "http://facebook.com",
-		  'short_url': 'wefes',
-		  'hit_count': '2' }
-		]})
+
+	db.all("SELECT long_url, short_url, hit_count FROM " +
+	 	"links", function(err, rows) {
+			res.json({ "data": rows });
+		})
 });
 
 /* Create table: should run only once */
