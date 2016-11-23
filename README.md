@@ -38,7 +38,7 @@ Labs (15%), Assignments (45%), Project (40%)
 | Oct 28 | [RDBMS and NoSQL](https://kayashaolu.github.io/webarch/Class%20Prep%2010%20-%20RDBMS%20vs%20NoSQL.html) | Storage Systems [I](https://kayashaolu.github.io/webarch/Lecture%2019%20-%20Storage%20Systems%20I.html) and [II](https://kayashaolu.github.io/webarch/Lecture%2020%20-%20Storage%20Systems%20II.html) | [Lab 10: Add a database to your API](https://github.com/kayashaolu/webarch-lab-10)<br />**[Start Lab](https://bcourses.berkeley.edu/courses/1454280/assignments/7752896)** | Group Project Part 1 Due |
 | Nov 4 | | [What is the cloud](https://kayashaolu.github.io/webarch/Lecture%2021%20-%20What%20is%20the%20cloud.html) and [cloud web architecture](https://kayashaolu.github.io/webarch/Lecture%2022%20-%20Cloud%20Web%20Architecture.html) | Group Project Kick off | [Group Project Part 2 Assigned](https://github.com/kayashaolu/webarch-project)<br />**[Start Project Part II](https://bcourses.berkeley.edu/courses/1454280/assignments/7754342)** |
 | Nov 11 |  |  Academic Holiday | | |
-| Nov 18 | | Special Topics TBD | Work on Project | Assignment 3 Due Wed 11/16 |
+| Nov 18 | | Bookmarklets and Web Scraping | Work on Project | Assignment 3 Due Wed 11/16 |
 | Nov 25 | | Academic Holiday | | |
-| Dec 2 | | Special Topics TBD | Work on Project | |
+| Dec 2 | | Presentation Prep | Work on Project | |
 | Dec 9 | | Group Presentations | | Group Project Part 2 Due |
