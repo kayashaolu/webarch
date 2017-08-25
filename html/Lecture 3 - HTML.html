@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>HTML - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>HTML</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>HTML: Hypertext markup language</h1>
+					<p>
+						What is HyperText?
+					</p>
+				</section>
+
+				<section>
+					<h1>Why text?</h1>
+
+					<ul>
+						<li>Computers store streams of bits</li>
+						<li>Hard for a person to read</li>
+						<li>Instead, store streams of characters</li>
+						<li>Lowest level, most flexible format that can be easily understood</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's start simple</h1>
+					<p>Let's learn Markdown, another HyperText language which is essentially <strong>text with links</strong></p>
+					Example:<pre>This college is [Berkeley](http://berkeley.edu)</pre>
+				</section>
+
+				<section>
+					<h1>What about headers?</h1>
+
+					<p>We can add hashtags at the beginning of sections</p>
+					<pre>
+# Main Header
+Important stuff in this paragraph...
+
+## This is a "level 2" header
+Info supporting main section, specific to this subsection...
+					</pre>
+				</section>
+
+				<section>
+					<h1>Bold? Italics?</h1>
+
+					<p>We can use stars to indicate how important they are</p>
+					<pre>
+*important stuff* 
+**really important stuff**
+					</pre>
+				</section>
+
+				<section>
+					<h1>What is hard to encode in this scheme?</h1>
+					<ul>
+						<li>| Tables |</li>
+						<li>*Nested **content***</li>
+						<li>Fonts?</li>
+						<li>Normal use of characters</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Take a step back</h1>
+					<ul>
+						<li>
+							Instead of thinking up clever characters to emulate, be explicit
+							<ul>
+								<li>THIS IS BOLD: "hello"</li>
+								<li>THIS IS ITALIC: "world"</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Markup</h1>
+					<p>Annotation to existing text</p>
+					<pre>
+&lt;strong&gt;hello&lt;/strong&gt;
+&lt;em&gt;world&lt;/em&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Tags (Elements)</h1>
+					<ul>
+						<li>Tags wrapped in angle brackets</li>
+						<li>Enclose affected text</li>
+						<li>Have semantic meaning</li>
+						<li>Can nest</li>
+					</ul>
+					<pre>
+&lt;strong&gt;&lt;em&gt;hello&lt;/em&gt;&lt;/strong&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>The Blink Tag</h1>
+					<ul>
+						<li>"Simply evil" - Jakob Nielson</li>
+						<li>"Please make it stop" - everyone, everywhere</li>
+					</ul>
+					<pre>
+&lt;blink&gt;BLINK!&lt;/blink&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Semantic Meaning</h1>
+					<ul>
+						<li>Blink tag also violates semantic rule</li>
+						<li>Tags should contain semantic meaning, not presentation</li>
+						<li>Improves accessibility</li>
+						<li>Clear line between HTML and CSS</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Bad Examples</h1>
+<pre>
+&lt;font&gt; &lt;center&gt; &lt;i&gt;
+</pre>
+					<p>Why?</p>
+
+				</section>
+
+				<section>
+					<h1>Good Examples</h1>
+					<pre>
+&lt;span&gt; &lt;strong&gt; &lt;em&gt;
+					</pre>
+					<p>Client can style these however it chooses (with help from CSS)</p>
+				</section>
+
+				<section>
+					<h1>XHTML -&gt; HTML4.01 -&gt; HTML5</h1>
+					<ul>
+						<li>Use "HTML5" and check if your target browsers support it</li>
+						<li>Convoluted history</li>
+						<li>XML: eXtensible Markup Language</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Who decides this stuff?</h1>
+					<ul>
+						<li><a href="http://www.w3.org" target="_blank">World Wide Web Consortium</a></li>
+						<li>Authority on standards</li>
+						<li>Ideas are often tried in browsers, then suggested as standards, then accepted</li>
+						<li>Can be a multi-year process</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>How?</h1>
+					<ul>
+						<li>Committees!</li>
+						<li>Recommendations</li>
+						<li>Request For Comments (RFC)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>So let's learn some HTML</h1>
+				</section>
+
+				<section>
+					<h1>Section header and Paragraph</h1>
+					<pre>
+&lt;h1&gt;Welcome to my webpage&lt;/h1&gt;
+&lt;p&gt;Hello World!&lt;/p&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Link Tag</h1>
+					<pre>
+&lt;h1&gt;Welcome to my webpage&lt;/h1&gt;
+Hello World! Here's where I work: &lt;a href=&quot;http://ancestry.com&quot;&gt;Ancestry.com&lt;/a&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Note on attributes</h1>
+					<ul>
+						<li>HTML elements can have attributes</li>
+						<li>Attributes provide additional information about an element</li>
+						<li>Attributes are always specified in the start tag</li>
+						<li>Attributes come in name/value pairs like: <pre>name="value"</pre></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let’s add a table</h1>
+					<pre>
+&lt;table&gt;
+        &lt;tr&gt;
+                &lt;th&gt;First Name&lt;/th&gt;
+                &lt;th&gt;Last Name&lt;/th&gt;
+                &lt;th&gt;Class&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+                &lt;td&gt;Kay&lt;/td&gt;
+                &lt;td&gt;Ashaolu&lt;/td&gt;
+                &lt;td&gt;Web Architecture&lt;/td&gt;
+        &lt;/tr&gt;
+&lt;/table&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Dom Tree</h1>
+					<img src="../assets/lecture-3/dom-tree.png" />
+				</section>
+
+				<section>
+					<h1>Head / Body</h1>
+					<ul>
+						<li>So far we've been looking at the "body" of a document</li>
+						<li>Main section which contains page information</li>
+						<li>Head contains meta information</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Head is important</h1>
+					<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+        &lt;head&gt;
+                &lt;title&gt;My First HTML Webpage&lt;/title&gt;
+                &lt;meta name=&quot;author&quot; content=&quot;Kay Ashaolu&quot; /&gt;
+                &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+                Main Content
+        &lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+					<ul>
+						<li>Title shows up title bar of browser</li>
+						<li>Meta tags convey general information</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>How HTML and CSS are linked</h1>
+					<pre>
+&lt;head&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../css/style.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+					</pre>
+					<ul>
+						<li>Browser will download these references and use them for display</li>
+						<li>CSS link tags should appear in head</li>
+						<li>script tags can appear in body</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Why use the tag head?</h1>
+					<ul>
+						<li>Semantic meaning</li>
+						<li>Title bar</li>
+						<li>Search engines</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Summary</h1>
+					<ul>
+						<li>HTML provides a way to annotate text to convey semantic meaning or grouping</li>
+						<li>Browser displays tags in standard ways</li>
+						<li>Tags are named, can contain attributes, can be nested</li>
+					</ul>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+	</body>
+</html>

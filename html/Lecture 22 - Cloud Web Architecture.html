@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Cloud Web Architecture - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" />
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="../css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Cloud Web Architecture</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Demystifying the cloud</h1>
+					<ul>
+						<li>So we understand what we can do in the cloud</li>
+						<li>Because there are computers running all the time, we can access our applications all of the time</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Demystifying the cloud</h1>
+					<ul>
+						<li>But what is going on with those computers?</li>
+						<li>How do we build our own cloud applications?</li>
+						<li>What does Amazon Web Services provide?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Cloud computing models</h1>
+					<ul>
+						<li>There are three main types of services that we consume in the cloud</li>
+						<li>These models can help us understand what is going on in the cloud</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Quick review</h1>
+					<ul>
+						<li>Cloud computing is a type of Internet-based computing that provides shared computer processing resources and data to computers and other devices on demand.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>So in essence</h1>
+					<ul>
+						<li>Some company (Amazon) own a lot of networked computers</li>
+						<li>That company allows other people to use their computers to run applications</li>
+						<li>But how do we share resources?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>First thought: provide computers</h1>
+					<ul>
+						<li>I want to run my app</li>
+						<li>I ask Amazon for 5 computers</li>
+						<li>They give it to me and I install my app on all five computers</li>
+						<li>If I need more, Amazon needs to network another computer</li>
+						<li>What are the potential issues with this?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Second thought: provide VM's</h1>
+					<ul>
+						<li>To scale, Amazon would have to buy new machines</li>
+						<li>Changing CPU/Memory/Storage would require human intervention</li>
+						<li>However with VM's, can provide users with their own computing resource dynamically</li>
+						<li>Think VirtualBox</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Second thought: provide VM's</h1>
+					<ul>
+						<li>Can specify CPU, Memory, and Storage usage dynamically</li>
+						<li>Cost effective</li>
+						<li>Can load several VM's on one powerful computer</li>
+						<li>Can create and destroy them dynamically</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Cloud Computing model 1: IaaS</h1>
+					<ul>
+						<li>Infrastructure as a Service (IaaS), think <a href="https://aws.amazon.com" target="_blank">Amazon EC2 and S3</a></li>
+						<li>You are provided full access to remote Virtual Machines</li>
+						<li>Up to you to install an operating system, NodeJS, SQLite, etc...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>IaaS</h1>
+					<ul>
+						<li>You have the most flexibility with the computers that run your application</li>
+						<li>However, you also have to build everything yourself</li>
+						<li>For example: 
+							<ul>
+								<li>create two VM and install your NodeJS app on each VM</li>
+								<li>another VM to install your database</li>
+								<li>another virtual machine to handle DNS, etc...</li>
+							</ul>
+						<li>You are on your own</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Cloud Computing model 2: PaaS</h1>
+					<ul>
+						<li>Platform as a Service (PaaS), think <a href="https://www.heroku.com" target="_blank">Heroku</a></li>
+						<li>Typically built on top of an IaaS, a PaaS provides services that developers need to rapidly build applications</li>
+						<li>For example: 
+							<ul>
+								<li>instead of purchasing VM's, you can purchase a worker that can run a NodeJS application</li>
+								<li>purchase a VM that has database software pre-installed</li>
+								<li>global VM's dedicated as DNS servers for your application</li>
+							</ul>
+						</li>
+				</section>
+
+				<section>
+					<h1>PaaS</h1>
+					<ul>
+						<li>What's exciting about PaaS is that developers don't have to worry about operations</li>
+						<li>It's a job in of itself to write scripts to automate installing operating systems</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Cloud computing model 3: SaaS</h1>
+					<ul>
+						<li>Software as a Service (SaaS) comprises of application that we use that are connected to the cloud</li>
+						<li>Built on top of a PaaS, or even on top of a IaaS for more efficiency</li>
+						<li>These are applications that leverage the cloud's dynamic property to provide a service 24/7</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>SaaS</h1>
+					<ul>
+						<li>Examples: Google Docs, Dropbox, Slack, Evernote, and so on</li>
+						<li>These applications utilizes PaaS and IaaS in order to build a singular application</li>
+						<li>Typically there is no concept of databases or web servers from a PaaS</li>
+						<li>Nor concept of virtual machines and computing resources from a IaaS</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Main Takeaway</h1>
+					<ul>
+						<li>It is the availability of IaaS that makes cloud services possible</li>
+						<li>It is the utility of PaaS that makes building cloud services much easier</li>
+						<li>And SaaS are the services that we use that benefit from networked computer resources</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+	</body>
+</html>

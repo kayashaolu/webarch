@@ -26,7 +26,8 @@ Labs (15%), Assignments (45%), Project (40%)
 
 |  Date |  Class Prep | Lecture Slides | Labs | Assignments / Projects |
 |---|---|---|---|---|
-| Aug 26 | [VMs, Linux, and Git](https://kayashaolu.github.io/webarch/Class%20Prep%201%20-%20Virtual%20Machines,%20Linux%20Terminal,%20and%20Git.html) | [Introduction](https://kayashaolu.github.io/webarch/Lecture%201%20-%20Introduction.html) and [Browsers](https://kayashaolu.github.io/webarch/Lecture%202%20-%20What%20is%20a%20web%20browser.html) | [Lab 1: Setting up Git](https://github.com/kayashaolu/webarch-lab-1)<br />**[Start Lab](https://bcourses.berkeley.edu/courses/1454280/assignments/7731910)** | | 
+| Aug 25 |  | [Introduction](https://kayashaolu.github.io/webarch/Lecture%201%20-%20Introduction.html) and [Browsers](https://kayashaolu.github.io/webarch/Lecture%202%20-%20What%20is%20a%20web%20browser.html) | [Lab 1: Setting up Git](https://github.com/kayashaolu/webarch-lab-1)<br />**[Start Lab](https://bcourses.berkeley.edu/courses/1454280/assignments/7731910)** | | 
+<!--
 | Sep 2 | [Try HTML and CSS](https://kayashaolu.github.io/webarch/Class%20Prep%202%20-%20Try%20HTML%20and%20CSS.html) | [HTML](https://kayashaolu.github.io/webarch/Lecture%203%20-%20HTML.html) and [CSS](https://kayashaolu.github.io/webarch/Lecture%204%20-%20CSS.html) | [Lab 2: Create a simple web page](https://github.com/kayashaolu/webarch-lab-2)<br />**[Start Lab](https://bcourses.berkeley.edu/courses/1454280/assignments/7739281)** | [Assign 1: Build a Local Static Website](https://github.com/kayashaolu/webarch-assign-1)<br />**[Start Assignment](https://bcourses.berkeley.edu/courses/1454280/assignments/7739274)** |
 | Sep 9 | [Let's learn some JavaScript](https://kayashaolu.github.io/webarch/Class%20Prep%203%20-%20Let's%20learn%20some%20JavaScript.html)| [JavaScript Basics I](https://kayashaolu.github.io/webarch/Lecture%205%20-%20JavaScript%20Basics%20I.html) and [II](https://kayashaolu.github.io/webarch/Lecture%206%20-%20JavaScript%20Basics%20II.html) | [Lab 3: Play around with JavaScript](https://github.com/kayashaolu/webarch-lab-3)<br />**[Start Lab](https://bcourses.berkeley.edu/courses/1454280/assignments/7740363)** | |
 | Sep 16 | [HTML Forms: putting it all together](https://kayashaolu.github.io/webarch/Class%20Prep%204%20-%20HTML%20Forms:%20putting%20it%20all%20together.html) | [HTML Forms](https://kayashaolu.github.io/webarch/Lecture%207%20-%20HTML%20Forms.html) and [JavaScript and the DOM](https://kayashaolu.github.io/webarch/Lecture%208%20-%20JavaScript%20and%20the%20DOM.html) | [Lab 4: Fun with Forms](https://github.com/kayashaolu/webarch-lab-4)<br />**[Start Lab](https://bcourses.berkeley.edu/courses/1454280/assignments/7742832)** | |
@@ -42,3 +43,4 @@ Labs (15%), Assignments (45%), Project (40%)
 | Nov 25 | | Academic Holiday | | |
 | Dec 2 | | Presentation Prep | Work on Project | |
 | Dec 9 | | Group Presentations | | Group Project Part 2 Due |
+-->

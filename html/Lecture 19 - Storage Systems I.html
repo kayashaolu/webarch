@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Storage Systems I - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" />
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="../css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>Storage Systems I</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Why data storage?</h1>
+					<ul>
+						<li>When we make a web request, where do we get the data from?</li>
+						<li>When we create data, where do we put it?</li>
+						<li>Where do "resources" live?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example: bit.ly</h1>
+					<ul>
+						<li>Lots of data to store
+							<ul>
+								<li>Shortcut to url mapping</li>
+								<li>Statistics about links</li>
+								<li>Information about users</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example: bit.ly</h1>
+					<pre>
+long url http://news.google.com
+short url http://bit.ly/awekl
+hit count 482240
+
+long url http://facebook.com/user/profile
+short url http://bit.ly/czasw
+hit count 11023
+
+long url http://msnbc.com/news/article/
+short url http://bit.ly/olkjpl
+hit count 1232
+					</pre>
+				</section>
+
+				<section>
+					<h1>Data Storage Design</h1>
+					<ul>
+						<li>What is the storage format?</li>
+						<li>How do we lay out data?</li>
+						<li>How do we access data?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Why use a file?</h1>
+					<ul>
+						<li>http://news.google.com, http://bit.ly/awekl, 482240</li>
+						<li>http://facebook.com/user/profile, http://bit.ly/czasw, 11023</li>
+						<li>http://msnbc.com/news/article, http://bit.ly/olkjpl, 1232</li>
+						<li>What are the pros and cons?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Problems with Files</h1>
+					<ul>
+						<li>What if we want to add another field?</li>
+						<li>What if we want to query different parts of data? How efficient is this?</li>
+						<li>What if we have concurrent accesses?</li>
+						<li>What data structures should we use?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Data Independence</h1>
+					<ul>
+						<li>Databases: apps shouldn’t have to worry about these problems!</li>
+						<li>Underlying storage format independent of application-level logic</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Relational Data Stores</h1>
+					<ul>
+						<li>RDBMS: Relational Database Management System</li>
+						<li>Invented in the 1970s</li>
+						<li>e.g., Oracle, MySQL, Postgres, IBM DB2, Microsoft SQL Server</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Relational Model</h1>
+					<ul>
+						<li>Reason about sets of facts, or "tables"</li>
+						<li>Each fact is a "row"</li>
+						<li>Attributes are "columns" of row</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>For Example</h1>
+					<img src="../assets/lecture-19/table-model.png" />
+				</section>
+
+				<section>
+					<h1>For Example</h1>
+					<img src="../assets/lecture-19/table-model-view.png" />
+				</section>
+
+				<section>
+					<h1>SQL Query Language </h1>
+					<ul>
+						<li>High-level query language over tables</li>
+						<li>Declarative: say "what" you want computed, not "how"</li>
+						<li><strong>Why is this good?</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Select Example</h1>
+					<pre>
+SELECT * FROM links;
+					</pre>
+					<table>
+						<tr>
+							<th>long_url</th>
+							<th>short_url</th>
+							<th>hit_count</th>
+							<th>created</th>
+						</tr>
+						<tr>
+							<td>http://www.google.com</td>
+							<td>qwelmw</td>
+							<td>2</td>
+							<td>2016-4-5</td>
+						</tr>
+						<tr>
+							<td>http://www.facebook.com</td>
+							<td>adfer</td>
+							<td>45</td>
+							<td>2016-8-5</td>
+						</tr>
+					</table>
+
+					<pre>
+2 rows in set (0.00 sec)
+					</pre>
+				</section>
+
+				<section>
+					<h1>Select Example</h1>
+					<pre>
+SELECT * FROM links WHERE hit_count < 20;
+					</pre>
+
+					<table>
+						<tr>
+							<th>long_url</th>
+							<th>short_url</th>
+							<th>hit_count</th>
+							<th>created</th>
+						</tr>
+						<tr>
+							<td>http://www.google.com</td>
+							<td>qwelmw</td>
+							<td>2</td>
+							<td>2016-4-5</td>
+						</tr>
+					</table>
+					<pre>
+1 row in set (0.00 sec)
+					</pre>
+				</section>
+
+				<section>
+					<h1>INSERT Example</h1>
+					<pre>
+INSERT INTO links VALUES ("http://www.twitter.com", "eovle", 0, CURDATE());
+Query OK, 1 row affected (0.00 sec)
+
+					</pre>
+
+					<pre>
+SELECT * FROM links;
+					</pre>
+
+					<table>
+						<tr>
+							<th>long_url</th>
+							<th>short_url</th>
+							<th>hit_count</th>
+							<th>created</th>
+						</tr>
+						<tr>
+							<td>http://www.google.com</td>
+							<td>qwelmw</td>
+							<td>2</td>
+							<td>2016-4-5</td>
+						</tr>
+						<tr>
+							<td>http://www.facebook.com</td>
+							<td>adfer</td>
+							<td>45</td>
+							<td>2016-8-5</td>
+						</tr>
+						<tr>
+							<td>http://www.twitter.com</td>
+							<td>eovle</td>
+							<td>0</td>
+							<td>2016-10-28</td>
+						</tr>
+					</table>
+					<pre>
+3 rows in set (0.00 sec)
+					</pre>
+				</section>
+
+				<section>
+					<h1>UPDATE example</h1>
+					<pre>
+UPDATE links SET hit_count = '0' WHERE created < '2016-10-22';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+					</pre>
+
+					<pre>
+SELECT * FROM links;
+					</pre>
+
+					<table>
+						<tr>
+							<th>long_url</th>
+							<th>short_url</th>
+							<th>hit_count</th>
+							<th>created</th>
+						</tr>
+						<tr>
+							<td>http://www.google.com</td>
+							<td>qwelmw</td>
+							<td>0</td>
+							<td>2016-4-5</td>
+						</tr>
+						<tr>
+							<td>http://www.facebook.com</td>
+							<td>adfer</td>
+							<td>0</td>
+							<td>2016-8-5</td>
+						</tr>
+						<tr>
+							<td>http://www.twitter.com</td>
+							<td>eovle</td>
+							<td>9</td>
+							<td>2016-10-28</td>
+						</tr>
+					</table>
+					<pre>
+3 rows in set (0.00 sec)
+					</pre>
+				</section>
+
+				<section>
+					<h1>Useful Properties</h1>
+					<ul>
+						<li><strong>Atomicity:</strong> all updates happen or none do</li>
+						<li><strong>Consistency:</strong> easy to reason about database</li>
+						<li><strong>Isolation:</strong> operations are separated from each other</li>
+						<li><strong>Durability:</strong> updates won’t disappear</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>RDBMS Pros and Cons</h1>
+					<div class="two-column-left">
+						<ul>
+							<li><strong>Pros</strong></li>
+							<li>High-level query language</li>
+							<li>High Data integrity</li>
+							<li>Data independence</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<ul>
+							<li><strong>Cons</strong></li>
+							<li>Have to define schema at start</li>
+							<li>Scaling can be complicated</li>
+							<li>Can become slow</li>
+						</ul>
+
+					</div>
+				</section>
+
+				<section>
+					<h1>Questions</h1>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+	</body>
+</html>

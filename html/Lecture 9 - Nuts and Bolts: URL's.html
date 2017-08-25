@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Nuts and Bolts: URL's - INFO 253 Web Architecture Fall 2016</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" />
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="../css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Nuts and Bolts: URL's</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>URI</h1>
+					<ul>
+						<li>Uniform Resource Identifier</li>
+						<li><a href="http://www.yelp.com/biz/jupiter-berkeley#query:jupiters" target="_blank">http://www.yelp.com/biz/jupiter-berkeley#query:jupiters</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>URI - URL - URN</h1>
+					<ul>
+						<li>
+							URI (Identifier)
+							<ul>
+								<li>Identifies some resource (e.g. person or file)</li>
+							</ul>
+						</li>
+						<li>
+							URL (Location)
+							<ul>
+								<li>Specifies the Location of an identifier</li>
+								<li>Implies availability</li>
+							</ul>
+						</li>
+						<li>
+							URN (Name)
+							<ul>
+								<li>Specifies the Name of an identifier</li>
+								<li>Does not imply availability</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example</h1>
+					<ul>
+						<li>
+							Full URI
+							<ul>
+								<li>http://www.yelp.com/biz/jupiter-berkeley#query:jupiters</li>
+							</ul>
+						</li>
+						<li>
+							URL Portion
+							<ul>
+								<li>http://www.yelp.com/biz/jupiter-berkeley</li>
+							</ul>
+						</li>
+						<li>
+							URN Portion
+							<ul>
+								<li>www.yelp.com/biz/jupiter-berkeley#query:jupiters</li>
+							</ul>
+						</li>
+				</section>
+
+				<section>
+					<h1>Resource</h1>
+					<ul>
+						<li>Any concept you can name or identify</li>
+						<li>So far, typically files</li>
+						<li>Also generated pages, like a user profile</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Components</h1>
+					<ul>
+						<li>http://www.yelp.com/biz/jupiter-berkeley#query:jupiters</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Scheme</h1>
+					<ul>
+						<li><strong class="text-highlight">http</strong>://www.yelp.com/biz/jupiter-berkeley#query:jupiters</li>
+						<li>Specifies how the rest of the URI is laid out</li>
+						<li>Typically protocols</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hierarchical</h1>
+					<ul>
+						<li>http:<strong class="text-highlight">//www.yelp.com/biz/jupiter-berkeley#query:jupiters</strong></li>
+						<li>"Directions" to the resource through hosts and folders</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Domain / Hostname</h1>
+					<ul>
+						<li>http://<strong class="text-highlight">www.yelp.com</strong>/biz/jupiter-berkeley#query:jupiters</li>
+						<li>"Site" or machine name</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Path</h1>
+					<ul>
+						<li>http://www.yelp.com<strong class="text-highlight">/biz/jupiter-berkeley#query:jupiters</strong></li>
+						<li>Similar to directories, but not necessarily linked!</li>
+						<li>Groups common resources together</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Path</h1>
+					<ul>
+						<li>
+							Relative
+							<ul>
+								<li>biz/jupiter-berkeley#query:jupiters</li>
+							</ul>
+						</li>
+						<li>
+							Absolute
+							<ul>
+								<li>http://www.yelp.com<strong class="text-highlight">/biz/jupiter-berkeley#query:jupiters</strong></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Query (Optional)</h1>
+					<ul>
+						<li>https://www.google.com/<strong class="text-highlight">?q=ischool&amp;ref=class</strong></li>
+						<li>Starts with ?</li>
+						<li>key=value pairs, delimited by &amp;</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Port Number</h1>
+					<ul>
+						<li>https://www.ischool.berkeley.edu<strong class="text-highlight">:443</strong>/index.php</li>
+						<li>Specifies a port number to connect to</li>
+						<li>Ports are like doorways to a server</li>
+						<li>Common ports: 80 for HTTP, 443 for HTTPS</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Fragment</h1>
+					<ul>
+						<li>http://en.wikipedia.org/wiki/URI_scheme<strong class="text-highlight">#Examples</strong></li>
+						<li>Specify a sub-resource, eg. a section on a page</li>
+						<li>Browser will jump to element id</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>
