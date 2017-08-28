@@ -19,8 +19,8 @@ Labs (15%), Assignments (45%), Project (40%)
  - Office hours available upon request via Google Hangout
   
 ## GSI
- - Kinshuk <kinshuk@ischool>
- - Office hours: Wed 2 pm - 3:30 pm
+ - Monik Pamecha <monik@berkeley>
+ - Office hours: TBD
 
 # Syllabus
 
