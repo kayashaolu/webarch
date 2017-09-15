@@ -32,7 +32,6 @@
 				<ul>
 					<li>Last week we learned about JavaScript the general purpose language</li>
 					<li>We are going to learn how to use JavaScript in the browser</li>
-					<li>Later on this semester we will learn how to use JavaScript on the server</li>
 				</ul>
 			</section>
 
@@ -55,7 +54,7 @@
 			</section>
 
 			<section>
-				<h1>Review: How to link a JavaScript File to</h1>
+				<h1>Review: How to link a JavaScript File</h1>
 
 				<pre>
 &lt;body&gt;
@@ -86,6 +85,7 @@
 
 			<section>
 				<h1>Traversing the DOM</h1>
+				<p>html/index.html</p>
 				<pre>
 &lt;!DOCTYPE HTML&gt;
 &lt;html&gt;
@@ -98,8 +98,8 @@
 			Info Web Arch Languages/Frameworks!
 		&lt;/div&gt;
 		&lt;ul&gt;
-			&lt;li class=&quot;heading&quot;&gt;HTML/../css/JavaScript&lt;/li&gt;
-			&lt;li&gt;NodeJS&lt;/li&gt;
+			&lt;li class=&quot;heading&quot;&gt;HTML/CSS/JavaScript&lt;/li&gt;
+			&lt;li&gt;Python / Flask&lt;/li&gt;
 			&lt;li&gt;Heroku&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;!-- a comment node --&gt;
@@ -113,6 +113,7 @@
 
 			<section>
 				<h1>Traversing the DOM</h1>
+				<p>css/style.css</p>
 				<pre>
 .highlight {
 	color: red;
@@ -123,6 +124,7 @@
 
 			<section>
 				<h1>Traversing the DOM</h1>
+				<p>js/script.js</p>
 				<pre>
 function printBodyDOM() {
 	var childNodes = document.body.childNodes;
@@ -149,10 +151,11 @@ printBodyDOM();
 				<ul>
 					<li>document.querySelectorAll(<em>[selector]</em>)
 						<ul>
-							<li>Can put CSS like selectors into this function</li>
+							<li>Input: string selctor, Output: a <strong>list</strong> of nodes </li>
+							<li>Can put <strong>CSS like selectors</strong> into this function</li>
 							<li>Will return a list of nodes that match the selector</li>
 							<li>Will give you access to change anything about those nodes</li>
-							<li>Note the difference between JavaScript and CSS: can do more than presentation, can change the content!</li>
+							<li>Note the difference between JavaScript and CSS: can do more than presentation, <strong>can change the content!</strong></li>
 						</ul>
 					</li>
 				</ul>
@@ -206,9 +209,16 @@ printLIElements();
 			<section>
 				<h1>Other selectors</h1>
 				<p>
-					These run significantly faster than querySelectorAll, but for our class purposes querySelectorAll should be plenty fast
+					These run significantly faster than querySelectorAll, and should be used when possible
 				</p>
 				<ul>
+					<li>document.querySelector()
+						<ul>
+							<li>Returns the first matched selector. Useful when you only want or are looking for the first
+							node found</li>
+						</ul>
+
+					</li>
 					<li>document.getElementById()</li>
 					<li>document.getElementsByTagName()</li>
 					<li>document.getElementsByClassName()</li>
@@ -273,11 +283,13 @@ addClass(className);
 
 			<section>
 				<h1>Synchronous Python</h1>
+				<p>Note: to run, may need to run: "[sudo] pip install requests" to install requests package</p>
 				<pre>
-file = open(&quot;todo.html&quot;)
-content = file.readlines()
-response = urlopen(&quot;http://people.ischool.../todo.html&quot;)
-html = response.read()
+import requests
+
+link = &quot;https://www.ischool.berkeley.edu/people/kay-ashaolu&quot;
+f = requests.get(link)
+print(f.text)
 				</pre>
 			</section>
 
@@ -311,10 +323,10 @@ html = response.read()
 			<section>
 				<h1>Event -> Function</h1>
 				<ul>
-					<li>On a user event, run this function</li>
+					<p>On a user event, run this function</p>
 				</ul>
 				<pre>
-var titleNode = document.querySelectorAll(&quot;#title&quot;)[0];
+var titleNode = document.querySelector(&quot;#title&quot;);
 titleNode.addEventListener(&quot;click&quot;, function(event) {
 	titleNode.classList.add(&quot;highlight&quot;);
 })
@@ -323,6 +335,7 @@ titleNode.addEventListener(&quot;click&quot;, function(event) {
 
 			<section>
 				<h1>Grand Example</h1>
+				<p>html/index.html (1/2)</p>
 				<pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -346,19 +359,12 @@ titleNode.addEventListener(&quot;click&quot;, function(event) {
 
 		&lt;/form&gt;
 		&lt;br /&gt;
-		
-		&lt;div id=&quot;locationList&quot;&gt;
-		&lt;/div&gt;
-
-		&lt;script src=&quot;../js/script.js&quot;&gt;&lt;/script&gt;
-
-	&lt;/body&gt;
-&lt;/html&gt;		
 				</pre>
 			</section>
 
 			<section>
 				<h1>Grand Example</h1>
+				<p>html/index.html (2/2)</p>
 				<pre>
 		&lt;div id=&quot;locationList&quot;&gt;
 		&lt;/div&gt;
@@ -372,6 +378,7 @@ titleNode.addEventListener(&quot;click&quot;, function(event) {
 
 			<section>
 				<h1>Grand Example</h1>
+				<p>css/style.css (1/1)</p>
 				<pre>
 .highlight {
 	color: red;
@@ -381,20 +388,21 @@ titleNode.addEventListener(&quot;click&quot;, function(event) {
 			</section>
 			<section>
 				<h1>Grand Example</h1>
+				<p>js/script.js (1/1)</p>
 				<pre>
 /* Populate with current location */
-var locationDiv = document.querySelectorAll(&quot;#locationList&quot;)[0];
+var locationDiv = document.getElementById(&quot;#locationList&quot;);
 locationDiv.innerHTML = localStorage.curLocation;
 
 /* Run code on submit button push */
-var locationForm = document.querySelectorAll(&quot;#locationForm&quot;)[0];
+var locationForm = document.getElementById(&quot;locationForm&quot;);
 locationForm.addEventListener(&quot;submit&quot;, function(event) {
 	var name = locationForm.elements.namedItem(&quot;name&quot;).value;
 	var state = locationForm.elements.namedItem(&quot;state&quot;).value;
 
 	localStorage.curLocation = name + &quot;: &quot; + state;
 
-	var locationDiv = document.querySelectorAll(&quot;#locationList&quot;)[0];
+	var locationDiv = document.getElementById(&quot;locationList&quot;);
 	locationDiv.innerHTML = localStorage.curLocation;
 	locationDiv.classList.add(&quot;highlight&quot;);
 
@@ -405,7 +413,7 @@ locationForm.addEventListener(&quot;submit&quot;, function(event) {
 				</pre>
 			</section>
 			<section>
-				<h1>What is this localStorage?</h1>
+				<h1>What is localStorage?</h1>
 				<ul>
 					<li>Browsers now have its own database that you can use</li>
 					<li>Values persistent until user clears their own browsing history</li>
