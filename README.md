@@ -34,11 +34,11 @@ Labs (15%), Assignments (45%), Project (40%)
 | Sep 29 | Programming your own server using Python and Flask  | Server Programming I II | Lab 6: Create our first web server<br />**Start Lab** | |
 | Oct 6 | Dynamic web pages | Dynamic Web Pages and Sending data to web servers | Lab 7: Using POST<br />**Start Lab** | |
 | Oct 13 | Internet Fundamentals II | Nuts and Bolts: Networking and TCP and DNS | Lab 8: Understanding DNS and IP<br />**Start Lab**  | Assignment 2 Due Sunday<br />Assignment 3 Assigned<br />**Start Assignment** |
-| Oct 20 | | Bookmarklets and Web Scraping | | Group Project Part 1 Assigned<br />**Start Project Part I**  |
+| Oct 20 | | Bookmarklets and Web Scraping | Group Project Kick off | Group Project Part 1 Assigned<br />**Start Project Part I**  |
 | Oct 27 | What is an API?  | API's and REST | Lab 9: Create your own API<br/>**Start Lab**  |  Group Project Part 1 Due Sunday |
 | Nov 3 | RDBMS and NoSQL | Storage Systems I and II | Lab 10: Add a database to your API<br />**Start Lab** | Group Project Part 2 Assigned <br />**Start Project Part II** |
 | Nov 10 |  |  Academic Holiday | | |
-| Nov 17 | | What is the cloud and cloud web architecture | Group Project Kick off | Assignment 3 Due Sunday |
+| Nov 17 | | What is the cloud and cloud web architecture |  | Assignment 3 Due Sunday |
 | Nov 24 | | Academic Holiday | | |
 | Dec 1 | | Presentation Prep | Work on Project | |
 | Dec 8 | | Group Presentations | | Group Project Part 2 Due today |
