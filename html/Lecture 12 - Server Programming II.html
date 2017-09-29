@@ -31,7 +31,7 @@
 					<ul>
 						<li>We have created a server that can accept HTTP requests, and send HTTP responses back</li>
 						<li>We have full control over what we send back as a response</li>
-						<li>We are using JavaScript in order to fully control the back-end</li>
+						<li>We are using Python in order to fully control the back-end</li>
 					</ul>
 				</section>
 
@@ -53,34 +53,33 @@
 					<ul>
 						<li>A server application is continuously running</li>
 						<li>It does this so that it always listens to requests</li>
-						<li>In order to exit a NodeJS application you must kill the application</li>
+						<li>In order to exit a Python Flask web application you must kill the application</li>
 						<li>This is done in Unix by the keyboard combination <br /> Control + C</li>
 					</ul>
 				</section>
 
 				<section>
 					<h1>Route Example</h1>
-					<p>app.js</p>
+					<p>webserver.py</p>
 					<pre>
-var express = require('express'); // Adding the express library 
-var app = express(); // Initializing application
+from flask import Flask
 
-app.get('/', function (req, res) {
-  res.send(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Homepage&lt;/title&gt;&lt;/head&gt;\
-    &lt;body&gt;&lt;h1&gt;This is the home page!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
-});
-app.get('/about', function(req,res) {
-  res.send(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;About&lt;/title&gt;&lt;/head&gt;\
-    &lt;body&gt;&lt;h1&gt;This is the about us page!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;)
-});
-app.get('/blog/post-1', function(req,res) {
-  res.send(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Blog 1&lt;/title&gt;&lt;/head&gt;\
-    &lt;body&gt;&lt;h1&gt;This is the first blog post&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;)
-});
+app = Flask(__name__)
 
-var server = app.listen(3000, function () {
-  console.log('Server on localhost listening on port 3000');
-});
+@app.route('/')
+def index_page():
+  return &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Homepage&lt;/title&gt;&lt;/head&gt;\
+    &lt;body&gt;&lt;h1&gt;This is the home page!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+
+@app.route('/about')
+def about_page():
+	return &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;About&lt;/title&gt;&lt;/head&gt;\
+    &lt;body&gt;&lt;h1&gt;This is the about us page!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+
+@app.route('/blog/post-1')
+def blog_post():
+	return &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Blog 1&lt;/title&gt;&lt;/head&gt;\
+    &lt;body&gt;&lt;h1&gt;This is the first blog post&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;
 					</pre>
 				</section>
 
@@ -88,7 +87,7 @@ var server = app.listen(3000, function () {
 					<h1>What's happening</h1>
 					<ul>
 						<li>We have explicitly told our server to respond to three GET requests in a specific way</li>
-						<li>We use res.send() to send the raw text that we want our client (the browser) to receive</li>
+						<li>We return the raw text that we want our client (the browser) to receive</li>
 						<li>Note that we are sending pure html text to the client. The browser then creates a DOM from that text and displays the web page</li>
 					</ul>
 				</section>
@@ -96,16 +95,15 @@ var server = app.listen(3000, function () {
 				<section>
 					<h1>What about our static files?</h1>
 					<ul>
-						<li>Remember our apache server last week, that served CSS and JS files</li>
-						<li>We would need something like that in order to host our own CSS and JS files</li>
+						<li>We need some mechanism for our static files to be sent to the client on request</li>
 						<li>Otherwise we would need to write our CSS in the app.js file itself</li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>Express and static files</h1>
+					<h1>Flask and static files</h1>
 					<ul>
-						<li>Express has a mechanism to set a directory to be treated as a static server</li>
+						<li>Flask has a mechanism to set a directory to be treated as a static server</li>
 						<li>This is exactly how the server from last week operated, and how your local file system operates</li>
 						<li>When a user goes to a particular path, the file that is there is sent to the client as is</li>
 						<li>This is different with the routes that we have been using so far</li>
@@ -114,32 +112,32 @@ var server = app.listen(3000, function () {
 
 				<section>
 					<h1>Static example</h1>
-					<p>app.js</p>
+					<p>webserver.py</p>
 					<pre>
-var express = require('express'); // Adding the express library 
-var app = express(); // Initializing application
+from flask import Flask, render_template
+app = Flask(__name__,static_url_path="/static")
 
-// Set the path &quot;/static&quot; to serve files from the static folder
-app.use('/static', express.static(__dirname + '/static')); 
+@app.route('/')
+def hello_world():
 
-// Define your routes here
-app.get('/', function (req, res) {
-  res.send(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Homepage&lt;/title&gt;\
-    &lt;link rel='stylesheet' href='/static/../css/style.css' /&gt;&lt;/head&gt;\
-    &lt;body&gt;&lt;h1&gt;This is the home page!&lt;/h1&gt;\
-    &lt;script type='text/javascript' src='/static/../js/script.js'&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
-});
-
-// Start up server on port 3000 on host localhost
-var server = app.listen(3000, function () {
-  console.log('Server on localhost listening on port 3000');
-});
+    return """
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Homepage&lt;/title&gt;
+    &lt;link rel='stylesheet' href='/static/style.css' /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;This is the home page!&lt;/h1&gt;
+    &lt;script type='text/javascript' src='/static/script.js'&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"""
 					</pre>
 				</section>
 
 				<section>
 					<h1>Static example</h1>
-					<p>static/../css/style.css</p>
+					<p>static/style.css</p>
 					<pre>
 h1 {
 	color: blue;
@@ -150,7 +148,7 @@ h1 {
 
 				<section>
 					<h1>Static example</h1>
-					<p>static/../js/script.js</p>
+					<p>static/script.js</p>
 					<pre>
 alert(&quot;script.js has been loaded!&quot;);
 					</pre>
@@ -161,7 +159,7 @@ alert(&quot;script.js has been loaded!&quot;);
 					<ul>
 						<li>We have set the path '/static' to run as a static server</li>
 						<li>Any path that starts with '/static' will serve files "as is" from the "static" folder</li>
-						<li>Check it out by going to http://localhost:3000/static/../css/style.css</li>
+						<li>Check it out by going to http://localhost:5000/static/style.css</li>
 					</ul>
 				</section>
 
@@ -195,55 +193,30 @@ alert(&quot;script.js has been loaded!&quot;);
 
 				<section>
 					<h1>Template Example</h1>
-					<ul>
-						<li>First we need to install a module that will add this functionality for us</li>
-						<li>Let's add mustache-express, which is a module that integrates <a href="https://www.npmjs.com/package/express" target="_blank">express</a> with the <a href="https://mustache.github.io/mustache.5.html" target="_blank">mustache template engine</a></li>
-						<li>We do this by going to the terminal and within the root directory of our project and executing the command:
-							<pre>npm install mustache-express --save</pre>
-						</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>Template Example</h1>
-					<p>app.js</p>
+					<p>webserver.js</p>
 					<pre>
-var express = require('express'); // Adding the express library 
-var mustacheExpress = require('mustache-express'); // Adding mustache template system
-var app = express(); // initializing application
-var template_engine = mustacheExpress(); // initializing template engine
+from flask import Flask, render_template
+app = Flask(__name__,static_url_path="/static")
 
-// set the path &quot;/static&quot; to serve files from the static folder
-app.use('/static', express.static(__dirname + '/static')); 
-
-// Set templating engine and location of templates
-app.engine('html', template_engine); // set html parsing to the template engine
-app.set('views', __dirname + '/views');
-
-// Define your routes here
-app.get('/', function (req, res) {
-  res.render('index.html');
-});
-
-// Start up server on port 3000 on host localhost
-var server = app.listen(3000, function () {
-  console.log('Server on localhost listening on port 3000');
-});
+@app.route('/')
+def hello_world():
+  return render_template("index.html")
 					</pre>
 				</section>
 
 				<section>
 					<h1>Template Example</h1>
-					<p>views/index.html</p>
+					<p>templates/index.html</p>
 					<pre>
 &lt;html&gt;
 	&lt;head&gt;
 		&lt;title&gt;Homepage&lt;/title&gt;
-    	&lt;link rel='stylesheet' href='/static/../css/style.css' /&gt;
+    	&lt;link rel='stylesheet' href='/static/style.css' /&gt;
     &lt;/head&gt;
     &lt;body&gt;
     	&lt;h1&gt;This is the home page!&lt;/h1&gt;
-    	&lt;script type='text/javascript' src='/static/../js/script.js'&gt;&lt;/script&gt;
+    	&lt;p&gt;With a template!&lt;/p&gt;
+    	&lt;script type='text/javascript' src='/static/script.js'&gt;&lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 					</pre>
@@ -254,9 +227,8 @@ var server = app.listen(3000, function () {
 					<ul>
 						<li>This code does the same thing as the previous example</li>
 						<li>However, we loaded the html template "index.html" in the views folder</li>
-						<li>We set the 'views' folder as the location of all templates</li>
-						<li>We set 'html' as an extension of the rendering engine set by the mustache express module</li>
-						<li>That's why when we use "res.render('index.html'), NodeJS knows to go to the views folder and use the mustache-express template rendering engine to render index.html</li>
+						<li>The templates folder is the default location of all templates</li>
+						<li>The render_template function takes the name of the template to load</li>
 					</ul>
 				</section>
 
@@ -264,7 +236,7 @@ var server = app.listen(3000, function () {
 					<h1>But why use template engines at all?</h1>
 					<ul>
 						<li>We ran "index.html" through a template engine</li>
-						<li>But all we did is print the contents of "views/index.html" to the screen</li>
+						<li>But all we did is print the contents of "templates/index.html" to the screen</li>
 						<li>Couldn't we do this with static pages?</li>
 						<li>Why use a template rendering engine at all?</li>
 					</ul>
@@ -289,29 +261,12 @@ var server = app.listen(3000, function () {
 
 				<section>
 					<h1>Grand Example</h1>
-					<p>app.js (1/3)</p>
+					<p>webserver.py (1/2)</p>
 					<pre>
-var express = require('express'); // Adding the express library 
-var mustacheExpress = require('mustache-express'); // Adding mustache template system
-var app = express(); // initializing application
-var template_engine = mustacheExpress(); // initializing template engine
+from flask import Flask, request, render_template
+app = Flask(__name__,static_url_path=&quot;/static&quot;)
 
-// set the path &quot;/static&quot; to serve files from the static folder
-app.use('/static', express.static(__dirname + '/static')); 
-
-// Set template engine and location of templates
-app.engine('html', template_engine); // set html parsing to the template engine
-app.set('views', __dirname + '/views');
-
-					</pre>
-				</section>
-
-				<section>
-					<h1>Grand Example</h1>
-					<p>app.js (2/3)</p>
-					<pre>
-// An object that contains a quote that we want to display for a day of the week
-var quote_db = {
+quote_db = {
   'sunday': &quot;Life is about making an impact, not making an income. \
   –Kevin Kruse&quot;,
   'monday': &quot;Whatever the mind of man can conceive and believe, it can achieve. \
@@ -332,57 +287,53 @@ var quote_db = {
 
 				<section>
 					<h1>Grand Example</h1>
-					<p>app.js (3/3)</p>
+					<p>webserver.py (2/2)</p>
 					<pre>
-// Define your routes here
-app.get('/', function (req, res) {
-  day = req.query.day_of_week;
-  console.log("Received request for quote for day " + day);
-  res.render('index.html', { 'day': day, 'quote': quote_db[day] } );
-});
-
-// Start up server on port 3000 on host localhost
-var server = app.listen(3000, function () {
-  console.log('Server on localhost listening on port 3000');
-});
+@app.route('/')
+def quote_of_the_day():
+  day_of_week = request.args.get('day_of_week')
+  return render_template(
+    &quot;index.html&quot;,
+    day=day_of_week,
+    quote=quote_db[day_of_week])
 					</pre>
 				</section>
 
 				<section>
 					<h1>Grand Example</h1>
-					<p>views/index.html (1/2)</p>
+					<p>templates/index.html (1/2)</p>
 					<pre>
 &lt;html&gt;
-	&lt;head&gt;
-		&lt;title&gt;Homepage&lt;/title&gt;
-    	&lt;link rel='stylesheet' href='/static/../css/style.css' /&gt;
+    &lt;head&gt;
+        &lt;title&gt;Homepage&lt;/title&gt;
+        &lt;link rel='stylesheet' href='/static/style.css' /&gt;
     &lt;/head&gt;
     &lt;body&gt;
-    	&lt;h1&gt;This is the home page!&lt;/h1&gt;
+        &lt;h1&gt;This is the home page!&lt;/h1&gt;
 
-    	&lt;p&gt;The quote for {{day}} is: {{quote}}&lt;/p&gt;
-    	&lt;br /&gt;
+        &lt;p&gt;The quote for {{day}} is: {{quote}}&lt;/p&gt;
+        &lt;br /&gt;
 
 					</pre>
 				</section>
 
 				<section>
 					<h1>Grand Example</h1>
-					<p>views/index.html(2/2)</p>
+					<p>templates/index.html(2/2)</p>
 					<pre>
-		&lt;form action=&quot;/&quot; method=&quot;GET&quot;&gt;
-    		&lt;label for=&quot;day_select&quot;&gt;Select a day&lt;/label&gt;
-    		&lt;select name=&quot;day_of_week&quot; id=&quot;day_select&quot;&gt;
-    			&lt;option value=&quot;sunday&quot;&gt;Sunday&lt;/option&gt;
-    			&lt;option value=&quot;monday&quot;&gt;Monday&lt;/option&gt;
-    			&lt;option value=&quot;tuesday&quot;&gt;Tuesday&lt;/option&gt;
-    			&lt;option value=&quot;wednesday&quot;&gt;Wednesday&lt;/option&gt;
-    			&lt;option value=&quot;thursday&quot;&gt;Thursday&lt;/option&gt;
-    			&lt;option value=&quot;friday&quot;&gt;Friday&lt;/option&gt;
-    			&lt;option value=&quot;saturday&quot;&gt;Saturday&lt;/option&gt;
-    		&lt;/select&gt;
-    		&lt;input type=&quot;submit&quot; value=&quot;Give me a quote&quot; /&gt;
-    	&lt;/form&gt;
+            &lt;form action=&quot;/&quot; method=&quot;GET&quot;&gt;
+            &lt;label for=&quot;day_select&quot;&gt;Select a day&lt;/label&gt;
+            &lt;select name=&quot;day_of_week&quot; id=&quot;day_select&quot;&gt;
+                &lt;option value=&quot;sunday&quot;&gt;Sunday&lt;/option&gt;
+                &lt;option value=&quot;monday&quot;&gt;Monday&lt;/option&gt;
+                &lt;option value=&quot;tuesday&quot;&gt;Tuesday&lt;/option&gt;
+                &lt;option value=&quot;wednesday&quot;&gt;Wednesday&lt;/option&gt;
+                &lt;option value=&quot;thursday&quot;&gt;Thursday&lt;/option&gt;
+                &lt;option value=&quot;friday&quot;&gt;Friday&lt;/option&gt;
+                &lt;option value=&quot;saturday&quot;&gt;Saturday&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Give me a quote&quot; /&gt;
+        &lt;/form&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 					</pre>
@@ -393,7 +344,7 @@ var server = app.listen(3000, function () {
 					<ul>
 						<li>First we created a form that is going to send an GET request to the "/" route</li>
 						<li>It will pass a parameter called "day_of_week"</li>
-						<li>The server will gain access to that parameter using the req.query object</li>
+						<li>The server will gain access to that parameter using the requests.args.get function</li>
 					</ul>
 
 				</section>
@@ -403,7 +354,7 @@ var server = app.listen(3000, function () {
 					<ul>
 						<li>The server then accesses its "quote_db" to retrieve a quote for that particular day of the week</li>
 						<li>It then passes the day and the quote to the template engine</li>
-						<li>The template "index.html" replaces the tags {{day}} and {{quote}} with the values specified in the object passed by the function call res.render()</li>
+						<li>The template "index.html" replaces the tags {{day}} and {{quote}} with the values specified in the object passed by the function call render_template</li>
 						<li>And we see it on the screen</li>
 					</ul>
 				</section>

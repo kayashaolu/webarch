@@ -51,7 +51,7 @@
 				<section>
 					<h1>The Request-Response model</h1>
 					<ul>
-						<li>Client sends a request to the Server, Server responds back with data and typcially an acknolwedgement of receipt</li>
+						<li>Client sends a request to the Server, Server responds back with data and typically an acknowledgement of receipt</li>
 						<li>The Server has declared specific paths (called routes) that when accessed would execute specific functions</li>
 						<li>Functions would return a response, which is sent to the Client</li>
 					</ul>
@@ -65,176 +65,184 @@
 				<section>
 					<h1>Let's build our own server</h1>
 					<ul>
-						<li>We will be using <a href="https://nodejs.org" target="_blank">NodeJS,</a> a runtime environment for building server-side applications</li>
-						<li>NodeJS uses JavaScript as its programming language</li>
+						<li>We will be using <a href="http://flask.pocoo.org" target="_blank">Flask,</a> a Python microframework that makes buliding web servers and API's easier</li>
+						<li>This will mean that you may have to learn yet another programming language</li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>NodeJS is an application like everything else</h1>
+					<h1>One step back: What's Python?</h1>
 					<ul>
-						<li>Need to install it on your host (i.e. your VM)</li>
-						<li>Once installed, you can pass it a JavaScript file with the instructions on how to run your server</li>
+						<li>Python is a high-level programming language that focuses on readability</li>
+						<li>Python syntax is easier to understand (than even JavaScript)</li>
+						<li>Python is a general programming language that can be used for a host of applications from webservers to back end applications</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Learn Python through JavaScript</h1>
+					<pre>
+function helloWorld(first_name, last_name) {
+  var message = "Hello World " + first_name + " " + last_name;
+  return message;
+}
+					</pre>
+					<pre>
+def hello_world(first_name, last_name):
+  message = "Hello World " + first_name + " " + last_name
+  return message
+					</pre>
+				</section>
+
+				<section>
+					<h1>Learn Python through JavaScript</h1>
+					<pre>
+function countToX(x) {
+  var message = "";
+  for(var i = 0; i <= x; i = i+1) {
+    message = message + i + " ";
+  }
+  return message;
+}
+					</pre>
+					<pre>
+def count_to_x(x):
+  message = ""
+  for i in range(x):
+    message = message + str(i) + " "
+  return message
+					</pre>
+				</section>
+
+				<section>
+					<h1>Learn Python through JavaScript</h1>
+					<p>JavaScript</p>
+					<pre>
+var student = {};
+student.name = prompt("Enter your name");
+student.attempts = [];
+
+answer = false
+while(answer != true) {
+	value = prompt("What is 8+8?");
+	student.attempts.push(value);
+
+	if(value == "16") {
+		answer = true;
+	}
+	else {
+		answer = false;
+	}
+}
+
+alert(student.name + " answers: " + student.attempts);
+					</pre>
+				</section>
+
+				<section>
+					<h1>Learn Python through JavaScript</h1>
+					<p>Python</p>
+					<pre>
+student = {}
+
+student["name"] = input("Enter your name ")
+student["attempts"] = []
+
+answer = False
+while answer != True:
+  value = input("What is 8+8? ")
+  student["attempts"].append(value)
+
+  if value == "16":
+    answer = True
+  else:
+    answer = False
+
+print(student["name"] + " answers: " + str(student["attempts"]))
+					</pre>
+
+
+				</section>
+
+				<section>
+					<h1>Back to Flask: an application like everything else</h1>
+					<ul>
+						<li>Need to install it as a module of your Python installation</li>
+						<li>Once installed, you can use it in your Python program</li>
 					</ul>
 				</section>
 
 				<section>
 					<h1>Let's get started</h1>
-					<pre>
-sudo apt-get install nodejs
-					</pre>
-					<p>And that's it for installation!</p>
+					<a href="https://github.com/kayashaolu/webarch-assign-2" target="_blank">Assignment 2 instructions: install Python 3 and forward ports from your vagrant box</a>
 				</section>
 
 				<section>
-					<h1>Well not quite</h1>
+					<h1>Quick note on pip</h1>
 					<ul>
-						<li>One of the strengths of NodeJS is the sheer number of open source libraries that exist</li>
-						<li>These libraries add functionality to the core NodeJS modules</li>
-						<li>We will be using a few libraries, namely <a href="https://www.npmjs.com/package/express" target="_blank">express</a>, <a href="https://www.npmjs.com/package/mustache-express" target="_blank">mustache-express</a>, and <a href="https://www.npmjs.com/package/request" target="_blank">request</a></li>
+						<li>Pip is a Python package manager manager that makes it easy to install new python modules</li>
+						<li>There is a list of packages to install in the requirements.txt file of the assignment 2 repo</li>
+						<li>We use pip to install Flask and Requests</li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>How to include external libraries</h1>
+					<h1>Let's install the Python packages we need</h1>
 					<ul>
-						<li>For JavaScript on the browser, you can easily add a link to a remote url where the library is located</li>
-						<li>For example: &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js&quot;&gt;&lt;/script&gt;</li>
-						<li>For JavaScript on the server using NodeJS, we have an even easier way of including external libraries</li>
+						<li><pre>pip install flask</pre></li>
+						<li><pre>pip install requests</pre></li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>NPM</h1>
-					<ul>
-						<li><a href="https://www.npmjs.com" target="_blank">Central repository</a> for external NodeJS Libraries</li>
-						<li>Need to install it on your host</li>
+						<h1>Let's write our Python webserver application</h1>
+						<p>webserver.py</p>
 						<pre>
-sudo apt-get install npm
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+  return "&lt;h1&gt;Hello World!&lt;/h1&gt;"
 						</pre>
-						<li>And you are done!</li>
-					</ul>
 				</section>
 
 				<section>
 					<h1>Let's create our first server</h1>
 					<ul>
-						<li>Open a temrinal and navigate to a blank folder</li>
-						<li><pre>npm init -y</pre></li>
-						<li>Now you have a NodeJS project</li>
+						<li>Open a terminal and navigate to a blank folder</li>
+						<li><pre>export FLASK_APP=webserver.py</pre></li>
+						<li><pre>flask run --host=0.0.0.0</pre></li>
 					</ul>
 				</section>
 
 				<section>
 					<h1>What did that do?</h1>
 					<ul>
-						<li>Created a single file named package.json</li>
-						<li>Think of this file as the manifest for your server application</li>
-						<li>It indicates the name of your application and where to find it</li>
-						<li>It also contains all of the information to install and run your application</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>Package.json</h1>
-					<pre>
-{
-  "name": "test",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-
-}
-					</pre>
-				</section>
-
-				<section>
-					<h1>Let's install external libraries</h1>
-					<ul>
-						<li>Here we are going to install express, a NodeJS library for writing web servers</li>
-						<li>Do it by typing the following:
-						<pre>npm install express --save</pre>
-						</li>
-						<li>The "npm install express" part downloads the express module to a folder called "node_modules"</li>
-						<li>The "--save" part saves a reference to the dependency (library) in that "package.json" file</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>Updated package.json</h1>
-					<pre>
-{
-  &quot;name&quot;: &quot;test&quot;,
-  &quot;version&quot;: &quot;1.0.0&quot;,
-  &quot;description&quot;: &quot;&quot;,
-  &quot;main&quot;: &quot;index.js&quot;,
-  &quot;scripts&quot;: {
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
-  },
-  &quot;keywords&quot;: [],
-  &quot;author&quot;: &quot;&quot;,
-  &quot;license&quot;: &quot;ISC&quot;,
-  &quot;dependencies&quot;: {
-    &quot;express&quot;: &quot;^4.14.0&quot;
-  }
-}
-					</pre>
-				</section>
-				<section>
-					<h1>Now let's run our own webserver</h1>
-					<p>app.js</p>
-					<pre>
-var express = require('express'); // Adding the express library 
-
-var app = express(); // initializing applicaiton
-
-// Define your routes here
-app.get('/', function (req, res) {
-  res.send(&quot;&lt;h1&gt;Hello World&lt;/h1&gt;&quot;);
-});
-
-// Start up server on port 3000 on host localhost
-var server = app.listen(3000, function () {
-  console.log('Server on localhost listening on port 3000');
-});
-					</pre>
-				</section>
-
-				<section>
-					<h1>Run your webserver</h1>
-					<ul>
-					<li><pre>nodejs app.js</pre>
-					</li>
-					<li>And then go to "http://localhost:3000/" on a browser on your VM</li>
+						<li>You just created your own web server!</li>
+						<li>Go to localhost:5000 on your browser to see it work</li>
 					</ul>
 				</section>
 
 				<section>
 					<h1>What's going on?</h1>
 					<ul>
-						<li>We first created a variable that points to a function that contains the express module</li>
-						<li>Then we ran the express function and it returned a variable that we assigned to "app"</li>
-						<li>We then set up some routes</li>
-						<li>And at the end we started our server by telling our app to listen to port 3000</li>
-						<li>Note the console.log statement: in the server runtime environment console.log logs to the terminal</li>
+						<li>We first imported the Flask class from the flask module that we just installed</li>
+						<li>Next we created a variable that points to a new flask application</li>
+						<li>We then set up a route (the root "/" route)</li>
+						<li>We defined a function that if someone goes to the root of our webserver, then the server should send the string "Hello World"</li>
 					</ul>
 				</section>
 				<section>
 					<h1>Note about routes</h1>
 					<pre>
-app.get('/', function (req, res) {
-  res.send(&quot;&lt;h1&gt;Hello World&lt;/h1&gt;&quot;);
-});
+@app.route('/')
+def hello_world():
+  return "&lt;h1&gt;Hello World!&lt;/h1&gt;"
 					</pre>
 					<ul>
 						<li>Routes associate a path to a function that sends a response back to the client</li>
-						<li>So if a client asks for the root path: http://localhost:3000/, it will run the above function</li>
+						<li>So if a client asks for the root path: http://localhost:5000/, it will run the above function</li>
 						<li>The response body will be &quot;&lt;h1&gt;Hello World&lt;/h1&gt;&quot;</li>
 					</ul>
 				</section>
