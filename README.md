@@ -34,9 +34,9 @@ Labs (15%), Assignments (45%), Project (40%)
 | Sep 29 | [Programming your own server using Python and Flask](https://kayashaolu.github.io/webarch/html/Class%20Prep%206%20-%20Programming%20your%20own%20server%20using%20Python%20and%20Flask.html))  | Server Programming [I](https://kayashaolu.github.io/webarch/html/Lecture%2011%20-%20Server%20Programming%20I.html) [II](https://kayashaolu.github.io/webarch/html/Lecture%2012%20-%20Server%20Programming%20II.html) | [Lab 6: Create our first web server](https://github.com/kayashaolu/webarch-lab-6)<br />[**Start Lab**](https://bcourses.berkeley.edu/courses/1465770/assignments/7835722) | |
 | Oct 6 | [Dynamic web pages](https://kayashaolu.github.io/webarch/html/Class%20Prep%207%20-%20Dynamic%20Web%20Pages.html) | Dynamic Web Pages and Sending data to web servers | Lab 7: Using POST<br />**Start Lab** | |
 | Oct 13 | Internet Fundamentals II | Nuts and Bolts: Networking and TCP and DNS | Lab 8: Understanding DNS and IP<br />**Start Lab**  | Assignment 2 Due Sunday<br />Assignment 3 Assigned<br />**Start Assignment** |
-| Oct 20 | | Bookmarklets and Web Scraping | Group Project Kick off | Group Project Part 1 Assigned<br />**Start Project Part I**  |
+| Oct 20 | | Bookmarklets and Web Scraping | Group Project Kick off | [Group Project Part 1 Assigned](https://github.com/kayashaolu/webarch-project)<br />[**Start Project Part I**](https://bcourses.berkeley.edu/courses/1465770/assignments/7836542)  |
 | Oct 27 | What is an API?  | API's and REST | Lab 9: Create your own API<br/>**Start Lab**  |  Group Project Part 1 Due Sunday |
-| Nov 3 | RDBMS and NoSQL | Storage Systems I and II | Lab 10: Add a database to your API<br />**Start Lab** | Group Project Part 2 Assigned <br />**Start Project Part II** |
+| Nov 3 | RDBMS and NoSQL | Storage Systems I and II | Lab 10: Add a database to your API<br />**Start Lab** | [Group Project Part 2 Assigned](https://github.com/kayashaolu/webarch-project) <br />[**Start Project Part II**](https://bcourses.berkeley.edu/courses/1454280/assignments/7754342) |
 | Nov 10 |  |  Academic Holiday | | |
 | Nov 17 | | What is the cloud and cloud web architecture |  | Assignment 3 Due Sunday |
 | Nov 24 | | Academic Holiday | | |
