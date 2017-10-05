@@ -48,9 +48,8 @@
 					<h1>Key-Value pairs in Programming</h1>
 					<ul>
 						<li>JavaScript object contains data sent from client</li>
-						<li><strong>GET: </strong>req.query.<em>[key]</em></li>
-						<li><strong>POST: </strong>req.body.<em>[key]</em>
-							<ul><li>Note: in NodeJS need module body-parser to gain access to req.body</li></ul></li>
+						<li><strong>GET: </strong>request.args.get("[key]")</li>
+						<li><strong>POST: </strong>request.form.get("[key")</li>
 					</ul>
 				</section>
 
@@ -92,7 +91,7 @@
 &lt;html&gt;
 	&lt;head&gt;
 		&lt;title&gt;Homepage&lt;/title&gt;
-    	&lt;link rel='stylesheet' href='/static/../css/style.css' /&gt;
+    	&lt;link rel='stylesheet' href='/static/css/style.css' /&gt;
     &lt;/head&gt;
     &lt;body&gt;
     	&lt;h1&gt;This is the home page!&lt;/h1&gt;
@@ -159,10 +158,8 @@
 						<p>Building on end of Lecture 12 example</p>
 						<li>Package requirements
 							<ul>
-								<li>npm install requests --save
+								<li>pip install requests
 								<ul><li>Enables us to send an HTTP request from the server</li></ul></li>
-								<li>npm install body-parser --save
-								<ul><li>Enables us to access the body of a request (to get POST data)</li></ul></li>
 							</ul>
 						</li>
 					</ul>
@@ -171,100 +168,85 @@
 				<section>
 					<h1>POST Data example</h1>
 					<p>Building on end of Lecture 12 example</p>
-					<p>app.js (1/4)</p>
+					<p>webserver.py (1/3)</p>
 					<pre>
-// Adding the request library (to make HTTP requests from the server)
-var request = require('request'); 
+import requests
+import os
 
-// Parser to gain access to request body
-var bodyParser = require('body-parser');
+from flask import Flask, request, render_template
+app = Flask(__name__, static_url_path=&quot;/static&quot;)
 
-// parse application/x-www-form-urlencoded 
-app.use(bodyParser.urlencoded({ extended: false }));
+@app.route('/email', methods=['GET'])
+def show_email_page():
+  return render_template(&quot;email.html&quot;, notifications=[])
 					</pre>
 				</section>
 
 				<section>
 					<h1>POST Data example</h1>
-					<p>app.js (2/4)</p>
+					<p>webserver (2/3)</p>
 					<pre>
-...
-app.get('/email', function (req, res) {
-  console.log(&quot;Displaying email form&quot;);
-  res.render('email.html', {'notifications': ''});
-});
+@app.route('/email', methods=['POST'])
+def send_email():
+    message = request.form.get(&quot;message&quot;)
+    notifications = []
 
-app.post('/email', function (req, res) {
-  message = req.body.message;
-  console.log(&quot;Sending email to myself&quot;);
+    data = {
+        'from': os.environ[&quot;INFO253_MAILGUN_FROM_EMAIL&quot;],
+        'to': os.environ[&quot;INFO253_MAILGUN_TO_EMAIL&quot;],
+        'subject': &quot;You just was sent a message&quot;,
+        'text': message,
+    }
   					</pre>
   				</section>
 
   				<section>
   					<h1>POST Data example</h1>
-  					<p>app.js (3/4)</p>
+  					<p>webserver (3/3)</p>
   					<pre>
-  // The server sends an HTTP request to the Mailgun servers via their
-  // API to send an email
-  request({
-      url: 'https://api.mailgun.net/v3/kayashaolu.me/messages',
-      method: 'POST',
-      headers: {
-        'Content-Type':  &quot;application/x-www-form-urlencoded&quot;
-      },
-      form: {
-        from: process.env.INFO253_MAILGUN_FROM_EMAIL,
-        to: 'Kay &lt;kay@ischool.berkeley.edu&gt;',
-        subject: 'You just got sent a message',
-        text: message,
-      },
-      auth: {
-        user: process.env.INFO253_MAILGUN_USER,
-        password: process.env.INFO253_MAILGUN_PASS
-      }
+   auth = (os.environ[&quot;INFO253_MAILGUN_USER&quot;], os.environ[&quot;INFO253_MAILGUN_PASSWORD&quot;])
+
+    r = requests.post(
+        'https://api.mailgun.net/v3/{}/messages'.format(os.environ[&quot;INFO253_MAILGUN_DOMAIN&quot;]),
+        auth=auth,
+        data=data)
+
+	if r.status_code == requests.codes.ok:
+        notifications.append(&quot;Your email was sent&quot;)
+    else:
+        notifications.append(&quot;You email was not sent. Please try again later&quot;)
+
+    return render_template(&quot;email.html&quot;, notifications=notifications)
 					</pre>
 				</section>
 
-				<section>
-					<h1>POST Data example</h1>
-					<p>app.js (4/4)</p>
-					<pre>
-
-    }, function(error, response, body){
-      if(error) {
-          console.log(error);
-      } else {
-          console.log(response.statusCode, body);
-      }
-  });
-
-    notifications = &quot;Your message was sent&quot;;
-    res.render('email.html', {'notifications': notifications});
-
-});
-					</pre>
-				</section>
 
 				<section>
 				<h1>POST Data example</h1>
-				<p>views/email.html</p>
+				<p>templates/email.html</p>
 				<pre>
 &lt;html&gt;
-	&lt;head&gt;
-		&lt;title&gt;Email&lt;/title&gt;
-    	&lt;link rel='stylesheet' href='/static/../css/style.css' /&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        {{ notifications }}
-    	&lt;h1&gt;Email me!&lt;/h1&gt;
+&lt;head&gt;
+    &lt;title&gt;Email&lt;/title&gt;
+    &lt;link rel='stylesheet' href='/static/style.css' /&gt;
+&lt;/head&gt;
+&lt;body&gt;
 
-		&lt;form action=&quot;/email&quot; method=&quot;POST&quot;&gt;
-    		&lt;textarea name=&quot;message&quot;&gt;&lt;/textarea&gt;
-    		&lt;input type=&quot;submit&quot; value=&quot;Send me an email!&quot; /&gt;
-    	&lt;/form&gt;
-    &lt;/body&gt;
+&lt;ul&gt;
+    {% for notification in notifications %}
+    &lt;li&gt;{{ notification }}&lt;/li&gt;
+    {% endfor %}
+&lt;/ul&gt;
+
+&lt;h1&gt;Email me!&lt;/h1&gt;
+
+&lt;form action=&quot;/email&quot; method=&quot;POST&quot;&gt;
+    &lt;textarea name=&quot;message&quot;&gt;&lt;/textarea&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Send me an email!&quot; /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
 &lt;/html&gt;
-					</pre>
+		</pre>
 				</section>
 
 				<section>
@@ -298,10 +280,9 @@ message=this%20is%20cool
 &lt;html&gt;
 	&lt;head&gt;
 		&lt;title&gt;Email&lt;/title&gt;
-    	&lt;link rel='stylesheet' href='/static/../css/style.css' /&gt;
+    	&lt;link rel='stylesheet' href='/static/style.css' /&gt;
     &lt;/head&gt;
     &lt;body&gt;
-        Your message was sent
 		...
 					</pre>
 				</section>

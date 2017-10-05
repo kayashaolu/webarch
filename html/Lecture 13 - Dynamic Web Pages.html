@@ -40,12 +40,18 @@
 
 				<section>
 					<h1>HTTP</h1>
-					<p>curl -v "http://info253.p2ptrainer.com/index.html"</p>
+					<p>curl -v "https://www.google.com/"</p>
 					<pre>
-* Connected to info253.p2ptrainer.com (74.50.7.240) port 80 (#0)
-&gt; GET /index.html HTTP/1.1
-&gt; Host: info253.p2ptrainer.com
-&gt; User-Agent: curl/7.43.0
+*   Trying 172.217.4.132...
+* TCP_NODELAY set
+* Connected to www.google.com (172.217.4.132) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+* Server certificate: www.google.com
+* Server certificate: Google Internet Authority G2
+* Server certificate: GeoTrust Global CA
+&gt; GET / HTTP/1.1
+&gt; Host: www.google.com
+&gt; User-Agent: curl/7.54.0
 &gt; Accept: */*
 					</pre>
 				</section>
@@ -54,18 +60,21 @@
 					<h1>HTTP</h1>
 					<pre>
 &lt; HTTP/1.1 200 OK
-&lt; Date: Tue, 20 Sep 2016 05:55:21 GMT
-&lt; Server: Apache/2.4.16 (Unix) 
-	OpenSSL/0.9.8e-fips-rhel5 mod_bwlimited/1.4 mod_fcgid/2.3.9
-&lt; Last-Modified: Tue, 20 Sep 2016 05:37:12 GMT
-&lt; ETag: &quot;24f-53ce9d202d200&quot;
-&lt; Accept-Ranges: bytes
-&lt; Content-Length: 591
-&lt; Content-Type: text/html
-&lt;
+&lt; Date: Thu, 05 Oct 2017 12:19:28 GMT
+&lt; Expires: -1
+&lt; Cache-Control: private, max-age=0
+&lt; Content-Type: text/html; charset=ISO-8859-1
+&lt; P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+&lt; Server: gws
+&lt; X-XSS-Protection: 1; mode=block
+&lt; X-Frame-Options: SAMEORIGIN
+&lt; Set-Cookie: NID=113=I4RF80L1QA2k8c_-n_D_n6FuFF5VK0I2PgYxoJQEMT7qdSSGazDeYfMDYgrAmZ3x-3Z_MGSvCrl8IvI2DM70SsAZKZcdF25qwkthJQjdh4P75ucHUZ8HY5wDprcJmLsr; expires=Fri, 06-Apr-2018 12:19:28 GMT; path=/; domain=.google.com; HttpOnly
+&lt; Alt-Svc: quic=":443"; ma=2592000; v="39,38,37,35"
+&lt; Accept-Ranges: none
+&lt; Vary: Accept-Encoding
+&lt; Transfer-Encoding: chunked
 &lt; 
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en"><head>
 ...
 					</pre>
 				</section>
@@ -204,7 +213,7 @@
 					<h1>Static Serving</h1>
 					<ul>
 						<li>Every ad uploaded generates an HTML file</li>
-						<li>When a user requests <a href="http://sfbay.craigslist.org/sby/apa/5816346982.html" target="_blank">http://sfbay.craigslist.org/sby/apa/5816346982.html</a> serve the file</li>
+						<li>When a user requests <a href="https://sfbay.craigslist.org/d/apts-housing-for-rent/search/apa" target="_blank">https://sfbay.craigslist.org/d/apts-housing-for-rent/search/apa</a> serve the file</li>
 						<li>CSS, JavaScript, and also static files</li>
 					</ul>
 				</section>
@@ -213,8 +222,8 @@
 					<h1>Dynamic Serving</h1>
 					<ul>
 						<li>Every ad uploaded, text kept in a database</li>
-						<li>When a user requests <a href="http://sfbay.craigslist.org/sby/apa/5816346982.html" target="_blank">http://sfbay.craigslist.org/sby/apa/5816346982.html</a> generate an HTML response</li>
-						<li>Response template is like the mustache templates we used in NodeJS</li>
+						<li>When a user requests <a href="https://sfbay.craigslist.org/d/apts-housing-for-rent/search/apa" target="_blank">https://sfbay.craigslist.org/d/apts-housing-for-rent/search/apa</a> generate an HTML response</li>
+						<li>Response template is like the Jinja templates we used in Flask</li>
 					</ul>
 				</section>
 
