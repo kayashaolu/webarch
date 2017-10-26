@@ -70,15 +70,15 @@
 				<section>
 					<h1>Client-Server</h1>
 					<div class="two-column-left">
+						<strong>Pros</strong>
 						<ul>
-							<li><strong>Pros</strong></li>
 							<li>Browsers don't care what web server is providing representations, or which database is holding data</li>
 							<li>Servers don't care which clients are connecting</li>
 						</ul>
 					</div>
 					<div class="two-column-right">
+						<strong>Cons</strong>
 						<ul>
-							<li><strong>Cons</strong></li>
 							<li>Overhead of transferring data</li>
 							<li>Fewer, simpler failure modes</li>
 						</ul>
@@ -88,16 +88,16 @@
 				<section>
 					<h1>Stateless</h1>
 					<div class="two-column-left">
+						<strong>Pros</strong>
 						<ul>
-							<li><strong>Pros</strong></li>
 							<li>Simplifies server design and storage</li>
 							<li>Simplifies request grammar</li>
 							<li>Improves scalability, error recovery</li>
 						</ul>
 					</div>
 					<div class="two-column-right">
+						<strong>Cons</strong>
 						<ul>
-							<li><strong>Cons</strong></li>
 							<li>Overhead of transferring client state</li>
 							<li>Not convenient for interactivity at protocol level</li>
 						</ul>
@@ -107,16 +107,16 @@
 				<section>
 					<h1>Cacheable</h1>
 					<div class="two-column-left">
+						<strong>Pros</strong>
 						<ul>
-							<li><strong>Pros</strong></li>
 							<li>Browsers can store CSS and JavaScript</li>
 							<li>Businesses can cache responses, even from external sites</li>
 							<li>Servers can specify how long things should be cached for</li>
 						</ul>
 					</div>
 					<div class="two-column-right">
+						<strong>Cons</strong>
 						<ul>
-							<li><strong>Cons</strong></li>
 							<li>Cache invalidation is hard</li>
 							<li>Can't rely on updated resources updating &quot;everywhere&quot;</li>
 						</ul>
@@ -126,16 +126,16 @@
 				<section>
 					<h1>Uniform Interface</h1>
 					<div class="two-column-left">
+						<strong>Pros</strong>
 						<ul>
-							<li><strong>Pros</strong></li>
 							<li>Client and server know how to interact regardless of application hosted</li>
 							<li>Ancestry uses same interface as Yelp</li>
 							<li>Wider variety of clients that can handle multiple applications</li>
 						</ul>
 					</div>
 					<div class="two-column-right">
+						<strong>Cons</strong>
 						<ul>
-							<li><strong>Cons</strong></li>
 							<li>For really unique applications, must jam into old paradigms</li>
 							<li>Difficult to optimize for performance of single application</li>
 						</ul>
@@ -185,7 +185,7 @@
 				</section>
 
 				<section>
-					<h1>Uses HTTP return codes</h1>
+					<h1>Uses HTTP response codes</h1>
 					<ul>
 						<li>404 Not Found, 200 OK </li>
 						<li>vs. always responding with 200 OK but has an error message</li>
@@ -225,14 +225,12 @@
 					<h1>Counter Example</h1>
 
 					<pre>
-
-{
+data = {
 	"business_id": 27,
  	"user_id": 5
- 	"review_text": “..."
+ 	"review_text": "..."
 }
-request({
-  	url: "http://yelp.com/biz/" + business_id});
+requests.get("http://yelp.com/biz/{}".format(data[business_id"]))
   					</pre>
   				</section>
 
