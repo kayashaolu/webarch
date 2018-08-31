@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>CSS</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Introduction to CSS</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>CSS</h1>
+					<p>
+						Cascading Style Sheets
+					</p>
+				</section>
+
+				<section>
+					<h1>Style</h1>
+					<ul>
+						<li>color, size, visibility, positioning</li>
+						<li>Specified separately from HTML</li>
+						<li>Why separate?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>CSS</h1>
+					<pre>
+&lt;strong&gt;hello&lt;/strong&gt;
+
+strong {
+    font-weight: bold;
+    color: magenta;
+    font-size: 45px;
+}
+					</pre>
+				</section>
+
+				<section>
+					<h1>How else could we do it?</h1>
+					<p>Just like the funky ASCII symbols, we could set the style of each element</p>
+					<pre>
+&lt;!-- Warning: Invalid HTML --&gt;
+&lt;strong font-color=&quot;magenta&quot; font-size=&quot;45px&quot;&gt;hello&lt;/strong&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>CSS File</h1>
+
+					<pre>
+h1 {
+    color: #B3D4FC; /* light blue */
+    text-align: center;
+}
+					</pre>
+					<ul>
+						<li>Now all main headers are centered and have a light blue look</li>
+						<li>What's the trade-off we made?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>ID &amp; Class attributes</h1>
+					<ul>
+						<li>id: Identifier. Unique per page</li>
+						<li>class: Grouping. Multiple per page and per element</li>
+					</ul>
+					<pre>
+&lt;strong id=&quot;logo&quot; class=&quot;big green&quot;&gt;Ancestry&lt;/strong&gt;
+					</pre>
+					<p>What's wrong with the above?</p>
+				</section>
+
+				<section>
+					<h1>Compromises</h1>
+					<ul>
+						<li>Truth is, most sophisticated sites make a compromise</li>
+						<li>Sharing styles between semantic elements</li>
+						<li>Frameworks that are used by different sites</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Leaky Abstraction</h1>
+					<div class='left' style='float:left;width:48%'>
+						<img src="../assets/lecture-4/dripping-faucet.jpg" />
+					</div>
+					<div class='right' style='float:right;width:48%'>
+						<ul>
+							<li>When details of the composition or layers merge</li>
+							<li>Often must write your HTML with knowledge of how you will style it</li>
+							<li>But avoid too much coupling!</li>
+							<li><a href="http://getbootstrap.com" target="_blank">Twitter Bootstrap</a></li>
+						</ul>
+					</div>
+
+				</section>
+
+				<section>
+					<h1>Element Selectors</h1>
+					<div class='left' style='float:left;width:48%'>
+						<pre>
+strong {
+    font-weight: bold;
+    color: red;
+    font-size: 45px;
+}
+						</pre>
+					</div>
+					<div class='right' style='float:right;width:48%'>
+						<ul>
+							<li>Selectors specify the element to apply a style</li>
+							<li>This is selecting all strong elements</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h1>ID &amp; Class Selectors</h1>
+					<div class='left' style='float:left;width:48%'>
+						<pre>
+#logo {
+    font-size: 64px;
+    color: red;
+}
+
+.symbol {
+    font-size: 32px;
+    color: darkblue;
+}
+						</pre>
+					</div>
+					<div class='right' style='float:right;width:48%'>
+						<pre>
+&lt;span id=&quot;logo&quot;&gt;Ancestry&lt;/span&gt;
+&lt;span class=&quot;symbol&quot;&gt;ANCESTRY&lt;/span&gt;
+&lt;span class=&quot;symbol&quot;&gt;New York Times&lt;/span&gt;
+						</pre>
+					</div>
+
+				</section>
+
+				<section>
+					<h1>Comma = OR</h1>
+					<pre>
+h1, h2, h3 {
+    color: #B3D4FC; /* light blue */
+    text-align: center;
+}
+					</pre>
+					<p>all h1 or h2 or h3 elements</p>
+				</section>
+
+				<section>
+					<h1>Descendant</h1>
+					<ul>
+						<li>Think nested tags</li>
+						<li>Let's write a table in HTML</li>
+						<li>What is an example of a descendant?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Descendant CSS = (space)</h1>
+					<pre>
+table a {
+    font-weight: bold;
+}
+					</pre>
+
+				</section>
+				<section>
+					<h1>Cascading &amp; Inheritance</h1>
+					<ul>
+						<li>Some properties are passed down to descendants, like font-family</li>
+						<li>Some elements may be affected by multiple rules, which "cascade"</li>
+						<li>Most specific wins</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Cascading</h1>
+					<div class='left' style='float:left;width:48%'>
+						<pre>
+table {
+  font-family: sans-serif;
+  color: blue
+}
+
+.data {
+   border: 1px solid rgba(0, 0, 0, 0.2);
+   color: red
+}
+						</pre>
+					</div>
+					<div class='right' style='float:right;width:48%'>
+						<pre>
+&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;Color blue&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;data&quot;&gt;Color red&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+						</pre>
+					</div>
+
+				</section>
+
+				<section>
+					<h1>What's the trade-off?</h1>
+
+					<ul>
+						<li>Now we can specify styles in another file</li>
+						<li>Can select groups of tags or tags with IDs</li>
+						<li>But how can we style individual tags?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Style Attribute</h1>
+					<div class='left' style='float:left;width:48%'>
+						<ul>
+							<li>Change the style of individual elements in-line in HTML</li>
+							<li>Value of the style attribute is the same format as the definition block</li>
+							<li>Only for very special cases!</li>
+						</ul>
+					</div>
+					<div class='right' style='float:right;width:48%'>
+						<pre>
+&lt;h1 style=&quot;color: brown;
+	background-color: yellow;&quot;&gt;
+	Individual&lt;/h1&gt;
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h1>The power of CSS</h1>
+					<ul>
+						<li>CSS Zen Garden: One site, many designs</li>
+						<li><a href="http://www.csszengarden.com/?cssfile=206/206.css" target="_blank">Garden</a></li>
+						<li><a href="http://www.csszengarden.com/?cssfile=/213/213.css&amp;page=0" target="_blank">Under the Sea</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Sneak Peak</h1>
+					<ul>
+						<li>JavaScript can manipulate CSS too!</li>
+						<li>Composability: they play well together, but don't require each other</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Overview</h1>
+					<img src="../assets/lecture-4/overview.png" height="500px" />
+				</section>
+			</div>
+
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+
+	</body>
+</html>
