@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>HTML Forms</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" />
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="../css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>HTML Forms</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>What is a form (on-line)?</h1>
+					<p>
+						<a href="https://www.surveymonkey.com/r/?sm=gYvln%2Bx%2FddP82dwc%2BGnifg%3D%3D" target="_blank">SurveyMonkey Form</a>
+					</p>
+				</section>
+
+				<section>
+					<h1>Forms are everywhere</h1>
+					<ul>
+						<li>Combining forms with JavaScript makes a site interactive</li>
+						<li><a href="https://www.google.com/" target="_blank">Google Search</a></li>
+				</section>
+
+				<section>
+					<h1>Forms are HTML</h1>
+					<div class="two-column-left">
+						<ul>
+							<li>Declarative</li>
+							<li>Standardized</li>
+							<li>Semantic</li>
+							<li>Styled</li>
+						</ul>
+					</div>
+					<div class="two-column-right">
+						<img src="../assets/lecture-7/select-styled-126.png" />
+					</div>
+
+				</section>
+
+				<section>
+					<h1>Input Tag</h1>
+					<ul>
+						<li>Signals we'd like to get data from the user</li>
+						<li>What type of data?</li>
+						<li>type attribute</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Text Input Type</h1>
+					<pre>
+&lt;form&gt;
+  &lt;input type=&quot;text&quot; /&gt;
+&lt;/form&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Submit Type</h1>
+					<pre>
+&lt;input type=&quot;submit&quot; /&gt;
+					</pre>
+				</section>
+				<section>
+					<h1>CheckBox Type</h1>
+					<pre>
+&lt;input type=&quot;checkbox&quot; checked=&quot;checked&quot; /&gt;
+					</pre>
+
+				</section>
+
+				<section>
+					<h1>What does these form elements mean?</h1>
+					<ul>
+<li>Just add text next to the box</li>
+<li>Add an attribute to the tag</li>
+<li>Add text in a &lt;span&gt; or &lt;p&gt;</li>
+<li>Add text in a &lt;label&gt; element that "references" the input</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>CheckBox Type</h1>
+					<pre>
+&lt;input type=&quot;checkbox&quot; value=&quot;enrolled&quot; id=&quot;check-enrolled&quot; checked&gt;
+&lt;label for=&quot;check-enrolled&quot;&gt;Enrolled?&lt;/label&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Radio Type</h1>
+					<pre>
+&lt;input type=&quot;radio&quot; name=&quot;mascot&quot; value=&quot;bear&quot; id=&quot;radio-bear&quot;&gt;
+&lt;label for=&quot;radio-bear&quot;&gt;Bear &lt;/label&gt;
+
+&lt;input type=&quot;radio&quot; name=&quot;mascot&quot; value=&quot;cardinal&quot; id=&quot;radio-cardinal&quot; /&gt;
+&lt;label for=&quot;radio-cardinal&quot; &gt;Cardinal &lt;/label&gt;
+					</pre>
+
+				</section>
+
+				<section>
+					<h1>Select Type</h1>
+					<pre>
+&lt;label for=&quot;state&quot;&gt;State:&lt;/label&gt;
+&lt;select name=&quot;state&quot; id=&quot;state&quot;&gt;
+	&lt;option value=&quot;CA&quot;&gt;CA&lt;/option&gt;
+	&lt;option value=&quot;OR&quot;&gt;OR&lt;/option&gt;
+	&lt;option value=&quot;NY&quot;&gt;NY&lt;/option&gt;
+&lt;/select&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Hidden Type</h1>
+					<pre>
+&lt;input type=&quot;hidden&quot; name=&quot;page&quot; value=&quot;2&quot;&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>HTML5 types</h1>
+
+					<ul>
+						<li>color, tel, email, datetime, url</li>
+						<li>Provides validation as well as default styling</li>
+						<li>Modern browsers support, but test before using</li>
+						<li><a href="http://www.w3.org/TR/html5/forms.html" target="_blank">http://www.w3.org/TR/html5/forms.html</a></li>
+					</ul>
+					<pre>
+&lt;label for=&quot;color&quot;&gt;Color: &lt;/label&gt;
+&lt;input type=&quot;color&quot; name=&quot;color&quot; id=&quot;color&quot; /&gt; &lt;br /&gt;
+
+&lt;label for=&quot;email&quot;&gt;Email: &lt;/label&gt;
+&lt;input type=&quot;email&quot; name&quot;email&quot; /&gt;&lt;br /&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Let's look at a complete form</h1>
+					<pre>
+&lt;form method=&quot;GET&quot; action=&quot;http://www.google.com/search&quot;&gt;
+	&lt;input type=&quot;text&quot; name=&quot;q&quot; value=&quot;&quot;&gt;
+	&lt;input type=&quot;submit&quot; value=&quot;Google Search&quot;&gt;
+&lt;/form&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Form Design</h1>
+					<ul>
+						<li>Goal: make it easy to provide information</li>
+						<li>Use the appropriate input elements</li>
+						<li>Use CSS to style elements to better set context</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>User Interface Differences</h1>
+					<p>
+						<img src="../assets/lecture-7/select_wrapper-163.jpg" style="height:400px;" />
+				</section>
+
+				<section>
+					<h1>Example Search Widget</h1>
+					<ul>
+						<li><a href="http://github.com" target="_blank">Github!</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Overview</h1>
+					<p>
+						<img src="../assets/lecture-7/web-loop-214.png" />
+					</p>
+				</section>
+
+				<section>
+					<h1>Improvements (browser side)</h1>
+					<ul>
+						<li>Interactivity!</li>
+						<li>Give users instant feedback</li>
+						<li>Use content in forms immediately on the browser</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>JavaScript!</h1>
+					<ul>
+						<li>Write imperative style code specific to your site</li>
+						<li>No interaction with a server required</li>
+						<li>Run by the browser</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>
