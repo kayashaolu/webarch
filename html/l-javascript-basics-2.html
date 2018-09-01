@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript Basics II</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>JavaScript Basics II</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>More JavaScript!</h1>
+					<ul>
+						<li>We're now going to go to more loops, data structures, and control flow</li>
+						<li>The goal is to provide a foundation of understanding how to express yourself in JavaScript</li>
+						<li>This will take time dependent on your experience. That's okay</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h1>Conditionals</h1>
+					<ul>
+						<li>Computers execute commands line by line</li>
+						<li>But what if you don't want to execute every line</li>
+						<li>Have the computer make a decision?</li>
+					</ul>
+
+				</section>
+				<section>
+					<h1>Let's start!</h1>
+					<pre>
+function getGenerationalCohort(yearBorn) {
+
+	var generationalCohort = ""
+
+	if (yearBorn > 1900 &amp;&amp; yearBorn <= 1926) {
+		generationCohort = "GI Generation";
+	}
+	else if (yearBorn > 1926 &amp;&amp; yearBorn <= 1945) {
+		generationalCohort = "Silent Generation";
+	}
+	else if (yearBorn > 1945 &amp;&amp; yearBorn <= 1964) {
+		generationalCohort = "Baby Boomers";
+	}
+	else if(yearBorn > 1964 &amp;&amp; yearBorn <= 1980) {
+		generationalCohort = "Generation X";
+	}
+	else if(yearBorn > 1980 &amp;&amp; yearBorn <= 2001) {
+		generationalCohort = "Millennium";
+	}
+					</pre>
+				</section>
+				<section>
+					<h1>Let's start (2)</h1>
+					<pre>
+	else if(yearBorn > 2001 &amp;&amp; yearBorn < 2020) {
+		generationalCohort = "Generation Z";
+	}
+	else {
+		generationalCohort = "Outside of our named generations";
+	}
+
+	return generationalCohort;
+}
+
+var year = parseInt(prompt("Enter your year of birth"));
+var cohort = getGenerationalCohort(year);
+alert("The generational cohort of someone born in " +
+	year + " is: " + cohort + ".");
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We ask the user their year of birth</li>
+						<li>We take that value and check to see which generation cohort the user is</li>
+						<li>We print it to the screen</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>For Loops</h1>
+				</section>
+
+				<section>
+					<h1>What are For Loops</h1>
+					<ul>
+						<li>What computers are good at are doing the same thing over and over again <em>very fast</em>.</li>
+						<li>With a for loop, we can define how many times we want something to happen over and over again</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What are For Loops (2)</h1>
+					<ul>
+						<li>The key to the for loop is the expression that evaluates to a Boolean (true or false)</li>
+						<li>While that Boolean is true, the for loop keeps going</li>
+						<li>The moment when that Boolean is false, the loop terminates</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's use a for loop!</h1>
+					<pre>
+function countToX(x) {
+
+	var message = "";
+	for(var i = 0; i <= x; i = i+1) {
+		message = message + i + " ";
+	}
+
+	return message;
+}
+
+var limit = parseInt(prompt("Enter a number"));
+var output = countToX(limit);
+alert(output);
+
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We created the variable <em>message</em> with an empty string</li>
+						<li>We created a loop that will start at 0, and end while it is <em>less than or equal to</em> x</li>
+						<li>For each iteration we will add 1 to i</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do (2)</h1>
+					<ul>
+						<li>So for the first iteration, i = 0, for the next one, i = 1, the next i = 2, and so on</li>
+						<li>For each iteration, the expression i <= x is evaluated</li>
+						<li>First it figures out if 1 <= 3, and the boolean that results from that (True) tells the loop to keep going</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do? (3)</h1>
+					<ul>
+						<li>Within that loop, at each iteration we then added the number i, and then a space to message</li>
+						<li>Note that message is getting longer each iteration. Why do think that is?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do? (4)</h1>
+					<ul>
+						<li>Once i becomes less than or equal to x, the for loop terminates</li>
+						<li>The function returns the message</li>
+						<li>We then ask the user for a number, and pass it to the countToX function, and then print out the output to the console</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>While Loops</h1>
+				</section>
+
+				<section>
+					<h1>What are while loops?</h1>
+					<ul>
+						<li>For loops are good at repeating an action over and over again a set amount of times</li>
+						<li>But what if we don't know when to stop repeating an action?</li>
+						<li>This is a key opportunity to use while loops in</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What are while loops? (2)</h1>
+					<ul>
+						<li>A while loop executes as long as a condition is true</li>
+						<li>The statements inside the loop should (eventually) make that condition false to end the loop</li>
+						<li>Let's start with an action</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's use a while loop!</h1>
+					<pre>
+var answerQuestion = function() {
+	var answer = prompt("What is 4 + 4");
+
+	if (answer == "8") {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+answer = false;
+
+while (answer != true) {
+	answer = answerQuestion();
+}
+
+alert("Correct Answer!");
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>The answerQuestion function asks the user what is the answer to the math question</li>
+						<li>If it's correct, return true, if not, return false</li>
+						<li>We then execute a while loop that continues until answerQuestion returns true</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Arrays and Objects</h1>
+				</section>
+
+				<section>
+					<h1>Arrays and Objects</h1>
+					<ul>
+						<li>Up to now we have been using single variables</li>
+						<li>Sometimes you want to store a list of variables</li>
+						<li>Perhaps you want to represent something more complicated in code</li>
+						<li>You can use Arrays and Objects for this purpose
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Let's start with a compound example</h1>
+					<pre>
+var student = {
+	name: "Kay Ashaolu",
+	id: 232324,
+	lab_grades: [1, 1, 1],
+	assignment_grades:[87, 98, 82]
+};
+
+alert(student);
+alert(student.name);
+alert(student["lab_grades"]);
+alert(student.assignment_grades[2]);
+					</pre>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We created an object and stored it in the variable "student"</li>
+						<li>We then attempted to display the object</li>
+						<li>Then we printed the student's name</li>
+						<li>Then the student's lab grades</li>
+						<li>Then the student's third assignment grade
+							<ul><li>Array indexes start from 0</li></ul>
+						</li>
+				</section>
+
+				<section>
+					<h1>One more example</h1>
+					<pre>
+var student = {};
+
+student.name = prompt("Enter your name");
+student.attempts = [];
+
+answer = false
+while(answer != true) {
+	value = prompt("What is 8+8?");
+	student.attempts.push(value);
+
+	if(value == "16") {
+		answer = true;
+	}
+	else {
+		answer = false;
+	}
+}
+
+alert(student.name + " answers: " + student.attempts);
+					</pre>
+				</section>
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>We created an object (student) where you can store her name and her attempts to the question "What is 8+8?"</li>
+						<li>In a while loop, we store the results in an array</li>
+						<li>We then print the previous attempts that she made</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Questions?</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>
