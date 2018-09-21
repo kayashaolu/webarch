@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Modern Javascript I</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" type="text/css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme"  type="text/css">
+		<!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" type="text/css">
+
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Modern Javascript I</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>There's more?</h1>
+					<ul>
+						<li>There is a whole lot more going on with JavaScript</li>
+						<li>Javascript is an evolving language</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>ECMAScript, what is that?</h1>
+					<ul>
+						<li>ECMAScript is technically the JavaScript language standard</li>
+						<li>Other languages have adopted some of this standard (e.g. ActionScript)</li>
+						<li>Lays out the features of JavaScript to be agreed upon</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What have we been writing so far?</h1>
+					<ul>
+						<li>ES5, aka ECMAScript 5, aka ECMAScript 2009</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>So many versions...</h1>
+
+					<ul>
+						<li>Figuring out which browser is running which version of ECMAScript could get daunting</li>
+						<li>Browsers also do not simply implement the entire version</li>
+						<li>A browser update could add support to single particular feature</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What if you actually want to use newer features</h1>
+					<ul>
+							<li>That person that never updates IE will not be able to execute your JavaScript</li>
+							<li>That person that found a way to not automatically update Chrome will not be able to see your site</li>
+					</ul>
+				</section>
+
+				<section>
+					 <h1>Solution: Transpiler</h1>
+					 <ul>
+						 <li>Similar to a compiler, but converts JavaScript to JavaScript</li>
+						 <li>Converts Javascript code written in a higher version into lower version JavaScript code</li>
+						 <li>This enables developers to use newer features, and users with older browsers able to execute the code</li>
+					 </ul>
+			  </section>
+
+				<section>
+					<h1>Example ES6 Code</h1>
+						<pre>
+class Planet {
+
+  constructor (mass, moons) {
+    this.mass  = mass;
+    this.moons = moons || 0;
+  }
+
+  reportMoons () {
+    console.log(`I have ${this.moons} moons.`)
+  }
+}
+						</pre>
+				</section>
+
+				<section>
+					<h1>Compiled ES5 Code</h1>
+
+					<pre>
+var _createClass = function () { function defineProperties(target, props) {...
+defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) {
+	if (!(instance instanceof Constructor)) {
+		throw new TypeError("Cannot call a class as a function");
+	}
+}
+
+var Planet = function () {
+  function Planet(mass, moons) {
+    _classCallCheck(this, Planet);
+
+    this.mass = mass;
+    this.moons = moons || 0;
+  }
+
+  _createClass(Planet, [{
+    key: 'reportMoons',
+    value: function reportMoons() {
+      console.log('I have ' + this.moons + ' moons.');
+    }
+  }]);
+
+  return Planet;
+}();
+					</pre>
+				</section>
+
+				<section>
+					<h1>Using Babel</h1>
+					<ul>
+							<li>Babel is a transpiler that accomplishes conversion</li>
+							<li>We will get to this next week, when we introduce React</li>
+							<li>There is an entire build environment, using webpack 4, babel, and npm to set up</li>
+							<li>For this week, please use the latest version of Chrome or Firefox to run your Javascript</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Any Questions</h1>
+				</section>
+
+				<section>
+					<h1>Without further ado</h1>
+					<p>Let's learn some modern Javascript</li>
+				</section>
+
+				<section>
+					<h1>Syntactic sugar</h1>
+
+					<p>A lot of improvements to language focuses on changing syntax to make it easier to accomplish a certain goal</p>
+					<p>Let's talk about some of those features in ES6</p>
+				</section>
+
+				<section>
+					<h1>Let and Const</h1>
+
+					<ul>
+						<li>Last few weeks we used 'var' to declare variables</li>
+						<li>However there are a few new ways to declare variables now that I highly recommend</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Let and Scope</h1>
+
+					<ul>
+						<li>Let creates a variable with scope</li>
+						<li>Scope is a term that defines a boundary where variables live</li>
+						<li>Scope is how you can ensure content inside a function is not affected by the outside</li>
+						<li>Scope in Javascript is largely defined by curly brackets ('{}')
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Let Example</h1>
+
+					<pre>
+let a = 50;
+let b = 100;
+if (true) {
+	let a = 60;
+	var c = 10;
+	console.log(a/c); // 6
+	console.log(b/c); // 10
+}
+console.log(c); // 10
+console.log(a); // 50
+					</pre>
+				</section>
+
+				<section>
+					<h1>Let Example explained</h1>
+					<ul>
+						<li>The variable a is found both in the scope of this script, and in the scope of the if statement block</li>
+						<li>The variable a within the block can be considered a different variable than the variable a outside the block</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Const</h1>
+
+					<ul>
+						<li>There a times where you do not want a variable to change after assignment</li>
+						<li>For example, if you have a variable that is set to the number PI</li>
+						<li>You wouldn't want that variable PI to change during your program</li>
+					</ul>
+
+				</section>
+
+				<section>
+				 	<h1>Const example</h1>
+
+					<pre>
+const b = "Constant variable";
+b = "Assigning new value"; // shows error.
+
+const LANGUAGES = ['Js', 'Ruby', 'Python', 'Go'];
+LANGUAGES = "Javascript"; // shows error.
+
+LANGUAGES.push('Java'); // Works fine.
+console.log(LANGUAGES); // ['Js', 'Ruby', 'Python', 'Go', 'Java']
+						</pre>
+			 </section>
+
+			  <section>
+					<h1> Const example explained</h1>
+						<ul>
+							<li>The variable LANGUAGES can not be changed</li>
+							<li>However, what LANGUAGES points to, if it is mutable can change</li>
+						</ul>
+				</section>
+
+				<section>
+					<h1>Why use Let and Const</h1>
+					<ul>
+						<li>Cleaner understanding of the lifespan of a variable</li>
+						<li>Reduce coding mistakes by ensuring variables that shouldn't change does not</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Arrow Functions</h1>
+
+					<ul>
+						<li>There is a new way of defining functions</li>
+						<li>There are a few reasons for <em>this</em> (and that's actually a pun, but you can look that up to figure it out)</li>
+						<li>This new way of writing function also helps with clearly defining scope</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Arrow Functions Example</h1>
+
+					<pre>
+function oldOne(name) {
+	console.log("Hello " + name);
+}
+
+// New Syntax
+let newOne = (name) => {
+	console.log("Hello " + name);
+}
+					</pre>
+				</section>
+
+				<section>
+					<h1>Arrow Functions Example Explained</h1>
+					<ul>
+						<li>The parameters are named in the parenthesies outside the name of the function</li>
+						<li>Note how you assign a variable to a function (and can use let for scope)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Default parameters</h1>
+
+					<ul>
+						<li>Convenient ability to assign parameters to a function a value if not specified by the caller</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Default parameters example</h1>
+					<pre>
+let Func = (a, b = 10) => {
+	return a + b;
+}
+console.log(Func(20)); // 20 + 10 = 30
+
+console.log(Func(20, 50)); // 20 + 50 = 70
+
+let NotWorkingFunction = (a = 10, b) => {
+	return a + b;
+}
+console.log(NotWorkingFunction(20)); // NAN. Not gonna work.
+
+					</pre>
+				</section>
+
+				<section>
+					<h1>Default parameters example explained</h1>
+
+					<ul>
+						<li>The function Func sets a default value to the second parameter</li>
+						<li>You can pass the second parameter or leave it blank</li>
+						<li>However order matters. You can't define a default parameter and then the next parameter does not have a default value</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1> For.. of loop</h1>
+
+					<ul>
+						<li>Very nice way of looping through a list of elements</li>
+						<li>No need to figure out index parameters and value conditions</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>For.. of loop example</h1>
+					<pre>
+let arr = [2,3,4,1];
+for (let value of arr) {
+	console.log(value);
+}
+					</pre>
+				</section>
+
+				<section>
+					<h1>For.. of loop example explained</h1>
+
+					<ul>
+						<li>The variable 'value' is assigned each element of that array once</li>
+						<li>Note you do not have access to the index while using this construct</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Spread attributes</h1>
+
+					<ul>
+						<li>Ability to define a function with a variable number of parameters</li>
+						<li>You do not have to pass an array in order to have a variable number of parameters</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Spread attributes example</h1>
+
+					<pre>
+let SumElements = (...arr) => {
+	console.log(arr); // [10, 20, 40, 60, 90]
+
+	let sum = 0;
+	for (let element of arr) {
+	sum += element;
+	}
+	console.log(sum);
+}
+
+SumElements(10, 20, 40, 60, 90);
+SumElements(10, 20, 90);
+
+					</pre>
+				</section>
+
+				<section>
+					<h1>Spread attributes example explained</h1>
+
+					<ul>
+						<li>You can pass a variable number of parameters</li>
+						<li>Those parameters are avaiable as an array inside the function</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+	    // Display controls in the bottom right corner
+	    controls: true,
+	    // Display a presentation progress bar
+	    progress: true,
+	    // If true; each slide will be pushed to the browser history
+	    history: true,
+	    // Loops the presentation, defaults to false
+	    loop: false,
+	    // Flags if mouse wheel navigation should be enabled
+	    mouseWheel: true,
+	    // Apply a 3D roll to links on hover
+	    rollingLinks: true,
+	    // UI style
+	    theme: Reveal.getQueryHash().theme || 'default',
+	    // Transition style
+	    transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+		</script>
+
+	</body>
+</html>

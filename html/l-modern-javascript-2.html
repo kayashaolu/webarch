@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Modern Javascript II</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Modern Javascript II</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>More Syntactic sugar</h1>
+
+					 <p>Sugar is nice</p>
+				 </section>
+
+				<section>
+					<h1>Template literals</h1>
+
+					<ul>
+						<li>Template literals makes adding variables to your strings much easier</li>
+						<li>Many Languages (like Python and Ruby) has this built into the langauge</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Template literals example</h1>
+
+					<pre>
+let name = "Jon Snow";
+let msg = `My name is ${name}`;
+console.log(msg);
+					</pre>
+				</section>
+
+				</section>
+
+				<section>
+					<h1>Destructuring objects and arrays</h1>
+
+					<p>Let's just get into an example</p>
+				</section>
+
+				<section>
+					<h1>Destructuring objects example</h1>
+
+					<pre>
+let person = {firstName: "Jon", lastName: "Snow", age: 23}
+const {firstName, age} = person
+
+console.log(firstName);
+console.log(age);
+
+					</pre>
+				</section>
+
+				<section>
+					<h1>Destructuring objects example explained</h1>
+
+					<ul>
+						<li>You can instantly assign variables to the values in a object in one line</li>
+						<li>It's intuitive if you look at an example</li>
+						<li>Can do this a number of ways, but this can reduce lines of code</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Destructuring arrays example</h1>
+
+					<pre>
+let arr = [1,2,3,4,5,6]
+let [a,b,,d,e] = arr
+
+console.log(a);
+console.log(b);
+console.log(d);
+console.log(e);
+
+					</pre>
+				</section>
+
+				<section>
+					<h1>Destructuring arrays example explained</h1>
+
+					<ul>
+						<li>You can do the same thing with arrays</li>
+						<li>Order of the array that is the result of destructuring matters</li>
+						<li>You can skip what you don't want by leaving that position blank</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>New Data Structures</h1>
+					<ul>
+						<li>There are new robust data structures that were introduced in ES6</li>
+						<li>This will be a fast intro into a topic that is typically a Computer Science course</li>
+						<li>However, focus on the situations when the data structure is used</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Maps</h1>
+
+					<ul>
+						<li>There is now a separate object type dedicated to Maps</li>
+						<li>Let's see how we can use it</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Maps Example</h1>
+
+					<pre>
+let NewMap = new Map();
+NewMap.set('name', 'John');
+NewMap.set('id', 2345796);
+NewMap.set('interest', ['js', 'ruby', 'python']);
+
+NewMap.get('name'); // John
+NewMap.get('id'); // 2345796
+NewMap.get('interest'); // ['js', 'ruby', 'python']
+					</pre>
+
+				</section>
+
+				<section>
+					<h1>But why don't we use Objects?</h1>
+
+					<div class='left' style='float:left;width:48%'>
+						<strong>When to use Objects</strong>
+						<ul>
+							<li>Faster for small data structures</li>
+							<li>Can associate functionality to data structure</li>
+						</ul>
+					</div>
+					<div class='right' style='float:right;width:48%'>
+						<strong>When to use Maps</strong>
+						<ul>
+							<li>Adding/deleting lots of keys</li>
+							<li>Preserves order of keys</li>
+							<li>Better at storing lots of data</li>
+						</ul>
+
+					</div>
+
+				</section>
+
+				<section>
+					<h1>Sets</h1>
+
+					<ul>
+						<li>A set is a list of unique items</li>
+						<li>We now have a data structure that ensures uniquness</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Sets example</h1>
+
+					<pre>
+var sets = new Set();
+sets.add('a');
+sets.add('b');
+sets.add('a'); // We are adding duplicate value.
+for (let element of sets) {
+ console.log(element);
+}
+
+// Output a, b
+					</pre>
+
+				</section>
+
+				<section>
+					<h1>Classes</h1>
+
+					<ul>
+						<li>So you will hear a lot of stuff saying that Javascript implements prototypical inheritance</li>
+						<li>Don't worry about it.</li>
+						<li>Let's focus on what a traditional object-oriented class is and how you can use it</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What is a Class?</h1>
+
+					<ul>
+						<li>A class is the opportunity to define your own type</li>
+						<li>(String, Integer, Function, etc)</li>
+						<li>You can associate state (variables) and functionality (functions) in the same type (think an array)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Class example</h1>
+
+					<pre>
+class Car {
+  constructor () {
+    this.fuel = 0
+    this.distance = 0
+  }
+  move () {
+    if (this.fuel < 1) {
+      throw new RangeError('Fuel tank is depleted')
+    }
+    this.fuel--
+    this.distance += 2
+  }
+  addFuel () {
+    if (this.fuel >= 60) {
+      throw new RangeError('Fuel tank is full')
+    }
+    this.fuel++
+  }
+}
+
+				</pre>
+			</section>
+
+			<section>
+				<h1>Class example explanation</h1>
+
+				<ul>
+					<li><strong>constructor: </strong> A special function that is executed on creation of a new instance of the class</li>
+					<li>this.fuel and this.distance: two variables that will be associated with each instance of the classes</li>
+					<li>this: a reference to the instance of the class being created</li>
+				</ul>
+
+			</section>
+
+			<section>
+				<h1>Class example explanation 2</h1>
+
+				<ul>
+					<li><strong>move</strong> and <strong>addFuel</strong> are functions that are associated with instances of class Car</li>
+				</ul>
+
+				<pre>
+var car = new Car()
+car.addFuel()
+car.move()
+car.move()
+				</pre>
+			</section>
+
+			<section>
+				<h1>Questions</h1>
+			</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+			// Display controls in the bottom right corner
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+			// If true; each slide will be pushed to the browser history
+			history: true,
+			// Loops the presentation, defaults to false
+			loop: false,
+			// Flags if mouse wheel navigation should be enabled
+			mouseWheel: true,
+			// Apply a 3D roll to links on hover
+			rollingLinks: true,
+			// UI style
+			theme: Reveal.getQueryHash().theme || 'default',
+			// Transition style
+			transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+
+		</script>
+
+	</body>
+</html>
