@@ -394,7 +394,7 @@ var locationDiv = document.getElementById(&quot;#locationList&quot;);
 locationDiv.innerHTML = localStorage.curLocation;
 
 /* Run code on submit button push */
-var locationForm = document.getElementById(&quot;locationForm&quot;);
+var locationForm = document.getElementById(&quot;#locationForm&quot;);
 locationForm.addEventListener(&quot;submit&quot;, function(event) {
 	var name = locationForm.elements.namedItem(&quot;name&quot;).value;
 	var state = locationForm.elements.namedItem(&quot;state&quot;).value;
