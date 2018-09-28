@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Why JavaScript Frameworks</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" />
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="../css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+			<section>
+				<h1>Why Javascript Frameworks</h1>
+				<p>
+					Kay Ashaolu
+				</p>
+			</section>
+
+		  <section>
+				<h1>We've spent a lot of time on Javascript</h1>
+
+				<ul>
+					<li>We've learned the basics of Javascript</li>
+					<li>We've learned how Javascript is used in the browser (i.e. how it manipulates the Document Object model)</li>
+					<li>We've learned modern JavaScript</li>
+				</ul>
+			</section>
+
+
+			<section>
+				<h1>We've spent a lot of time on Javascript</h1>
+				<ul>
+					<li>We did this so that you have a good foundation to write some quality JavaScript</li>
+					<li>It is really, really important to have a good foundation for javascript</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Okay, so now what?</h1>
+				<ul>
+					<li>We could start learning how to bulid a complex app with what we know</li>
+					<li>HTML, CSS, and JavaScript is all you need to go</li>
+					<li>You can write classes and functions to calculate actions and state</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Okay, so now what?</h1>
+				<ul>
+					<li>You can use the document object in JavaScript to manipulate the DOM</li>
+					<li>We have not talked about AJAX or making HTTP Requests, but its coming</li>
+					<li>How you connect your web app to external systems</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>But that would be hard</h1>
+				<ul>
+					<li>Remember that JavaScript feature matrix</li>
+					<li>You run into the same issue with CSS, and even HTML</li>
+					<li>There's even a <a href="https://caniuse.com/" target="_blank">website dedicated</a> to this</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>But that would be hard</h1>
+				<ul>
+					<li>Also writing quality modular JavaScript is hard</li>
+					<li>Focus on writing self contained components that interact with each other</li>
+					<li>Modularity helps with code maintainability and development</li>
+				</ul>
+			</section>
+
+			<section>
+							<h1>And would take a long time</h1>
+							<ul>
+								<li>You will find yourself writing a lot of what's called "boilerplate" code</li>
+								<li>Code that you write over and over again</li>
+								<li>Essentially you are creating your own "libraries" and "frameworks" to save yourself time</li>
+							</ul>
+						</section>
+
+						<section>
+							<h1>What is a JavaScript Library?</h1>
+							<ul>
+								<li>A library performs specific, well-definined actions</li>
+								<li>Typically it provides several functions for you to use</li>
+								<li>You are in control of your code, you simply use a library to make it easier to do what you wanted to do</li>
+							</ul>
+						</section>
+
+						<section>
+							<h1>JavaScript Library Example</h1>
+							<ul>
+								<p>jQuery is the granddady of JavaScript Libraries</p>
+								<pre>
+$(document).ready(function(){
+	$("form").submit(function(event){
+		var regex = /^[a-zA-Z]+$/;
+		var currentValue = $("#firstName").val();
+		if(regex.test(currentValue) == false){
+			$(&quot;#result&quot;).html('&lt;p class=&quot;error&quot;&gt;Not valid!&lt;/p&gt;').show().fadeOut(1000);
+			// Preventing form submission
+			event.preventDefault();
+		}
+	});
+});
+								</pre>
+							</ul>
+						</section>
+
+						<section>
+						<h1>Please note</h1>
+							<ul>
+								<li>You are adding html code directly through your JavaScript</li>
+								<li>Imagine you want to standardize that error throughout your web applicaton</li>
+								<li>You would have to copy and paste that HTML code everywhere you need to add error</li>
+								<li>You are in control</li>
+							</ul>
+						</section>
+
+						<section>
+							<h1>What is a JavaScript Framework?</h1>
+							<ul>
+								<li>A framework dictates the architecture your project will follow</li>
+								<li>You typically hook your code into a framework in order to get it to work</li>
+								<li>The framework usually makes it easy to build a complete application quickly</li>
+								<li>You typically have to fit the pattern that is defined by the framework</li>
+							</ul>
+						</section>
+
+						<section>
+							<h1>Library vs Framework</h1>
+							<div class='left' style='float:left;width:48%'>
+							Library<br />
+								<ul>
+									<li>Flexible</li>
+									<li>Developer Control</li>
+									<li>Easy to incorporate to existing code</li>
+									<li>More work to get started</li>
+								</ul>
+							</div>
+							<div class='right' style='float:right;width:48%'>
+							Framework<br />
+								<ul>
+									<li>Quick to get started</li>
+									<li>Quick to understand the basics</li>
+									<li>Less Flexible</li>
+								</ul>
+							</div>
+						</section>
+
+						<section>
+							<h1>What is React?</h1>
+
+							<ul>
+								<li>This is a good question</li>
+								<li>If you look up online, people will <em>largely</em> say React is a library</li>
+								<li>However some will make the case that React is a framework</li>
+								<li>React is typically paired with fraemworks like Flux and Redux so the lines get blurred even more</li>
+							</ul>
+						</section>
+
+						<section>
+							<h1>This is what I think</h1>
+
+							<p>React is a <strong>JavaScript library</strong> that provides functionality in such a way that
+								it <strong>encourages the use of a new kind of framework</strong> of developing user interfaces,
+								centralizing the data of the application in one area and asking the developer to
+								tell the application what it should do with the data that it has.
+							</p>
+						</section>
+
+						<section>
+
+							<h1>So that wasn't well worded at all</h1>
+
+							<ul>
+								<li>React lets you focus on writing self contained pieces of code (modules) where you describe how you would render that module if
+								it had a certain piece of data. What you don't have to worry about is figuring out <strong>how</strong> your UI is going to manipulate
+								the dom to make that change happen</li>
+							</ul>
+
+						</section>
+
+						<section>
+							<h1>For example, remember this?</h1>
+
+								<pre>
+/* Populate with current location */
+var locationDiv = document.getElementById(&quot;#locationList&quot;);
+locationDiv.innerHTML = localStorage.curLocation;
+
+/* Run code on submit button push */
+var locationForm = document.getElementById(&quot;#locationForm&quot;);
+locationForm.addEventListener(&quot;submit&quot;, function(event) {
+	var name = locationForm.elements.namedItem(&quot;name&quot;).value;
+	var state = locationForm.elements.namedItem(&quot;state&quot;).value;
+
+	localStorage.curLocation = name + &quot;: &quot; + state;
+
+	var locationDiv = document.getElementById(&quot;locationList&quot;);
+	locationDiv.innerHTML = localStorage.curLocation;
+	locationDiv.classList.add(&quot;highlight&quot;);
+
+	/* This stops the usual function of &quot;submit&quot; which is to send data
+	to another server */
+	event.preventDefault();
+})
+								</pre>
+							</section>
+
+						<section>
+							<h1>Remeber this?</h1>
+
+							<ul>
+								<li>Remember how you had to both populate #locationList on startup and on submit button event?</li>
+								<li>You had to think about every aspect when #locationList would change, including:
+									<ul>
+										<li>On startup</li>
+										<li>On submit button</li>
+									</ul>
+								</li>
+							</ul>
+							</section>
+
+					  <section>
+							<h1>What's different with React</h1>
+
+							<ul>
+								<li>You write a component that would represent #locationList</li>
+								<li>You write code on how you would render locationList if given an array (think, like a function)</li>
+								<li>That's it! </l1>
+							</ul>
+
+						</section>
+
+						<section>
+							<h1>React Example</h1>
+							<pre>
+class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
+  render() {
+    return (
+      &lt;button
+        className=&quot;square&quot;
+        onClick={() =&gt; this.setState({value: 'X'})}
+      &gt;
+        {this.state.value}
+      &lt;/button&gt;
+    );
+  }
+}
+
+ReactDOM.render(
+&lt;Square value="" /&gt;,
+document.getElementById('root')
+);
+						</pre>
+
+
+						</section>
+
+						<section>
+							<h1>React Example explained</h1>
+
+							<ul>
+								<li>There's a lot going on, but let's focus on two things</li>
+								<li>The class defines a custom element that defines how it reacts to the state (i.e. variable)</li>
+								<li>You don't need to worry about all of the different cases, just change the state (more on this later)</li>
+							</ul>
+
+						</section>
+
+						<section>
+							<h1>Questions</h1>
+						</section>
+
+
+
+
+		</div>
+		</div>
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+			// Display controls in the bottom right corner
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+			// If true; each slide will be pushed to the browser history
+			history: true,
+			// Loops the presentation, defaults to false
+			loop: false,
+			// Flags if mouse wheel navigation should be enabled
+			mouseWheel: true,
+			// Apply a 3D roll to links on hover
+			rollingLinks: true,
+			// UI style
+			theme: Reveal.getQueryHash().theme || 'default',
+			// Transition style
+			transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+		</script>
+	</body>
+</html>
