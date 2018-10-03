@@ -11,7 +11,7 @@ import ReactDOM from "react-dom";
 
 1. [Hello World](https://reactjs.org/docs/hello-world.html)
 2. [Introducing JSX](https://reactjs.org/docs/introducing-jsx.html)
-3  [Rendering Elements](https://reactjs.org/docs/rendering-elements.html)
+3.  [Rendering Elements](https://reactjs.org/docs/rendering-elements.html)
 4. [Components and Props](https://reactjs.org/docs/components-and-props.html)
 5. [State and Lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)
 6. [Handling Events](https://reactjs.org/docs/handling-events.html)
