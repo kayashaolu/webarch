@@ -1,3 +1,5 @@
+# Set up your React Environment
+
 ## Preparation
 1. Install NodeJS: https://nodejs.org/en/download/
 
