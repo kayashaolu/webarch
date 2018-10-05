@@ -178,8 +178,9 @@ setInterval(tick, 1000);
 31. Create a file webpack-react-tutorial/.gitignore to tell git not to upload certain folders (like node_modules that can be downloaded) You may need to exit your server by entering Ctrl-C before entering this command
    `touch .gitignore`
 
-32. Add the following text to prevent git from uploading your node_modules folder
+32. Add the following text to prevent git from uploading your node_modules folder and your package-lock.json if you have one
 
 ```
 node_modules/
+package-lock.json
 ```
