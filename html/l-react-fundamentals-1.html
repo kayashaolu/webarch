@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>React Primer I</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" type="text/css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme"  type="text/css">
+		<!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" type="text/css">
+
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>React Fundamentals I</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Now it is time to learn React</h1>
+
+					<ul>
+						<li>You now have a better handle of JavaScript</li>
+						<li>It's time now to learn a new way of developing UI in the browser (and beyond)</li>
+						<li>Note: there are other extensions to React
+							(e.g. <a href="https://facebook.github.io/react-native/" target="_blank">React Native</a> and <a href="https://facebook.github.io/react-360/" target="_blank">React 360</a>)
+					</u>
+				</section>
+
+				<section>
+					<h1>Review: React is a library</h1>
+					<ul>
+						<li>React is a JavaScript library for building user interfaces</li>
+						<li>Build declarative components based on the current state of your application</li>
+						<li>Differs from the Event Driven approach we have been doing so far</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example, Event Driven App</h1>
+
+					<ul>
+						<li>Lets say you have an array of strings, each representing the subject of a todo</li>
+						<li>And the HTML code was rendered as follows</li>
+					</ul>
+					<pre>
+&lt;ul id=&quot;todos&quot;&gt;
+&Tab;&lt;li&gt;Task 1&lt;/li&gt;
+&Tab;&lt;li&gt;Task 2&lt;/li&gt;
+&lt;/ul&gt;
+					</pre>
+
+				</ul>
+			</section>
+
+			<section>
+				<h1>Example, Event Driven App</h1>
+
+				<ul>
+					<li>If you wanted to add a new task on a click of a button, what would you do?</li>
+					<li>If you wanted to delete a task on a click of the task, what would you do?</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Example, Event Driven App</h1>
+
+				<ul>
+					<li>To add a new task, you would have to select the <em>#todos ul</em>, and then manipulate the html so that
+						there is a new li at the end of the list</li>
+					<li>To delete a new task you would need to find the right <em>li</em> and delete that from the tree</li>
+
+				</ul>
+			</section>
+
+			<section>
+				<h1>Example, Event Driven App</h1>
+
+				<ul><li>This is doable, but there are some things to consider:
+					<ul>
+						<li>What happens if there are multiple todo lists in a single page?</li>
+						<li>What happens if the user tries to add and delete a task at the same time?</li>
+					</ul>
+				</li></ul>
+			</section>
+
+			<section>
+				<h1>Events add up</h1>
+
+				<ul>
+					<li>You will need to take several precautions to ensure that each todo list is completely independent and that events do not collide with each other</li>
+					<li>This is not trivial to do for large systems</li>
+
+				</ul>
+
+			</section>
+
+			<section>
+				<h1>React: a different apporach</h1>
+
+				<ul>
+					<li>React use a declarative programing paradigm</li>
+					<li>Instead of worrying about every action that could happen with your list, you first define what your todo list would look like, given an array of strings.</li>
+					<li>You create a comopnent using your above defintion containing state that contains the titles of all of the tasks</li>
+					<li>On click events, you modify this internal state and the component will update itself</li>
+				</section>
+
+				<section>
+					<h1>Lets then learn  React</h1>
+					<ul>
+						<li>At this point your browser will not understand your code</li>
+						<li>Reason 1: some browsers do not understand ES6 JavaScript</li>
+						<li>Reason 2: some React syntax is not valid JavaScript</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Must use your dev server</h1>
+					<ul>
+						<li>So you need the NodeJS server that you have installed on your local machine to build your project</li>
+						<li>The NodeJS server you installed uses NodeJS, Babel, and Webpack, as well as the React codebase to
+							bundle all of your source Javascript in a single file</li>
+						<li>The NodeJS server also builds your single HTML page, as well as keeps a development server running to reload any changes</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>So without further ado, let's get into React!</h1>
+				</section>
+
+				<section>
+					<h1>Hello World</h1>
+					<p>src/index.js</p>
+					<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+const jsx_element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;
+const dom_element = document.getElementById(&apos;root&apos;);
+ReactDOM.render(jsx_element, dom_element);
+					</pre>
+
+				</section>
+
+				<section>
+					<h1>Hello World</h1>
+					<p>src/index.html</p>
+					<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>Hello World Explained: index.html</h1>
+					<ul>
+						<li>Your index.html file is an empty file that contains one empty div in the body section</li>
+						<li>Note that the empty div's id is "root"</li>
+						<li>This div is the entry point for our react app: we will tell React in our script to replace this div with our react application</li>
+						<li>This html file will largely <strong>remain unchanged</strong><li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hello World Explained: index.js</h1>
+					<ul>
+						<li>We are first importing the React and ReactDOM packages into our JavaScript</li>
+						<li>Next we are telling ReactDOM to render given:
+							<ol>
+								<li>The content of your website</li>
+								<li>What element in your index.html file that will house your React App</li>
+							</ol>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hello World Explained: JSX</h1>
+					<ul>
+						<li>JSX stands for JavaScript XML</li>
+						<li>JSX is an extension of JavaScript that enables you to write HTML like syntax directly in your Javascript</li>
+						<li>This enables the ability to write HTML templates directly into your JavaScript code</li>
+						<li>You can also embed expressions, variables, and properties directly into JSX</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example</h1>
+					<p>src/index.js</p>
+					<pre>
+let formatName = (user) =&gt; {
+  return user.firstName + &apos; &apos; + user.lastName;
+}
+const user = {
+  firstName: &apos;Harper&apos;,
+  lastName: &apos;Perez&apos;
+};
+const element = (
+  &lt;h1&gt;
+    Hello, {formatName(user)}!
+  &lt;/h1&gt;
+);
+ReactDOM.render(
+  element,
+  document.getElementById(&apos;root&apos;)
+);
+					</pre>
+			</section>
+			<section>
+				<h1>Example explained</h1>
+
+				<ul>
+					<li>Note: the index.html has not changed. To use React for your entire app, you can define a single div in the body that is React's entry point</li>
+					<li>We defined a function called formatName that takes a object that has two properties: a firstName and a lastName</li>
+					<li>The formatName function returns a single string with both of those elements</li>
+					<li>We use this function 'formatName' inside of our JSX code (the const element)</li>
+					<li>This shows how you can use these properties within your JSX code</li>
+				</ul>
+
+			</section>
+
+			<section>
+				<h1>Why JSX?</h1>
+
+				<ul>
+					<li>Remember separating content from presentation?</li>
+					<li>Separating HTML (content) from CSS (presentation) is core to the web</li>
+					<li>However once we start using JavaScript, we have the ability to change the HTML rendered on the page</li>
+					<li>That means HTML code can possibly be throughout our JavaScript codebase</li>
+					<li>JSX gives us the ability to write out templated HTML code in a very intuitive fashion</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Another Example</h1>
+				<p>src/index.js</p>
+				<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+function tick() {
+  const element = (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, world!&lt;/h1&gt;
+      &lt;h2&gt;It is {new Date().toLocaleTimeString()}.&lt;/h2&gt;
+    &lt;/div&gt;
+  );
+  ReactDOM.render(element, document.getElementById(&apos;root&apos;));
+}
+setInterval(tick, 1000);
+				</pre>
+			</section>
+
+			<section>
+				<h1>Wait, what?</h1>
+
+				<ul>
+					<li>Every call to ReactDOM.render tells React to re-render elments given the data that it currently has</li>
+					<li>The code setInterval(tick, 1000) is a special function that tells JavaScript to execute the tick function every 1000 millliseconds.</li>
+					<li>The tick function then defines the element and passes in its properties (namely {new Date().toLocaleTimeString()}) before that components is rendered</li>
+					<li>This is why you see the clock ticking every second</li>
+				</ul>
+
+			</section>
+
+
+			<section>
+				<h1>Questions?</h1>
+			</section>
+
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+	    // Display controls in the bottom right corner
+	    controls: true,
+	    // Display a presentation progress bar
+	    progress: true,
+	    // If true; each slide will be pushed to the browser history
+	    history: true,
+	    // Loops the presentation, defaults to false
+	    loop: false,
+	    // Flags if mouse wheel navigation should be enabled
+	    mouseWheel: true,
+	    // Apply a 3D roll to links on hover
+	    rollingLinks: true,
+	    // UI style
+	    theme: Reveal.getQueryHash().theme || 'default',
+	    // Transition style
+	    transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+		</script>
+
+	</body>
+</html>

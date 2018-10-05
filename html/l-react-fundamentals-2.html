@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>React Fundamentals II</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" type="text/css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme"  type="text/css">
+		<!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" type="text/css">
+
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>React Fundamentals II</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Components</h1>
+
+					<ul>
+						<li>This is one of the things I like the most about React</li>
+						<li>The focus on components as independent, resusable pieces that can be placed anywhere</li>
+						<li>This uses the composability relationship: each element can be composed by other elements</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Components</h1>
+
+					<ul>
+						<li>Using a combination of JSX and JavaScript, you can bundle look and feel and functionality in a single JavaScript class</li>
+						<li>You can consider these React Elements and HTML Elements that you can place wherever you like</li>
+						<li>Let's get into the anatomy of a Component</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Component Example</h1>
+
+					<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+class FormatName extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  format() {
+    return `${this.props.firstName} ${this.props.lastName}`
+  }
+  render() {
+    return (
+      &lt;h1&gt;
+        Hello, {this.format()}!
+      &lt;/h1&gt;
+    );
+  }
+}
+ReactDOM.render(
+  &lt;FormatName firstName=&quot;Kay&quot; lastName=&quot;Ashaolu&quot; /&gt;,
+  document.getElementById(&apos;root&apos;)
+);
+					</pre>
+				</section>
+
+				<section>
+					<h1>Component Example Explained</h1>
+
+					<ul>
+						<li>We are creating a JavaScript class that will represent an element</li>
+						<li>The name of the class (i.e. FormatName) is the name of the element</li>
+						<li>The constructor of the class is connected to the element definition you see in the ReactDOM.render line of code</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Component Construtor</h1>
+
+					<ul>
+						<li><em>constructor(props)</em></li>
+						<li>The "constructor" function is executed when you want to create an instance of a class</li>
+						<li>When you add <em>"&lt;FormatName /&gt;"</em>, this constructor function is called</li>
+						<li>A parameter called <em>props</em> is passed into this constructor</li>
+						<li>props is an object that contains all of the attributes and values that are passed into the element</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Component Instance Properties</h1>
+
+					<ul>
+						<li>When you add the attribute firstName="Kay", this props object will have a key named "firstName"</li>
+						<li>And a value named "Kay"</li>
+						<li>These properties are immutable</lli>
+					</ul>
+					<pre>
+&lt;FormatName firstName=&quot;Kay&quot; lastName=&quot;Ashaolu&quot; /&gt;,
+					</pre>
+				</section>
+
+				<section>
+					<h1>Component Render function</h1>
+
+					<ul>
+						<li>One of the functions that are used within React is the render() function</li>
+						<li>The render() function is called when a component is told by the React library to render (e.g. on a call on ReactDOM.render())</li>
+						<li>This function returns JSX code that the component would render into</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Component Render function</h1>
+
+					<pre>
+render() {
+  return (
+    &lt;h1&gt;
+      Hello, {this.formatName()}!
+    &lt;/h1&gt;
+  );
+}
+			  	</pre>
+				</section>
+				<section>
+					<h1>Component custom functions</h1>
+
+					<ul>
+						<li>React Components are just JavaScript classes</li>
+						<li>So you can add your own classes to your components</li>
+						<li>In this example we added the function "format" that will format the firstName and lastname properties</li>
+					</ul>
+
+				</section>
+				<section>
+					<h1>Component custom functions</h1>
+
+					<pre>
+format() {
+	return `${this.props.firstName} ${this.props.lastName}`
+}
+					</pre>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+	    // Display controls in the bottom right corner
+	    controls: true,
+	    // Display a presentation progress bar
+	    progress: true,
+	    // If true; each slide will be pushed to the browser history
+	    history: true,
+	    // Loops the presentation, defaults to false
+	    loop: false,
+	    // Flags if mouse wheel navigation should be enabled
+	    mouseWheel: true,
+	    // Apply a 3D roll to links on hover
+	    rollingLinks: true,
+	    // UI style
+	    theme: Reveal.getQueryHash().theme || 'default',
+	    // Transition style
+	    transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+		</script>
+
+	</body>
+</html>
