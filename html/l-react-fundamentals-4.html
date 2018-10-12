@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>React Fundamentals IV </title>
+
+		<link rel="stylesheet" href="../css/reveal.css" type="text/css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme"  type="text/css">
+		<!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" type="text/css">
+
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>React Fundamentals IV</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Events</h1>
+
+					<ul>
+						<li>We are now to the point where we can learn how to incorporate events</li>
+						<li>How do we execute data when someone clicks on a particular button?</li>
+						<li>We use the event properties that you would customarily find in HTML</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Example</h1>
+					<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(state =&gt; ({
+      isToggleOn: !state.isToggleOn
+    }));
+  }
+  render() {
+    return (
+      &lt;button onClick={this.handleClick}&gt;
+        {this.state.isToggleOn ? &apos;ON&apos; : &apos;OFF&apos;}
+      &lt;/button&gt;
+    );
+  }
+}
+</pre>
+</section>
+
+<section>
+	<h1>Example</h1>
+	<pre>
+ReactDOM.render(
+  &lt;Toggle /&gt;,
+  document.getElementById(&apos;root&apos;)
+);
+</pre>
+</section>
+	<section>
+		<h1>There's a lot going on</h1>
+		<ul>
+			<li>This code creates a single button that has state indiciating whether it is on or off</li>
+			<li>This state is toggled whenever the button is clicked</li>
+			<li>This behavior is achieved by a few lines of code in the example</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h1>Constructor</h1>
+		<ul>
+		<li>this.handleClick = this.handleClick.bind(this);</li>
+		<li>What is this doing?</li>
+		<li>Remember when I spoke about arrow functions and how it's important to use them?</li>
+		<li>This is why: if you do not do this, then refernces to this function outside of the class will not have access to the <em>this</em> variable</li>
+		<li>This line binds that function to the instance of the class in which it is caused</li>
+	</ul>
+</section>
+
+	<section>
+		<h1>handleclick()</h1>
+		<ul>
+			<li>We define the event handler within the component that we are creating</li>
+			<li>This is best practice: continues with the idea that everyting related to the component is within the component</li>
+			<li>The function is setting the state to be the opposite of what it is currently</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>New setState Function</h1>
+		<ul>
+			<li>Note that we are using a different version fo the setState fucntion, that has a parameter called "state"</li>
+			<li>This is the proper way of accessing the current state in order to determine what the new state will be</li>
+			<li>Do not use this.state directly: unexpected results may occur</li>
+		</ul>
+
+		<pre>
+this.setState(state =&gt; ({
+  isToggleOn: !state.isToggleOn
+}));
+	</pre>
+	</section>
+
+	<section>
+		<h1>The render function</h1>
+		<ul>
+			<li>Here we set our handleClick() function to be executed onClick</li>
+			<li>Note that there are no quotation marks in setting properties for React when you are setting it to an expression</li>
+			<li>This is correct: React will add quotes to the final DOM</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>Conditional Rendering</h1>
+
+		<ul>
+			<li>Now we are getting a handle of React</li>
+			<li>Its time to demonstrate some capabilities of React to give you a sense of what's possible</li>
+			<li>You can conditionally render different components</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>Example</h1>
+		<pre>
+class UserGreeting extends React.Component {
+  render() {
+    return (&lt;h1&gt;Welcome back!&lt;/h1&gt;);
+  }
+}
+
+class GuestGreeting extends React.Component {
+  render() {
+    return (&lt;h1&gt;Please sign up.&lt;/h1&gt;);
+  }
+}
+
+class Greeting extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    if (this.props.isLoggedIn) {
+      return &lt;UserGreeting /&gt;;
+    }
+    return &lt;GuestGreeting /&gt;;
+  }
+}
+		</pre>
+	</section>
+
+	<section>
+		<h1>Example</h1>
+		<pre>
+class LoginButton extends React.Component {
+  render() {
+    return (
+      &lt;button onClick={this.props.onClick}&gt;
+        Login
+      &lt;/button&gt;
+    );
+  }
+}
+class LogoutButton extends React.Component {
+  render() {
+    return (
+      &lt;button onClick={this.props.onClick}&gt;
+        Logout
+      &lt;/button&gt;
+    );
+  }
+}
+		</pre>
+	</section>
+
+	<section>
+		<h1>Example</h1>
+		<pre>
+class LoginControl extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    this.state = {isLoggedIn: false};
+  }
+
+  handleLoginClick() {
+    this.setState({isLoggedIn: true});
+  }
+
+  handleLogoutClick() {
+    this.setState({isLoggedIn: false});
+  }
+
+		</pre>
+	</section>
+
+	<section>
+		<h1>Example</h1>
+		<pre>
+  render() {
+    const isLoggedIn = this.state.isLoggedIn;
+    let button;
+    if (isLoggedIn) {
+      button = &lt;LogoutButton onClick={this.handleLogoutClick} /&gt;;
+    } else {
+      button = &lt;LoginButton onClick={this.handleLoginClick} /&gt;
+    }
+    return (
+      &lt;div&gt;
+        &lt;Greeting isLoggedIn={isLoggedIn} /&gt;
+        {button}
+      &lt;/div&gt;
+    );
+  }
+}
+
+ReactDOM.render(
+  &lt;LoginControl /&gt;,
+  document.getElementById(&apos;root&apos;)
+);
+    </pre>
+	</section>
+
+	<section>
+		<h1>Conditional Rendering Example</h1>
+		<ul>
+			<li>There's a lot going on</li>
+			<li>We'll go through this step by step</li>
+			<li>This also gives a good example of how components can nest within each other and how properties in a parent component can be passed down to its children</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>Greeting Component</h1>
+		<ul>
+			<li>The Greeting component dependent on the property isLoggedIn renders a different component</li>
+			<li>If isLoggedIn is true, render UserGreeting</li>
+			<li>If isLoggedIn is false, render GuestGreeting</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>LoginControl Component</h1>
+		<ul>
+			<li>Note the larger LoginControl Component also determines whether a LoginButton or a LogoutButton is created</li>
+			<li>The component also contains a Greeting component</li>
+			<li>Note the LoginControl Component connects the onClick event of both buttons to drive the state of the component</li>
+			<li>Also the LoginControl passes the current state to the Greeting via properties</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>Lists and Keys</h1>
+
+		<ul>
+			<li>One common functionailty is to have lists of objects driven by React</li>
+			<li>Since a list can be added to/subtracted from at any point, you do not know how many compoennts you will need beforehand</li>
+			<li>For React to be able to keep track of all of the components within a list, we'll need to specify a unique key</li>
+			<li>React uses that key to refer to a particular item in a list of components</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>Example</h1>
+		<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+class ListItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const value = this.props.value
+    return (&lt;li&gt;{value}&lt;/li&gt;);
+  }
+}
+		</pre>
+
+	</section>
+	<section>
+		<h1>Example</h1>
+		<pre>
+class NumberList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const numbers = this.props.numbers;
+    const listItems = numbers.map((number) =&gt;
+      &lt;ListItem key={number.toString()}
+                value={number} /&gt;
+    );
+    return (
+      &lt;ul&gt;
+        {listItems}
+      &lt;/ul&gt;
+    );
+  }
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  &lt;NumberList numbers={numbers} /&gt;,
+  document.getElementById(&apos;root&apos;)
+);
+		</pre>
+	</section>
+
+	<section>
+		<h1>Example Explained: ListItem</h1>
+
+		<ul>
+			<li>We define a component that comprises of just an element in the list</li>
+			<li>With React composing components out of other components is not only easy to do but encouraged</li>
+			<li>Enables the creation of a complex design using simple building blocks</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>Example Explained: NumberList</h1>
+		<ul>
+			<li>In the rendering of a NumberList, a number of ListItems are created</li>
+			<li>Note the use of the map() function that enables you to execute the same function over each element in a list</li>
+			<li>The result is saved in a constant, which is then added to the render function call</li>
+		</ul>
+	</section>
+
+	<section>
+		<h1>Key Attribute</h1>
+		<ul>
+			<li>If you are creating multlple instances of a component in the same array, its good to specify a key</li>
+			<li>A key gives React the ability to target specific instances</li>
+		</u>
+	</section>
+
+
+	</section>
+
+
+
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+
+
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+	    // Display controls in the bottom right corner
+	    controls: true,
+	    // Display a presentation progress bar
+	    progress: true,
+	    // If true; each slide will be pushed to the browser history
+	    history: true,
+	    // Loops the presentation, defaults to false
+	    loop: false,
+	    // Flags if mouse wheel navigation should be enabled
+	    mouseWheel: true,
+	    // Apply a 3D roll to links on hover
+	    rollingLinks: true,
+	    // UI style
+	    theme: Reveal.getQueryHash().theme || 'default',
+	    // Transition style
+	    transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+		</script>
+
+	</body>
+</html>

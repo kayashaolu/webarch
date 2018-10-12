@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>React Fundamentals III </title>
+
+		<link rel="stylesheet" href="../css/reveal.css" type="text/css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme"  type="text/css">
+		<!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" type="text/css">
+
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>React Fundamentals III</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Lets go back to our clock example</h1>
+
+					<ul>
+						<li>Remember how we executed the tick() function every second</li>
+						<li>We used the <em>setInterval</em> function provided by the browser JavaScript engine to execute the function every second</li>
+						<li>We forced React to render the element over and over again using the <em>ReactDOM.render</em> function</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Tick Function Example</h1>
+					<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+function tick() {
+	const element = (
+		&lt;div&gt;
+			&lt;h1&gt;Hello, world!&lt;/h1&gt;
+			&lt;h2&gt;It is {new Date().toLocaleTimeString()}.&lt;/h2&gt;
+		&lt;/div&gt;
+	);
+	ReactDOM.render(element, document.getElementById(&apos;root&apos;));
+}
+setInterval(tick, 1000);
+					</pre>
+				</section>
+
+				<section>
+					<h1>This isn't terribly efficient</h1>
+					<ul>
+						<li>If we had to tell each component when to render, we would run into some problems</li>
+						<li>What if one component's data relates to another components data?</li>
+						<li>What if we want to have more than one Clock on the page?</li>
+						<li>This is why we want to start to encapsulate this clock so that it can be used throughout our application</li>
+						<li>Encapsulation method: create a Clock component i.e. a JavaScript class</li>
+					</u>
+				</section>
+
+				<section>
+					<h1>Clock React Component</h1>
+					<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+class Clock extends React.Component {
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Hello, world!&lt;/h1&gt;
+        &lt;h2&gt;It is {this.props.date.toLocaleTimeString()}.&lt;/h2&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+function tick() {
+  ReactDOM.render(
+    &lt;div&gt;
+      &lt;Clock date={new Date()} /&gt;
+      &lt;Clock date={new Date()} /&gt;
+    &lt;/div&gt;,
+    document.getElementById(&apos;root&apos;)
+  );
+}
+setInterval(tick, 1000);
+					 </pre>
+				</section>
+
+				<section>
+					<h1>Note what is happening</h1>
+					<ul>
+						<li>We moved the render logic of the Clock to its own JavaScript class</li>
+						<li>By doing this, we were able to create two clock instances in the tick() function</li>
+						<li>We are still using ReactDOM.render to forcibly rerender both Clock instances</li>
+					</ul>
+
+				</section>
+				<section>
+					<h1>Note what is happening</h1>
+					<ul>
+						<li>Even though we do have two "Clock components", they are synchronized</li>
+						<li>This is because each Clock is sourcing its date/time info to {this.props.date.toLocaleTimeString()}</li>
+						<li>That will be the same for every Clock instance</li>
+					<ul>
+				</section>
+
+				<section>
+					<h1>What if you want more</h1>
+					<ul>
+						<li>What if you wanted to have a clock for a different time zone?</li>
+						<li>Then each clock instance would have to have some unique data about itself (e.g. it's current time, its time zone)</li>
+						<li>What we would want is that each clock has its own <strong>state</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Clock Example</h1>
+					<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    let clock_date = new Date()
+    clock_date.setHours(clock_date.getHours() + parseInt(this.props.offset));
+    this.state = {date: clock_date};
+  }
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Hello, world!&lt;/h1&gt;
+        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()} with a {this.props.offset} offset&lt;/h2&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+ReactDOM.render(
+  ( &lt;div&gt;
+      &lt;Clock offset =&quot;+3&quot;/&gt;
+      &lt;Clock offset=&quot;-3&quot; /&gt;
+    &lt;/div&gt;
+  ),
+  document.getElementById(&apos;root&apos;)
+);
+					</pre>
+				</section>
+
+				<section>
+					<h1>Introducing state</h1>
+
+					<ul>
+						<li>Notice that we have more going on in the constructor</li>
+						<li>We are passing a property "offset" that is being used to adjust the current time</h1>
+						<li>We are saving the current time in each Clock's state: now we have a <strong>mutable</strong> value tied to each clock</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Notice Clock isn't ticking</h1>
+
+					<ul>
+						<li>We don't have any code that's actually changing the state with key "date"</li>
+						<li>Remember that we were using the <em>setInterval</em> function to change the date every second</li>
+						<li>What we now want to do is set these intervals to be created by the Clock itself</li>
+						<li>Next, we want to utilize React's feature of re-rendering a component when the component's state changes</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Lifecycle Methods</h1>
+
+					<ul>
+						<li>We want to be able to be efficient with the computing resources we use</li>
+						<li>If we are done with a resource, freeing up that resource becomes very important, especially if you have several components in the same page</li>
+						<li>There are special functions that are executed by React during special times</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Lifecycle Methods</h1>
+
+					<ul>
+						<li>We want to set up a setInterval timer whenever the Clock is fully created and rendered to the DOM for the first time. This is called <em>mounting</em></li>
+						<li>We also want to clear said timer whenever a specfic Clock component is removed from the DOM for any reason. This is called "unmounting"</li>
+						<li><em>componentDidMount()</em> does the first, <em>componentWillUnmount()</em> does the second</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Lifecycle Example</h1>
+
+					<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: this.getCurrentDate()};
+  }
+  componentDidMount() {
+    this.timerID = setInterval(
+      () =&gt; this.tick(),
+      1000
+    );
+  }
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+  getCurrentDate() {
+    let new_date = new Date();
+    new_date.setHours(new_date.getHours() + parseInt(this.props.offset));
+    return new_date;
+  }
+		</pre>
+	</section>
+
+	<section>
+		<h1>Lifecycle Example</h1>
+		<pre>
+tick() {
+ this.setState({
+  date: this.getCurrentDate()
+ });
+}
+
+render() {
+ return (
+  &lt;div&gt;
+   &lt;h1&gt;Hello, world!&lt;/h1&gt;
+   &lt;h2&gt;It is {this.state.date.toLocaleTimeString()} with a {this.props.offset} offset&lt;/h2&gt;
+  &lt;/div&gt;
+ );
+ }
+}
+
+ReactDOM.render(
+( &lt;div&gt;
+  &lt;Clock offset =&quot;+3&quot;/&gt;
+  &lt;Clock offset=&quot;-3&quot; /&gt;
+ &lt;/div&gt;
+),
+document.getElementById(&apos;root&apos;)
+);
+			</pre>
+			</section>
+
+			<section>
+				<h1>Lifecycle Example</h1>
+
+				<ul>
+					<li>Note that with a single call to ReactDOM we were able to create Clocks that tick</li>
+					<li>This is because we are utilizing the second way to tell React to rerender a component: changing it's state</li>
+					<li>We do this in the tick() function</li>
+				</ul>
+
+			</section>
+
+			<section>
+				<h1>Lifecycle Example</h1>
+
+				<ul>
+					<li>Note that each clock is creating its own setInterval timer using the componentDidMount() function and clearing the timer with the componentWillUnmount() function</li>
+					<li>Note also that it was able to set a class variable to the timerID (i.e. this.timerId)</li>
+					<li>Since the id of the timer that's executing the tick function is not important to the rendering of the component, we don't need it in the state</li>
+					<li>Try to put only the minimum number of variables in the state since if any of the state variables change it rerenders the component</h1>
+				</ul>
+
+			</section>
+
+			<section>
+				<h1>Lifecycle Example</h1>
+
+				<ul>
+					<li>Note that in the tick() function, we set the state using the function this.setState() instead of setting the state directly</li>
+					<li>This is intentional and good practice: outside of the constructor you should change the state of a component using these functions</li>
+					<li>Among other advantages this enables React to know to rerender that component</li>
+				</ul>
+			</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+	    // Display controls in the bottom right corner
+	    controls: true,
+	    // Display a presentation progress bar
+	    progress: true,
+	    // If true; each slide will be pushed to the browser history
+	    history: true,
+	    // Loops the presentation, defaults to false
+	    loop: false,
+	    // Flags if mouse wheel navigation should be enabled
+	    mouseWheel: true,
+	    // Apply a 3D roll to links on hover
+	    rollingLinks: true,
+	    // UI style
+	    theme: Reveal.getQueryHash().theme || 'default',
+	    // Transition style
+	    transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+		</script>
+
+	</body>
+</html>
