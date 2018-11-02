@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>React Forms</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" />
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="../css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>React Forms</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>Forms are a bit of a special case</h1>
+					<ul>
+						<li>Unlike other tags in HTML, forms keep some state</li>
+						<li>e.g. when you type text into a single line text field, that data is saved within the DOM</li>
+					</ul>
+					<pre>
+&lt;input type=&quot;text&quot; value=&quot;I just typed this&quot; /&gt;
+				 </pre>
+			 </section>
+
+			 <section>
+				 <h1>Why is this a problem?</h1>
+				 <ul>
+					 <li>Remember that all state in React should be within components</li>
+					 <li>This is how React knows to re-render components: when state changes</li>
+					 <li>If state is left inside the DOM, React natively cannot react to any changes to it</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>One solution: Controlled Components</h1>
+				<ul>
+					<li>The idea is to tie form DOM state into React component state so that the two are updated simultaneously</li>
+					<li>After doing this wiring, you can now use your forms as if they were any other React component</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Example</h1>
+				<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+class NameForm extends React.Component {
+ constructor(props) {
+  super(props);
+  this.state = {value: &apos;&apos;};
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+ }
+
+ handleChange(event) {
+  this.setState({value: event.target.value.toUpperCase()});
+ }
+
+ handleSubmit(event) {
+  alert(&apos;A name was submitted: &apos; + this.state.value);
+  event.preventDefault();
+ }
+
+				</pre>
+			</section>
+
+			<section>
+				<h1>Example</h1>
+				<pre>
+ render() {
+  return (
+   &lt;form onSubmit={this.handleSubmit}&gt;
+    &lt;label&gt;
+     Name:
+     &lt;input type=&quot;text&quot; value={this.state.value} onChange={this.handleChange} /&gt;
+    &lt;/label&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;
+   &lt;/form&gt;
+  );
+ }
+}
+
+ReactDOM.render(
+  &lt;NameForm /&gt;,
+  document.getElementById(&apos;root&apos;)
+);
+				</pre>
+			</section>
+
+			<section>
+				<h1>Example Explained</h1>
+				<ul>
+					<li>Here we have an HTML form rendered using a React Component</li>
+					<li>We have a single state variable "value" that is set as the value of the single input on the form</li>
+					<li>We bind two events: onChange on the input value, and onSubmit on the form to handle changes to the text field and/or the form itself</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Example Explained</h1>
+				<ul>
+					<li>We now can control the data of the form using this.state.value and can control how data is submitted using the handleSubmit function</li>
+					<li>Also note that modifying and validating input becomes as easy as modifying the handleChange function: this code only allows capital letters</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>The value property</h1>
+				<ul>
+					<li>Remember in HTML select tags needed the property "selected" to preselect a value</li>
+					<li>Or for the textarea tag the value was in between the start and end textarea tags?</li>
+					<li>In React to make things easier almost all form tags in JSX has a "value" property you can change</li>
+					<li>This makes writing controlled form components with mulitple items easier</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Multiple elements</h1>
+
+				<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+class Reservation extends React.Component {
+ constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+ handleInputChange(event) {
+  const target = event.target;
+  const value = target.type === &apos;checkbox&apos; ? target.checked : target.value;
+  const name = target.name;
+  this.setState({
+   [name]: value
+  });
+ }
+				</pre>
+			</section>
+
+			<section>
+				<h1>Multiple elements</h1>
+				<pre>
+  handleSubmit(event) {
+    alert(`A reservation was submitted: ${this.state.isGoing ?
+			&quot;We&apos;re going&quot; : &quot;Not going&quot;}
+			with ${this.state.numberOfGuests} guest(s)`);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      &lt;form onSubmit={this.handleSubmit}&gt;
+        &lt;label&gt;
+          Is going:
+          &lt;input
+            name=&quot;isGoing&quot;
+            type=&quot;checkbox&quot;
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} /&gt;
+        &lt;/label&gt;
+        &lt;br /&gt;
+			</pre>
+		</section>
+
+		<section>
+			<h1>Multiple elements</h1>
+			<pre>
+        &lt;label&gt;
+          Number of guests:
+          &lt;select
+            name=&quot;numberOfGuests&quot;
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange}&gt;
+            &lt;option value=&quot;0&quot;&gt;None&lt;/option&gt;
+            &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
+            &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+            &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+            &lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/label&gt;
+        &lt;br /&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;RSVP&quot; /&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+ReactDOM.render(
+  &lt;Reservation /&gt;,
+  document.getElementById(&apos;root&apos;)
+);
+				</pre>
+			</section>
+
+			<section>
+				<h1>Example Explained</h1>
+
+				<ul>
+					<li>We have one function handleInputChange that can handle both checkboxes and select elements</li>
+					<li>We use the name property to set the right property for state</li>
+					<li>On submit we again create an alert box with the data in the form</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Use an API example</h1>
+				<ul>
+					<li>Forms are a typical component that is used to make API calls</li>
+					<li>Dependent on user input, you can make an API call that gives users more information</li>
+					<li>Let's write a form that gets data from OpenWeatherMap to say what the temperature is for a given city</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Example</h1>
+				<pre>
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+
+class CityForm extends React.Component {
+ constructor(props) {
+  super(props);
+  this.state = {city: &apos;berkeley&apos;, temp: 0};
+  this.handleInputChange = this.handleInputChange.bind(this);
+ }
+
+ getWeather(city) {
+   let that = this;
+   fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&amp;appid=af578739923ac7f173a6054b24c606ea`)
+    .then(function (response) {
+       return response.json();
+     }).then(function (result) {
+       that.setState({&quot;temp&quot;:result.main.temp - 273.15, &quot;city&quot;:city})
+     });
+ }
+
+ componentDidMount() {
+   this.getWeather(this.state.city);
+ }
+
+			</pre>
+			</section>
+
+			<section>
+			<h1>Example</h1>
+			<pre>
+ handleInputChange(event) {
+   const target = event.target;
+   const value = target.type === &apos;checkbox&apos; ? target.checked : target.value;
+   const name = target.name;
+   this.getWeather(value);
+ }
+
+ render() {
+ return (
+  &lt;div&gt;
+  &lt;form&gt;
+   &lt;label&gt;
+    City:
+    &lt;select
+      name=&quot;city&quot;
+      value={this.state.city}
+      onChange={this.handleInputChange}&gt;
+      &lt;option value=&quot;berkeley&quot;&gt;Berkeley, CA&lt;/option&gt;
+      &lt;option value=&quot;manhattan&quot;&gt;New York, NY&lt;/option&gt;
+      &lt;option value=&quot;chicago&quot;&gt;Chicago, IL&lt;/option&gt;
+    &lt;/select&gt;
+   &lt;/label&gt;
+  &lt;/form&gt;
+		</pre>
+		</section>
+
+		<section>
+		<h1>Example</h1>
+		<pre>
+   &lt;div&gt;The temperature (in celsius) of {this.state.city}
+	 	is {this.state.temp}&lt;/div&gt;
+   &lt;/div&gt;
+  );
+ }
+}
+ReactDOM.render(
+ &lt;CityForm /&gt;,
+ document.getElementById(&apos;root&apos;)
+);
+			</pre>
+			</section>
+
+			<section>
+				<h1>Example Explained</h1>
+
+				<ul>
+					<li>This CityForm has a function getWeather that makes an api call to openweathermap.org to get the weather</li>
+					<li>It is using what's called the fetch api that enables you to chain a number of actions that occur when you get results back</li>
+					<li>When results come back, the state is updated and is visible on the div</li>
+				</ul>
+			</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+			// Display controls in the bottom right corner
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+			// If true; each slide will be pushed to the browser history
+			history: true,
+			// Loops the presentation, defaults to false
+			loop: false,
+			// Flags if mouse wheel navigation should be enabled
+			mouseWheel: true,
+			// Apply a 3D roll to links on hover
+			rollingLinks: true,
+			// UI style
+			theme: Reveal.getQueryHash().theme || 'default',
+			// Transition style
+			transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+		</script>
+	</body>
+</html>

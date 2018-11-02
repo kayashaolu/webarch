@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Using API's</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" />
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="../css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Using API's</h1>
+					<p>
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>API</h1>
+					<ul>
+						<li>Application Programming Interface</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What is an API?</h1>
+					<p><strong>From Quora:</strong> An API (Application Programming Interface) is best thought of as a contract provided by one piece of computer software to another.</p>
+				</section>
+
+				<section>
+					<h1>Simple API: a function in JavaScript</h1>
+					<pre>
+function getMaximum(num1, num2) {
+	/* ...
+	   working code
+	   ...
+	*/
+
+	return answer;
+}
+					</pre>
+				</section>
+
+				<section>
+					<h1>Simple API: a function in JavaScript</h1>
+					<ul>
+						<li>Imagine that you didn't know how that function was implemented</li>
+						<li>You only know that you enter two numbers in the function and you receive the greater of those two numbers</li>
+						<li><strong>That is an API!</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>API as contract</h1>
+					<ul>
+						<li>The getMaximum function can be considered as one piece of computer software</li>
+						<li>The rest of your code can be considered as another piece of computer software</li>
+						<li>The contract between those two pieces of software:
+							<ul>
+								<li>If you call the getMaximum function and pass it two numbers as data</li>
+								<li>It will return a number that is the maximum of the numbers provided.</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>API as a contract example</h1>
+					<p>../js/api.js</p>
+					<pre>
+function getMaximum(num1, num2) {
+	var answer = num1;
+
+	if (num1 < num2) {
+		answer = num2;
+	}
+
+	return answer;
+}
+					</pre>
+				</section>
+				<section>
+					<h1>API as a contract example</h1>
+					<p>index.html</p>
+					<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;body&gt;
+		&lt;button onclick=&quot;alert(getMaximum(5, 3))&quot;&gt;
+			Call API function getMaximum
+		&lt;/button&gt;
+		&lt;script src=&quot;../js/api.js&quot;&gt;&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+					</pre>
+				</section>
+
+				<section>
+					<h1>API as a contract example</h1>
+					<ul>
+						<li>api.js defined an API action called getMaximum</li>
+						<li>It accepts two pieces of information: two numbers</li>
+						<li>It returns one piece of information: a number</li>
+						<li>Any web page can import api.js and by following the above contract can utilize the getMaximum function</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Now what really is an API?</h1>
+					<ul>
+						<li>When people say an API, they don't really mean what we just covered</li>
+						<li>So let's talk about what people really mean when they say &quot;API&quot;</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Now what really is an API?</h1>
+					<iframe width="640" height="360" src="https://www.youtube.com/embed/s7wmiS2mSXY" frameborder="0" allowfullscreen></iframe>
+				</section>
+
+				<section>
+					<h1>The power of APIs</h1>
+
+					<ul>
+						<li>Web applications used to combine all of their functionality in their website</li>
+						<li>Now they separated their "functions" into independent APIs so that clients other than their own websites can use it</li>
+						<li>So now anyone can access that information</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>The power of APIs Example</h1>
+					<ul>
+						<li><strong>Without API:</strong> An app finds the current weather in London by opening http://www.weather.com/ and reading the web page like a human does, interpreting the content.</li>
+						<li><strong>With API:</strong> An app finds the current weather in London by sending a message to the weather.com API (in a structured format like JSON). The weather.com API then replies with a structured response.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>APIs over HTTP</h1>
+					<ul>
+						<li>Let's take that function concept to the Internet</li>
+						<li>We can define functions that can be called "through the Internet" using the HTTP protocol</li>
+						<li>We can use the same protocol as we do for web servers to send and receive information</li>
+						<li>Caveat: Instead of sending HTML/CSS/JS, we send and receive a more structured data representation, like XML or JSON</li>
+
+				</section>
+
+				<section>
+					<h1>JSON</h1>
+					<ul>
+						<li>JavaScript Object Notation</li>
+						<li>A lightweight format that is used for data interchanging</li>
+						<li>It's a subset of the JavaScript language</li>
+						<li>It's the way objects are built in JavaScript</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>JSON Example</h1>
+					<pre>
+{
+	"coord": {
+		"weather": [
+			{
+				"id":800,
+				"main":"Clear",
+				"description":"clear sky",
+				"icon":"01d"
+			}
+		],
+		"base": "stations",
+		"main": {
+			"temp":294.787,
+			"pressure":1024.49,
+			"humidity":52,
+			"temp_min":294.787,
+			"temp_max":294.787,
+			"sea_level":1032.69,
+			"grnd_level":1024.49
+		}, ...
+					</pre>
+				</section>
+
+				<section>
+					<h1>JSON Example</h1>
+					<ul>
+						<li>The previous example was the response to a call to the OpenWeather API</li>
+						<li>We send a GET request to the OpenWeather API server sending a single parameter:
+							<ul>
+								<li>"q" to query for the city</li>
+							</ul>
+						</li>
+						<li>We get the JSON response from the previous slide</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>How to call an API</h1>
+					<p>Let's use curl!</p>
+					<pre>
+curl -v "http://api.openweathermap.org/data/2.5/weather?\
+q=Berkeley,ca"
+					</pre>
+				</section>
+
+				<section>
+					<h1>API HTTP Response</h1>
+					<pre>
+HTTP/1.1 401 Unauthorized
+Server: openresty
+Date: Fri, 02 Nov 2018 12:34:35 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 107
+Connection: keep-alive
+X-Cache-Key: /data/2.5/weather?q=berkeley,ca
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Methods: GET, POST
+
+Connection #0 to host api.openweathermap.org left intact
+{"cod":401, "message": "Invalid API key.
+	Please see http://openweathermap.org/faq#error401 for more info."}
+					</pre>
+				</section>
+
+				<section>
+					<h1>We got a 401 error</h1>
+					<p><strong>From website:</strong> Starting from 9 October 2015 our API requires a valid APPID for access. Note that this does not mean that our API is subscription-only now - please take a minute to register a free account to receive a key.</p>
+				</section>
+
+				<section>
+					<h1>We got a 401 error</h1>
+					<ul>
+						<li>Remember that 400s HTTP response codes mean that there is a client error</li>
+						<li>So we made a mistake</li>
+						<li>Now this openweathermap API requires an appid and it's telling you to sign up and generate one</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>But what is an appid?</h1>
+					<ul>
+						<li>Many API's require some sort of identification so that the API knows who is making the requests</li>
+						<li>Typically the backend will assign id's by user or by <strong>application</strong> (one user could have several applications)</li>
+						<li>Statistics, rate limiting, blocking, and levels of authorization are all possible when you require application ids to be passed on every request</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>How do you typically get an appid?</h1>
+					<ul>
+						<li>First you will need to go to the website that hosts the application and go through their signup process</li>
+						<li>Next look for somewhere where they tell you how to use their API: typically they will show you how to generate a new application id</li>
+						<li>Let's do this now: <a href="https://home.openweathermap.org/users/sign_in" target="_blank">Openweathermap signup</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Now we have an appid!</h1>
+					<ul>
+						<li>af578739923ac7f173a6054b24c606ea</li>
+						<li>We can now add our appid in our curl query to get a 200 response back</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>How to call an API</h1>
+					<pre>
+curl -v "http://api.openweathermap.org/data/2.5/weather?\
+q=Berkeley,ca&amp;appid=af578739923ac7f173a6054b24c606ea"
+					</pre>
+				</section>
+
+				<section>
+					<h1>How to call an API Response</h1>
+					<p>Note the Content Type</p>
+					<pre>
+HTTP/1.1 200 OK
+Server: openresty
+Date: Thu, 20 Oct 2016 22:54:46 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 461
+
+{
+	"coord": {
+		"weather": [
+			{
+				"id":800,
+				"main":"Clear",
+				"description":"clear sky",
+				"icon":"01d"
+				...
+					</pre>
+				</section>
+
+				<section>
+					<h1>How to call an API</h1>
+					<ul>
+						<li>Since this API function call is using a GET request, we can use the address bar on a browser to call this API function</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+		Reveal.initialize({
+			// Display controls in the bottom right corner
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+			// If true; each slide will be pushed to the browser history
+			history: true,
+			// Loops the presentation, defaults to false
+			loop: false,
+			// Flags if mouse wheel navigation should be enabled
+			mouseWheel: true,
+			// Apply a 3D roll to links on hover
+			rollingLinks: true,
+			// UI style
+			theme: Reveal.getQueryHash().theme || 'default',
+			// Transition style
+			transition: Reveal.getQueryHash().transition || 'default'
+			// Optional libraries used to extend on reveal.js
+	});
+
+		</script>
+	</body>
+</html>
